@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="wordpress的body_class()函数，顾名思义，这个函数根据不同的页面类型为body标签生成class选择器，从而让设计人员可以各方便灵活的控制不同页面中的各个元素。本文对这一函数进行了详细的解析，包括该函数生成了些什么，所包含的属性值有哪些，以及如何使用和如何新增class选择器等等。   1、body_class（）生成什么？ body_class()函数在Wordpress2.7">
+<meta property="og:type" content="article">
+<meta property="og:title" content="wordpress - body_class()">
+<meta property="og:url" content="https://blog.ykf.me/2017/09/24/wordpress-body-class/index.html">
+<meta property="og:site_name" content="大风">
+<meta property="og:description" content="wordpress的body_class()函数，顾名思义，这个函数根据不同的页面类型为body标签生成class选择器，从而让设计人员可以各方便灵活的控制不同页面中的各个元素。本文对这一函数进行了详细的解析，包括该函数生成了些什么，所包含的属性值有哪些，以及如何使用和如何新增class选择器等等。   1、body_class（）生成什么？ body_class()函数在Wordpress2.7">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-27T11:33:48.509Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="wordpress - body_class()">
+<meta name="twitter:description" content="wordpress的body_class()函数，顾名思义，这个函数根据不同的页面类型为body标签生成class选择器，从而让设计人员可以各方便灵活的控制不同页面中的各个元素。本文对这一函数进行了详细的解析，包括该函数生成了些什么，所包含的属性值有哪些，以及如何使用和如何新增class选择器等等。   1、body_class（）生成什么？ body_class()函数在Wordpress2.7">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://blog.ykf.me/2017/09/24/wordpress-body-class/"/>
+
+
+
+
+
+  <title>wordpress - body_class() | 大风</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">大风</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">文字记录生活</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.ykf.me/2017/09/24/wordpress-body-class/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kaifeng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="大风">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">wordpress - body_class()</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-24T21:40:25+08:00">
+                2017-09-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>wordpress的body_class()函数，顾名思义，这个函数根据不同的页面类型为body标签生成class选择器，从而让设计人员可以各方便灵活的控制不同页面中的各个元素。本文对这一函数进行了详细的解析，包括该函数生成了些什么，所包含的属性值有哪些，以及如何使用和如何新增class选择器等等。   <strong>1、body_class（）生成什么？</strong> body_class()函数在Wordpress2.7几乎和post_class()有同样的运行方式，唯一不同的是class生成的名称。 body_class()函数生成的class大多是根据你的访问者在网站的位置。例如，如果访问者在你的博客首页，但你没有设置一个静态主页，函数和类 可能会产生如下所示：</p>
+<p>1</p>
+<p><code>&lt;body `</code>class<code>=</code>“home blog”<code></code>&gt;`</p>
+<p>生成了两个class类 如果你在某个帖子，body标签看起来可能是这样：</p>
+<p>1</p>
+<p><code>&lt;body `</code>class<code>=</code>“single postid-64”<code></code>&gt;`</p>
+<p>  如果你正在浏览一个页面，body_class()会生成这样：</p>
+<p>1</p>
+<p><code>&lt;body `</code>class<code>=</code>“page page-id-3 parent-page-id-0 page-template-default”<code></code>&gt;`</p>
+<p>  从本质上讲，body_class()会生成基于内容的动态CSS class，以及在什么情况下浏览。例如，如果你是注册用户，且已经登录，body_class()会在body标签生成一个登录class。 以下为可用的body class的完整列表：</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p>6</p>
+<p>7</p>
+<p>8</p>
+<p>9</p>
+<p>10</p>
+<p>11</p>
+<p>12</p>
+<p>13</p>
+<p>14</p>
+<p>15</p>
+<p>16</p>
+<p>17</p>
+<p>18</p>
+<p>19</p>
+<p>20</p>
+<p>21</p>
+<p>22</p>
+<p>23</p>
+<p>24</p>
+<p>25</p>
+<p>26</p>
+<p>27</p>
+<p>28</p>
+<p>29</p>
+<p>30</p>
+<p>31</p>
+<p>32</p>
+<p>33</p>
+<p><code>rtl</code></p>
+<p><code>home</code></p>
+<p><code>blog</code></p>
+<p><code>archive</code></p>
+<p><code>date</code></p>
+<p><code>search</code></p>
+<p><code>paged</code></p>
+<p><code>attachment</code></p>
+<p><code>error404</code></p>
+<p><code>single postid-(id)</code></p>
+<p><code>attachmentid-(id)</code></p>
+<p><code>attachment-(mime-type)</code></p>
+<p><code>author</code></p>
+<p><code>author-(user_nicename)</code></p>
+<p><code>category</code></p>
+<p><code>category-(slug)</code></p>
+<p><code>tag</code></p>
+<p><code>tag-(slug)</code></p>
+<p><code>page</code></p>
+<p><code>page-parent</code></p>
+<p><code>page-child parent-pageid-(id)</code></p>
+<p><code>page-template page-template-(template file name)</code></p>
+<p><code>search-results</code></p>
+<p><code>search-no-results</code></p>
+<p><code>logged-`</code>in`</p>
+<p><code>paged-(page number)</code></p>
+<p><code>single-paged-(page number)</code></p>
+<p><code>page-paged-(page number)</code></p>
+<p><code>category-paged-(page number)</code></p>
+<p><code>tag-paged-(page number)</code></p>
+<p><code>date-paged-(page number)</code></p>
+<p><code>author-paged-(page number)</code></p>
+<p><code>search-paged-(page number)</code></p>
+<p>  <strong>2. 如何添加body_class()</strong> 假设你正在使用Wordpress2.8以上的版本，通常body_class()放到<body>标签里。它通常在header.php文件里。 当你找到标签的位置后，请把它更改为：</body></p>
+<p>1</p>
+<p><code>&lt;body &lt;?php body_class(); ?&gt;&gt;</code></p>
+<p>  <strong>3. 使用动态Body Class</strong> 现在我们有了body class，有什么大不了呢？我将会解释： 除了html元素外，标签包围着其他所有的HTML代码。因此，body class允许我们对网页任何元素进行修改，具体到当前页面。 也许通过实例更容易理解： 我们主题左边有一个<div id="”content”">，右边有一个<div id="”sidebar”">，他们都在一个960px宽<div id="”container”">里。content div为600px宽，sidebar div为360px宽。但是，当浏览单独的帖子页面，我让我的主题不显示sidebar。现在，我们只剩下一个content div。不幸的是，container div为960px宽，而我们的content div却只有600px宽。 我们难道用一个大空白区填充我们的工具栏？该如何解决呢？使用body class这将很简单。我们只需要针对<div id="”content”">在帖子页的情况进行定义。在CSS里为：</div></div></div></div></p>
+<p>1</p>
+<p><code>.single #content{ width: 960px; }</code></p>
+<p>通过这样做，在帖子页面，content div为960px宽。我们正在增加一个简单有选择性的CSS系统。   <strong>4. 新增body_class()的class</strong> 在某些情况下，你将要添加自己的Class到body_class()里。如果你发现自己处在这种情况下，这些有些方法可以做到这一点。 首先，最简单的方法是通过自定义Class函数调用 body_class()</p>
+<p>1</p>
+<p><code>&lt;body &lt;?php body_class(`</code>‘my-class’<code></code>); ?&gt;&gt;`</p>
+<p>通过这样做，我们现在告诉body_class()函数增加my-class的输出。 第二，困难但更灵活的方式是，利用Wordpress的过滤器，增加新的body class。在这种情况下，我们将使用 get_body_class() 函数中的body_class过滤器。 这是增加使用过滤器增加class的例子：</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p>6</p>
+<p>7</p>
+<p>8</p>
+<p>9</p>
+<p>10</p>
+<p>11</p>
+<p><code>&lt;?php</code></p>
+<p><code>add_filter(’body_class’,&#39;my_body_classes’);</code></p>
+<p><code>function my_body_classes($classes) {</code></p>
+<p><code>// add &#39;zdy_class&#39; to the $classes array</code></p>
+<p><code>$classes[] = `</code>‘zdy_class’<code></code>;`</p>
+<p><code>// return the $classes array</code></p>
+<p><code>return</code> <code>$classes;</code></p>
+<p><code>}</code></p>
+<p><code>?&gt;</code></p>
+<p>则输出结果在body_class()的基础上新增zdy_class  </p>
+<hr>
+<h2 id="body-class-函数是什么？用来做什么？"><a href="#body-class-函数是什么？用来做什么？" class="headerlink" title="body_class 函数是什么？用来做什么？"></a>body_class 函数是什么？用来做什么？</h2><p>有一定前端开发经验的人，往往会在 body 标签上加上一些类，变成类似下面这样：</p>
+<pre><code>&lt;body class=&quot;home&quot;&gt;.....&lt;/body&gt;
+</code></pre><p>因为同一个网站中，很多页面的结构是相同的，但是有时某个相同结构（.header）的样式却要求不同。这样如果使用相同的结构，就没法修改样式，如果再新建结构，就相当于重做了一个页面，增加工作量。这时，也可以在 body 标签上加上一个页面对应的类（blog），之后对于这样一个与其他页面不同样式的需求，就可以使用下面语句来实现：</p>
+<pre><code>.blog .header{.....}
+</code></pre><p>body_class 这个函数就是用来给 body 标签添加类的函数。</p>
+<h2 id="body-class-函数如何使用？"><a href="#body-class-函数如何使用？" class="headerlink" title="body_class 函数如何使用？"></a>body_class 函数如何使用？</h2><p>body_class 函数的使用方法非常简单，只需要用下面语句替换掉原来的 body 标签即可：</p>
+<pre><code>&lt;body &lt;?php body_class($class); ?&gt;&gt;
+</code></pre><p>其中有一个参数 class ，它可以是一个字符串或者是数组，数组里的内容会以空格为分割，插入到 body 标签中的 class 属性中。</p>
+<h2 id="body-class-函数会输出什么类？"><a href="#body-class-函数会输出什么类？" class="headerlink" title="body_class 函数会输出什么类？"></a>body_class 函数会输出什么类？</h2><p>既然它会自动的输出类让前端方便进行控制，那么了解这个函数的输出规则就非常有必要了，下面针对不同类型的页面介绍一下它的输出规则：</p>
+<h3 id="首页（Front-Page）"><a href="#首页（Front-Page）" class="headerlink" title="首页（Front Page）"></a>首页（Front Page）</h3><p>这里的首页，就是打开你的博客看到的第一个页面，这个页面是可以在 WordPress 后台进行设置的，可以选择显示文章列表或者是一个静态的页面（Page）。 任意的首页都包含 <code>home</code> 类。</p>
+<ul>
+<li>如果网站首页显示文章列表，那么输出：<code>home blog</code> 这两个类。</li>
+<li>如果网站首页显示静态页面，将会输出：<code>home page</code> 类。</li>
+</ul>
+<h3 id="博客文章索引页面"><a href="#博客文章索引页面" class="headerlink" title="博客文章索引页面"></a>博客文章索引页面</h3><p>博客文章索引页面都包含 <code>blog</code> 类。</p>
+<ul>
+<li>如果博客文章页面显示在首页，将会输出：<code>home blog</code> 类。</li>
+<li>如果博客文章显示在某个指定的静态页面中，将会输出：<code>page blog</code> 类。</li>
+</ul>
+<h3 id="文章页面（Single-Post）"><a href="#文章页面（Single-Post）" class="headerlink" title="文章页面（Single Post）"></a>文章页面（Single Post）</h3><p>所有的文章都会输出：<code>single postid-{ID}</code> 这两个类（ID 为当前文章唯一的 ID ）。</p>
+<ul>
+<li>普通的文章页面输出：<code>single-post</code> 类</li>
+<li>自定义文章类型的文章页面输出：<code>single-{posttype}</code> 类</li>
+<li>如果支持文章格式的话：<ul>
+<li>指定了文章格式的文章会输出：<code>single-format-{format}</code></li>
+<li>如果当前文章没有指定文章格式：<code>single-format-standard</code></li>
+</ul>
+</li>
+<li>对于附件页面（attachment pages）会输出：<code>attachment single-attachment attachmentid-{ID} attachment-mime-type</code></li>
+</ul>
+<h3 id="存档页面（Archives）"><a href="#存档页面（Archives）" class="headerlink" title="存档页面（Archives）"></a>存档页面（Archives）</h3><p>存档页面都有 <code>archive</code> 类。</p>
+<ul>
+<li>日期（Date）存档索引页面输出：<code>date</code></li>
+<li>自定义文章类型的存档索引页面输出：<code>post-type-archive post-type-archive-{posttype}</code></li>
+<li>作者存档页面输出：<code>archive author author-{user_nickname}</code></li>
+<li>标签存档页面输出：<code>archive tag tag-{slug}</code></li>
+<li>分类存档页面输出：<code>archive category category-{slug}</code></li>
+<li>自定义分类（Taxonomy）存档页面输出：<code>tax-{taxonomy} term-{term} term-{ID}</code></li>
+<li>自定义文章格式存档页面输出：<code>tax-{post_format} term-post-format-{format} term-{ID}</code></li>
+</ul>
+<h3 id="页面（Page）"><a href="#页面（Page）" class="headerlink" title="页面（Page）"></a>页面（Page）</h3><p>所有静态页面都输出 <code>page</code> 和 <code>page-id-{ID}</code> 类。 页面层次中：</p>
+<ul>
+<li>父级页面输出：<code>page-parent</code></li>
+<li>子级页面输出：<code>page-child parent-pageid-{ID}</code></li>
+</ul>
+<p><a href="http://blog.wpjam.com/m/custom-wordpress-page-template/" target="_blank" rel="noopener">自定义页面模版</a>中：</p>
+<ul>
+<li>应用了页面模版的页面会输出：<code>page-template page-template-{directory}{filename}_php</code></li>
+<li>没有指定页面模版的页面会输出：<code>page-template-default</code></li>
+</ul>
+<h3 id="搜索页面"><a href="#搜索页面" class="headerlink" title="搜索页面"></a>搜索页面</h3><p>搜索结果页面都有 <code>search</code> 类。</p>
+<ul>
+<li>带有结果的搜索页面：<code>search-results</code></li>
+<li>没有结果的搜索页面：<code>search-no-results</code></li>
+</ul>
+<h3 id="分页页面或者多页码的页面"><a href="#分页页面或者多页码的页面" class="headerlink" title="分页页面或者多页码的页面"></a>分页页面或者多页码的页面</h3><p>分页页面通常是指文章索引页面底部的翻页。 此外文章内也有分页页面。一个页面或者文章太长的时候，通常会截断成多个子页面，通过翻页查看下一部份内容。对于所有带有页码的页面，都包含 paged 类。当前页面处于某个带有页码页面的第二页之后的页面，会输出 paged 和 paged-{n} 类。</p>
+<ul>
+<li>文章带页码页面：<code>single-paged-{n}</code></li>
+<li>静态页面带页码：<code>page-paged-{n}</code></li>
+<li>分类存档索引页面：<code>category-paged-{n}</code></li>
+<li>标签存档索引页面：<code>tag-paged-{n}</code></li>
+<li>日期存档索引页面：<code>date-paged-{n}</code></li>
+<li>作者存档索引页面：<code>author-paged-{n}</code></li>
+<li>搜索结果页面：<code>search-paged-{n}</code></li>
+<li>自定义文章类型索引页面：<code>post-type-paged-{n}</code></li>
+</ul>
+<h3 id="404-错误页面"><a href="#404-错误页面" class="headerlink" title="404 错误页面"></a>404 错误页面</h3><p>错误页面输出 <code>error404</code> 类。</p>
+<h3 id="登陆"><a href="#登陆" class="headerlink" title="登陆"></a>登陆</h3><p>当用户登陆 WordPress 之后，会在所有页面输出 <code>logged-in</code> 类。</p>
+<h3 id="文字方向"><a href="#文字方向" class="headerlink" title="文字方向"></a>文字方向</h3><p>如果文字的方向设置为了 “右向左” 就会输出 <code>rtl</code> 类。</p>
+<h3 id="自定义背景"><a href="#自定义背景" class="headerlink" title="自定义背景"></a>自定义背景</h3><p>如果使用了自定义背景功能来显示背景图片或者颜色，会输出 <code>custom-background</code> 类。</p>
+<h3 id="超级管理员工具条"><a href="#超级管理员工具条" class="headerlink" title="超级管理员工具条"></a>超级管理员工具条</h3><p>如果管理员工具条在顶部出现了，会输出： <code>admin-bar no-customize-support</code> 类。 介绍完了 body_class 函数根据当前页面自动输出类的规则之后，我们来介绍一下如何自定义输出的类。</p>
+<h2 id="自定义-body-class-函数输出的类"><a href="#自定义-body-class-函数输出的类" class="headerlink" title="自定义 body_class 函数输出的类"></a>自定义 body_class 函数输出的类</h2><p>在前面的使用中已经提到了这个函数的唯一的参数，传递进去值就会输出相应的参数，这里不再赘述。下面介绍一下通过条件判断和过滤器自定义输出类。 通过使用 body_class filter 来实现，大体框架如下：</p>
+<pre><code>add_filter(&apos;body_class&apos;,&apos;wpjam_class_names&apos;);
+function wpjam_class_names($classes) {
+    $classes[] = &apos;class-name&apos;;
+    return $classes;
+}
+</code></pre><p>上例中，我们为 classes 这个数组变量增加了一个新键值 “class-name” 并返回给 body_class filter ，即可实现在所有页面中输出 “class-name” 这个类。 但是这样自定义是完全没有什么价值的，我们往往希望通过更详细的判断语句来判断出某些特定的页面，然后增加相应的类。这样，就需要 WordPress 强大的条件判断标签了。这里推荐一下 <a href="http://blog.wpjam.com/" target="_blank" rel="noopener">我爱水煮鱼</a> 博客翻译编写的 <a href="http://blog.wpjam.com/article/wordpress-conditional-tags/" target="_blank" rel="noopener">WordPress 条件判断标签及其使用方法</a>。下面就来试一下：</p>
+<pre><code>add_filter(&apos;body_class&apos;,&apos;wpjam_class_names&apos;);
+function wpjam_class_names($classes) {
+    if ( is_page( &apos;some-page&apos; ))
+        $classes[] = &apos;some-page&apos;;
+    return $classes;
+}
+</code></pre><p>上面例子很简单，使用 is_page 判断标签判断当前页面的 slug 是否为 some-page ，如果是，就为当前页面的 body 标签增加 some-page 类。当然，因为默认输出的已经比较详细了，所以这个例子只作为抛砖引玉之用。 需要注意一点，WordPress 系统在不断的升级，可能会对本文中的输出类的规则有所变更，如果你发现某个规则是错误的，请以实际输出为准。 总之 body_class 差不多就这么些事情，使用它可以方便前端工作，提高灵活性。所以，为了你的主题更具有扩展性，务必要在 body 标签中加入这个函数哦！</p>
+<p>标签：<a href="http://blog.wpjam.com/tag/wordpres-tutorials/" target="_blank" rel="noopener">WordPress 教程</a></p>
+<p>©我爱水煮鱼</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/24/wordpress-wp-head/" rel="next" title="wordpress - wp_head()">
+                <i class="fa fa-chevron-left"></i> wordpress - wp_head()
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/24/wordpress-e3-80-81-e-e3-80-81-x-e3-80-81-ex-e5-92-8c-n/" rel="prev" title="wordpress - __()、_e()、_x、_ex 和 _n">
+                wordpress - __()、_e()、_x、_ex 和 _n <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Kaifeng</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#body-class-函数是什么？用来做什么？"><span class="nav-number">1.</span> <span class="nav-text">body_class 函数是什么？用来做什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#body-class-函数如何使用？"><span class="nav-number">2.</span> <span class="nav-text">body_class 函数如何使用？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#body-class-函数会输出什么类？"><span class="nav-number">3.</span> <span class="nav-text">body_class 函数会输出什么类？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#首页（Front-Page）"><span class="nav-number">3.1.</span> <span class="nav-text">首页（Front Page）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#博客文章索引页面"><span class="nav-number">3.2.</span> <span class="nav-text">博客文章索引页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文章页面（Single-Post）"><span class="nav-number">3.3.</span> <span class="nav-text">文章页面（Single Post）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存档页面（Archives）"><span class="nav-number">3.4.</span> <span class="nav-text">存档页面（Archives）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页面（Page）"><span class="nav-number">3.5.</span> <span class="nav-text">页面（Page）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索页面"><span class="nav-number">3.6.</span> <span class="nav-text">搜索页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分页页面或者多页码的页面"><span class="nav-number">3.7.</span> <span class="nav-text">分页页面或者多页码的页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#404-错误页面"><span class="nav-number">3.8.</span> <span class="nav-text">404 错误页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#登陆"><span class="nav-number">3.9.</span> <span class="nav-text">登陆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文字方向"><span class="nav-number">3.10.</span> <span class="nav-text">文字方向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义背景"><span class="nav-number">3.11.</span> <span class="nav-text">自定义背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#超级管理员工具条"><span class="nav-number">3.12.</span> <span class="nav-text">超级管理员工具条</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义-body-class-函数输出的类"><span class="nav-number">4.</span> <span class="nav-text">自定义 body_class 函数输出的类</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kaifeng</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
