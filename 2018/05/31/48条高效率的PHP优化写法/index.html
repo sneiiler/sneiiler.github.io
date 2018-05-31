@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="大风">
 <meta property="og:description" content="来源：歪麦博客 https://www.awaimai.com/1050.html [toc] 1 字符串1.1 少用正则表达式能用PHP内部字符串操作函数的情况下，尽量用他们，不要用正则表达式， 因为其效率高于正则。 没得说，正则最耗性能。 str_replace函数要比preg_replace快得多，strtr函数又比str_replace来得快。 有没有你漏掉的好用的函数？ 例如：strpb">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-31T15:24:43.832Z">
+<meta property="og:updated_time" content="2018-05-31T15:26:20.929Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="48条高效率的PHP优化写法">
 <meta name="twitter:description" content="来源：歪麦博客 https://www.awaimai.com/1050.html [toc] 1 字符串1.1 少用正则表达式能用PHP内部字符串操作函数的情况下，尽量用他们，不要用正则表达式， 因为其效率高于正则。 没得说，正则最耗性能。 str_replace函数要比preg_replace快得多，strtr函数又比str_replace来得快。 有没有你漏掉的好用的函数？ 例如：strpb">
@@ -442,7 +442,7 @@
 <p>这和声明相同数量的局部变量一样，PHP可能去检查这个全局变量是否存在。</p>
 <h2 id="4-8-使用-i递增"><a href="#4-8-使用-i递增" class="headerlink" title="4.8 使用++$i递增"></a>4.8 使用++$i递增</h2><p>当执行变量$i的递增或递减时，$i++会比++$i慢一些。</p>
 <p>这种差异是PHP特有的，并不适用于其他语言，所以请不要修改你的C或Java代码，并指望它们能立即变快，没用的。</p>
-<p>++$i更快是因为它只需要3条指令(opcodes)，$i++则需要4条指令。</p>
+<p>++\$i更快是因为它只需要3条指令(opcodes)，\$i++则需要4条指令。</p>
 <p>后置递增实际上会产生一个临时变量，这个临时变量随后被递增。</p>
 <p>而前置递增直接在原值上递增。</p>
 <p>这是最优化处理的一种，正如Zend的PHP优化器所作的那样。</p>
