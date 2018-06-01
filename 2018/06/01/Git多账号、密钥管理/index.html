@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="bloginfo( string $show = ‘’ )显示当前网站的信息。具体参数如下： Possible values for $show #Possible values for $show ‘name‘ – Displays the “Site Title” set in Settings &amp;gt; General. This data is retrieved from the “bl">
+<meta name="description" content="有的时候有多个账号和Git提交需求，这就需要同时配置多个密钥对，通过SSH的方式进行git提交。  首先生成SSH-KEY打开命令行、终端，用命令进入到你要保存SSH-KEY文件的文件夹，我们先用命令测试下终端是否支持SSH： 1ssh -V 测试时如果提示不识别SSH命令，需要安装SSH。Ubuntu安装SSH：1sudo apt-get install openssh-client open">
 <meta property="og:type" content="article">
-<meta property="og:title" content="wordpress - bloginfo()">
-<meta property="og:url" content="https://blog.ykf.me/2017/09/24/wordpress-bloginfo-2/index.html">
+<meta property="og:title" content="Git多账号、密钥管理">
+<meta property="og:url" content="https://blog.ykf.me/2018/06/01/Git多账号、密钥管理/index.html">
 <meta property="og:site_name" content="大风">
-<meta property="og:description" content="bloginfo( string $show = ‘’ )显示当前网站的信息。具体参数如下： Possible values for $show #Possible values for $show ‘name‘ – Displays the “Site Title” set in Settings &amp;gt; General. This data is retrieved from the “bl">
+<meta property="og:description" content="有的时候有多个账号和Git提交需求，这就需要同时配置多个密钥对，通过SSH的方式进行git提交。  首先生成SSH-KEY打开命令行、终端，用命令进入到你要保存SSH-KEY文件的文件夹，我们先用命令测试下终端是否支持SSH： 1ssh -V 测试时如果提示不识别SSH命令，需要安装SSH。Ubuntu安装SSH：1sudo apt-get install openssh-client open">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-31T09:19:43.059Z">
+<meta property="og:updated_time" content="2018-06-01T03:35:50.526Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wordpress - bloginfo()">
-<meta name="twitter:description" content="bloginfo( string $show = ‘’ )显示当前网站的信息。具体参数如下： Possible values for $show #Possible values for $show ‘name‘ – Displays the “Site Title” set in Settings &amp;gt; General. This data is retrieved from the “bl">
+<meta name="twitter:title" content="Git多账号、密钥管理">
+<meta name="twitter:description" content="有的时候有多个账号和Git提交需求，这就需要同时配置多个密钥对，通过SSH的方式进行git提交。  首先生成SSH-KEY打开命令行、终端，用命令进入到你要保存SSH-KEY文件的文件夹，我们先用命令测试下终端是否支持SSH： 1ssh -V 测试时如果提示不识别SSH命令，需要安装SSH。Ubuntu安装SSH：1sudo apt-get install openssh-client open">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://blog.ykf.me/2017/09/24/wordpress-bloginfo-2/"/>
+  <link rel="canonical" href="https://blog.ykf.me/2018/06/01/Git多账号、密钥管理/"/>
 
 
 
 
 
-  <title>wordpress - bloginfo() | 大风</title>
+  <title>Git多账号、密钥管理 | 大风</title>
   
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.ykf.me/2017/09/24/wordpress-bloginfo-2/">
+    <link itemprop="mainEntityOfPage" href="https://blog.ykf.me/2018/06/01/Git多账号、密钥管理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kaifeng">
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">wordpress - bloginfo()</h1>
+          <h1 class="post-title" itemprop="name headline">Git多账号、密钥管理</h1>
         
 
         <div class="post-meta">
@@ -291,8 +291,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-24T23:01:02+08:00">
-                2017-09-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-01T11:26:11+08:00">
+                2018-06-01
               </time>
             
 
@@ -301,28 +301,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -356,44 +334,46 @@
       
 
       
-        <h1 id="bloginfo-string-show-‘’"><a href="#bloginfo-string-show-‘’" class="headerlink" title="bloginfo( string $show = ‘’ )"></a>bloginfo( string $show = ‘’ )</h1><p>显示当前网站的信息。具体参数如下：</p>
-<h3 id="Possible-values-for-show-Possible-values-for-show"><a href="#Possible-values-for-show-Possible-values-for-show" class="headerlink" title="Possible values for $show #Possible values for $show"></a>Possible values for $show <a href="https://developer.wordpress.org/reference/functions/bloginfo/#possible-values-for-show" target="_blank" rel="noopener">#Possible values for $show</a></h3><ul>
-<li>‘<strong>name</strong>‘ – Displays the “Site Title” set in Settings &gt; General. This data is retrieved from the “blogname” record in the <a href="https://codex.wordpress.org/Database_Description#Table:_wp_options" title="Database Description" target="_blank" rel="noopener">wp_options table</a>.</li>
-<li>‘<strong>name</strong>‘ – 显示在网站后台设置的 网站标题</li>
-<li>‘<strong>description</strong>‘ – Displays the “Tagline” set in Settings &gt; General. This data is retrieved from the “blogdescription” record in the <a href="https://codex.wordpress.org/Database_Description#Table:_wp_options" title="Database Description" target="_blank" rel="noopener">wp_options table</a>.</li>
-<li>‘<strong>description</strong>‘ – 显示网站后台中设置的  网站描述</li>
-<li>‘<strong>wpurl</strong>‘ – Displays the “WordPress address (URL)” set in Settings &gt; General. This data is retrieved from the “siteurl” record in the <a href="https://codex.wordpress.org/Database_Description#Table:_wp_options" title="Database Description" target="_blank" rel="noopener">wp_options table</a>. Consider echoing <a href="https://developer.wordpress.org/reference/functions/site_url/" target="_blank" rel="noopener">site_url()</a> instead, especially for multi-site configurations using paths instead of subdomains (it will return the root site not the current sub-site).</li>
-<li>‘<strong>wpurl</strong>‘ - 显示wordpress网站的 根网址，建议使用输出site_url()函数来输出，尤其是对于多站点配置的网站</li>
-<li>‘<strong>url</strong>‘ – Displays the “Site address (URL)” set in Settings &gt; General. This data is retrieved from the “home” record in the <a href="https://codex.wordpress.org/Database_Description#Table:_wp_options" title="Database Description" target="_blank" rel="noopener">wp_options table</a>. Consider echoing <a href="https://developer.wordpress.org/reference/functions/home_url/" target="_blank" rel="noopener">home_url()</a> instead.</li>
-<li>‘<strong>url</strong>‘ - 显示当前网站的网址，建议使用home_url()函数来代替</li>
-<li>‘<strong>admin_email</strong>‘ – Displays the “E-mail address” set in Settings &gt; General. This data is retrieved from the “admin_email” record in the <a href="https://codex.wordpress.org/Database_Description#Table:_wp_options" title="Database Description" target="_blank" rel="noopener">wp_options table</a>.</li>
-<li>显示网站管理员的邮箱</li>
-<li>‘<strong>charset</strong>‘ – Displays the “Encoding for pages and feeds” set in Settings &gt; Reading. This data is retrieved from the “blog_charset” record in the <a href="https://codex.wordpress.org/Database_Description#Table:_wp_options" title="Database Description" target="_blank" rel="noopener">wp_options table</a>. <strong>Note:</strong> this parameter always echoes “UTF-8”, which is the default encoding of WordPress.</li>
-<li>输出网站的默认编码</li>
-<li>‘<strong>version</strong>‘ – Displays the WordPress Version you use. This data is retrieved from the $wp_version variable set in <code>wp-includes/version.php</code>.</li>
-<li>输出wordpress的版本号</li>
-<li>‘<strong>html_type</strong>‘ – Displays the Content-Type of WordPress HTML pages (default: “text/html”). This data is retrieved from the “html_type” record in the <a href="https://codex.wordpress.org/Database_Description#Table:_wp_options" title="Database Description" target="_blank" rel="noopener">wp_options table</a>. Themes and plugins can override the default value using the <a href="https://developer.wordpress.org/reference/hooks/pre_option_option/" title="Plugin API/Filter Reference" target="_blank" rel="noopener">pre_option_html_type</a> filter.</li>
-<li>输出Content-Type</li>
-<li>‘<strong>text_direction</strong>‘ – Displays the Text Direction of WordPress HTML pages. Consider using <a href="https://developer.wordpress.org/reference/functions/is_rtl/" target="_blank" rel="noopener">is_rtl()</a> instead.</li>
-<li>输出网站是从左到右还是从右到左显示顺序</li>
-<li>‘<strong>language</strong>‘ – Displays the language of WordPress.</li>
-<li>显示wordpress使用的语言</li>
-<li>‘<strong>stylesheet_url</strong>‘ – Displays the primary CSS (usually <em>style.css</em>) file URL of the active theme. Consider echoing <a href="https://developer.wordpress.org/reference/functions/get_stylesheet_uri/" target="_blank" rel="noopener">get_stylesheet_uri()</a> instead.</li>
-<li>显示当前使用主题的样式文件 style.css 的网址，可以使用 get_stylesheet_uri()函数</li>
-<li>‘<strong>stylesheet_directory</strong>‘ – Displays the stylesheet directory URL of the active theme. (Was a local path in earlier WordPress versions.) Consider echoing <a href="https://developer.wordpress.org/reference/functions/get_stylesheet_directory_uri/" target="_blank" rel="noopener">get_stylesheet_directory_uri()</a> instead.</li>
-<li>‘<strong>template_url</strong>‘ / ‘<strong>template_directory</strong>‘ – URL of the active theme’s directory. Within child themes, both get_bloginfo(‘template_url’) and <a href="https://developer.wordpress.org/reference/functions/get_template/" target="_blank" rel="noopener">get_template()</a> will return the <em>parent</em> theme directory. Consider echoing <a href="https://developer.wordpress.org/reference/functions/get_template_directory_uri/" target="_blank" rel="noopener">get_template_directory_uri()</a> instead (for the parent template directory) or <a href="https://developer.wordpress.org/reference/functions/get_stylesheet_directory_uri/" target="_blank" rel="noopener">get_stylesheet_directory_uri()</a> (for the child template directory).</li>
-<li>输出当前网站模板的uri</li>
-<li>‘<strong>pingback_url</strong>‘ – Displays the Pingback XML-RPC file URL (<em>xmlrpc.php</em>).</li>
-<li>‘<strong>atom_url</strong>‘ – Displays the Atom feed URL (<em>/feed/atom</em>).</li>
-<li>‘<strong>rdf_url</strong>‘ – Displays the RDF/RSS 1.0 feed URL (<em>/feed/rfd</em>).</li>
-<li>‘<strong>rss_url</strong>‘ – Displays the RSS 0.92 feed URL (<em>/feed/rss</em>).</li>
-<li>‘<strong>rss2_url</strong>‘ – Displays the RSS 2.0 feed URL (<em>/feed</em>).</li>
-<li>‘<strong>comments_atom_url</strong>‘ – Displays the comments Atom feed URL (<em>/comments/feed</em>).</li>
-<li>‘<strong>comments_rss2_url</strong>‘ – Displays the comments RSS 2.0 feed URL (<em>/comments/feed</em>).</li>
-<li>‘<strong>siteurl</strong>‘ – Deprecated since version 2.2. Echo <a href="https://developer.wordpress.org/reference/functions/home_url/" target="_blank" rel="noopener">home_url()</a>, or use bloginfo(‘url’).</li>
-<li>已弃置</li>
-<li>‘<strong>home</strong>‘ – Deprecated since version 2.2. Echo <a href="https://developer.wordpress.org/reference/functions/home_url/" target="_blank" rel="noopener">home_url()</a>, or use bloginfo(‘url’).</li>
+        <blockquote>
+<p>有的时候有多个账号和Git提交需求，这就需要同时配置多个密钥对，通过SSH的方式进行git提交。</p>
+</blockquote>
+<h1 id="首先生成SSH-KEY"><a href="#首先生成SSH-KEY" class="headerlink" title="首先生成SSH-KEY"></a>首先生成SSH-KEY</h1><p>打开命令行、终端，用命令进入到你要保存SSH-KEY文件的文件夹，我们先用命令测试下终端是否支持SSH：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -V</span><br></pre></td></tr></table></figure>
+<p>测试时如果提示不识别SSH命令，需要安装SSH。<br>Ubuntu安装SSH：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openssh-client openssh-server</span><br></pre></td></tr></table></figure></p>
+<p>CentOS安装SSH：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install openssh-client openssh-server</span><br></pre></td></tr></table></figure></p>
+<p>Windows可以在当前文件夹右键，选择Git Bash Here，会自动在当前文件夹打开一个MINGW的命令行窗体，它是自带SSH的。</p>
+<p>接下来进入ssh保存公钥和密钥的文件夹，使用SSH命令在当前文件夹生成一对SSH-KEY：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"邮箱地址"</span></span><br></pre></td></tr></table></figure>
+<p>接下来会出来提示信息，完整的大概是这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">"smallajax@foxmail.com"</span></span><br><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (~/.ssh/id_rsa):</span><br></pre></td></tr></table></figure>
+<p>这里需要输入SSH-KEY的文件名字，这里名字理论上可以随便取，根据爱好输入KEY文件的名字吧，例如为Github配置就输入：id_rsa_github，为OSChina配置就输入：id_rsa_oschina。</p>
+<p>接着会要求输入私钥的密码，并且需要确认密码，为了安全在密码输入的时候不会反显，什么都看不到，这个密码你自己设置，但是你一定要记住：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Enter passphrase (empty <span class="keyword">for</span> no passphrase):</span><br><span class="line">Enter same passphrase again:</span><br></pre></td></tr></table></figure></p>
+<p>到这里生成SSH-KEY的事就完成了，你在当前文件夹会看到两个文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id_rsa_github  id_rsa_github.pub</span><br></pre></td></tr></table></figure></p>
+<p>SSH-KEY生成了，接着给服务器和客户端配置SSH-KEY</p>
+<ul>
+<li>第一步把id_rsa_github.pub中的公钥内容添加到Git的SSH中，如果你使用Github或者Gitlib，在个人设置中会找到。</li>
+<li>第二步为SSH配置私钥位置，这里和上面配置单个Git帐号不一样，不过单个帐号也可以按照多个帐号的配置方法来配置。</li>
 </ul>
+<p>下面我们需要在.ssh文件夹新建一个名为config的文件，用它来配置多个SSH-KEY的管理。</p>
+<p>Linux进入.ssh文件夹：cd ~/.ssh，新建config文件：touch config；或者：touch ~/.ssh/config。这里要注意，没有.ssh文件夹的要新建一个.ssh名的文件夹。</p>
+<p>Window进入C:/Users/你的用户名/.ssh文件夹，右键新建一个文本文件，改名为config即可。这里要注意，没有.ssh文件夹的要新建一个.ssh名的文件夹。</p>
+<p>下面来填写config文件的内容，我以Github、Gitlib、OSChina，局域网为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">    HostName github.com</span><br><span class="line">    User smallajax@foxmail.com</span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile /home/Workspace/ssh/id_rsa_github</span><br><span class="line">Host gitlib.com</span><br><span class="line">    HostName gitlib.com</span><br><span class="line">    User smallajax@foxmail.com</span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile id_rsa_gitlib</span><br><span class="line">Host oschina.com</span><br><span class="line">    HostName oschina.com</span><br><span class="line">    User smallajax@foxmail.com</span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile /D/Workspace/ssh/id_rsa_oschina</span><br><span class="line">Host 192.168.1.222</span><br><span class="line">    HostName 192.168.1.222</span><br><span class="line">    User smallajax@foxmail.com</span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile /D/Workspace/ssh/id_rsa_oschina</span><br></pre></td></tr></table></figure>
+<p>解释一下，HostName是服务器的地址，User是用户名，PreferredAuthentications照抄即可，这里主要说的是IdentityFile，上面我们看到了三种情况，所以它的书写原则是：</p>
+<p>填私钥文件的本地路径。<br>不论是Linux还是Windows都可以写相对路径，比如把id_rsa_xxx私钥文件放在.ssh文件夹下。<br>文件放在不同跟路径下时，需要写绝对路径<br>Linux中没有放在.ssh文件夹内或者子文件夹。<br>Windows中没有放在C盘下时。注意据对路径变化，比如C盘下是/C/xo/abc、比如D盘下/D/ssh/id_rsa这样，还看不懂请参考上方例子。<br>拷贝完成后，把所有的id_rsa私钥文件添加到SSH-Agent，命令如下：</p>
+<p>ssh-add id_rsa文件的路径<br>1<br>例如添加.ssh文件夹下的，Linux这样做：ssh-add ~/.ssh/id_rsa，如果你在.ssh文件夹下：ssh-add id_rsa即可，Windows同理。</p>
+<p>此时添加时如果遇到错误，请参考本文最后一节：添加SSH到SSH-Agent时报错。</p>
+<p>最后，还剩下项目的用户和邮箱没有配置，和配个单个Git帐号的方式不同，这里我们需要为每个项目分别配置，所以要命令行进入仓库文件夹再设置。第一种情况是先从Git上pull仓库下来，第二种情况是本地初始化Git仓库，总之进入改仓库文件夹后：<br>git config –local user.name “你的名字”<br>git config –local user.email “你的邮箱”<br>1<br>2<br>例如：</p>
+<p>git config –local user.name “YanZhenjie”<br>git config –local user.email “<a href="mailto:smallajax@foxmail.com" target="_blank" rel="noopener">smallajax@foxmail.com</a>“<br>1<br>2<br>不过麻烦的一点是如果是多个项目就需要挨个配置，不过我们一般是pull一个项目就配置一下，也仅仅需要配置一次即可。</p>
+<p>注意配置单个Git帐号时，是不进入项目文件夹就可以，不过不是使用–local，而是使用–global就可以全局配置。</p>
+<p>配置项目用户和邮箱完成后，我们可以进入项目文件夹下的.git文件夹查看config文件内容，大概内容如下：</p>
+<p>…<br>[user]<br>    name = YanZhenjie<br>    email = <a href="mailto:smallajax@foxmail.com" target="_blank" rel="noopener">smallajax@foxmail.com</a><br>1<br>2<br>3<br>4<br>此时配置全部结束，请查看下方测试SSH-KEY配置是否成功进行测试。如果配置成功，你就可以clone和commit了。</p>
+<p>测试SSH-KEY配置是否成功<br>配置全部结束，我们来测试一下配置是否成功：</p>
+<p>如果你是Github：<br>ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a><br>1<br>如果是你Gitlib：<br>ssh -T <a href="mailto:git@gitlib.com" target="_blank" rel="noopener">git@gitlib.com</a><br>1<br>如果你是局域网192.168.1.222：<br>ssh -T <a href="mailto:git@192.168.1.222" target="_blank" rel="noopener">git@192.168.1.222</a><br>1<br>其它自行举一反三吧。<br>此时需要输入刚才生成SSH-KEY时输入的私钥密码，输入后自行观察信息判断是否连接成功。</p>
+<p>比如Github的信息是：<br>Hi yanzhenjie! You’ve successfully authenticated, but GitHub does not provide shell access.<br>1<br>比如Gitlib的信息是：<br>Welcome to GitLab, YanZhenjie!<br>1<br>如果不能执行测试命令或者提示什么错误了，请执行ssh-agent bash完后再执行测试命令，如果还不行就是配置有问题了。</p>
+<p>添加SSH到SSH-Agent时报错<br>如果执行ssh-add …命令提示如下错误：</p>
+<p>Could not open a connection to your authentication agent.<br>1<br>那么请执行eval $(ssh-agent)命令后再重试，如果还不行，请再执行ssh-agent bash命令后再执行eval $(ssh-agent)后执行添加命令。另外上述测试配置的命令不能执行时也可以在ssh-agent bash执行完后再测试。</p>
+<p>参考：StackOverFlow·ssh-Could not open a…</p>
 
       
     </div>
@@ -414,7 +394,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://blog.ykf.me/2017/09/24/wordpress-bloginfo-2/" title="wordpress - bloginfo()">https://blog.ykf.me/2017/09/24/wordpress-bloginfo-2/</a>
+    <a href="https://blog.ykf.me/2018/06/01/Git多账号、密钥管理/" title="Git多账号、密钥管理">https://blog.ykf.me/2018/06/01/Git多账号、密钥管理/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -436,8 +416,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/24/WordPress主题制作全过程（二）：主题文件构成/" rel="next" title="WordPress主题制作全过程（二）：主题文件构成">
-                <i class="fa fa-chevron-left"></i> WordPress主题制作全过程（二）：主题文件构成
+              <a href="/2018/05/31/48条高效率的PHP优化写法/" rel="next" title="48条高效率的PHP优化写法">
+                <i class="fa fa-chevron-left"></i> 48条高效率的PHP优化写法
               </a>
             
           </div>
@@ -445,10 +425,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/24/wordpress-get-option/" rel="prev" title="wordpress - get_option()">
-                wordpress - get_option() <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -590,7 +566,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#bloginfo-string-show-‘’"><span class="nav-number">1.</span> <span class="nav-text">bloginfo( string $show = ‘’ )</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Possible-values-for-show-Possible-values-for-show"><span class="nav-number">1.0.1.</span> <span class="nav-text">Possible values for $show #Possible values for $show</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#首先生成SSH-KEY"><span class="nav-number">1.</span> <span class="nav-text">首先生成SSH-KEY</span></a></li></ol></div>
             
 
           </div>
