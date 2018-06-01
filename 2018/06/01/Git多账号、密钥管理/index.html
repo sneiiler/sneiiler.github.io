@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="大风">
 <meta property="og:description" content="有的时候有多个账号和Git提交需求，这就需要同时配置多个密钥对，通过SSH的方式进行git提交。  首先生成SSH-KEY打开命令行、终端，用命令进入到你要保存SSH-KEY文件的文件夹，我们先用命令测试下终端是否支持SSH： 1ssh -V 测试时如果提示不识别SSH命令，需要安装SSH。Ubuntu安装SSH：1sudo apt-get install openssh-client open">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-01T03:35:50.526Z">
+<meta property="og:updated_time" content="2018-06-01T04:30:14.649Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git多账号、密钥管理">
 <meta name="twitter:description" content="有的时候有多个账号和Git提交需求，这就需要同时配置多个密钥对，通过SSH的方式进行git提交。  首先生成SSH-KEY打开命令行、终端，用命令进入到你要保存SSH-KEY文件的文件夹，我们先用命令测试下终端是否支持SSH： 1ssh -V 测试时如果提示不识别SSH命令，需要安装SSH。Ubuntu安装SSH：1sudo apt-get install openssh-client open">
@@ -360,20 +360,28 @@
 <p>下面来填写config文件的内容，我以Github、Gitlib、OSChina，局域网为例：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">    HostName github.com</span><br><span class="line">    User smallajax@foxmail.com</span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile /home/Workspace/ssh/id_rsa_github</span><br><span class="line">Host gitlib.com</span><br><span class="line">    HostName gitlib.com</span><br><span class="line">    User smallajax@foxmail.com</span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile id_rsa_gitlib</span><br><span class="line">Host oschina.com</span><br><span class="line">    HostName oschina.com</span><br><span class="line">    User smallajax@foxmail.com</span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile /D/Workspace/ssh/id_rsa_oschina</span><br><span class="line">Host 192.168.1.222</span><br><span class="line">    HostName 192.168.1.222</span><br><span class="line">    User smallajax@foxmail.com</span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile /D/Workspace/ssh/id_rsa_oschina</span><br></pre></td></tr></table></figure>
 <p>解释一下，HostName是服务器的地址，User是用户名，PreferredAuthentications照抄即可，这里主要说的是IdentityFile，上面我们看到了三种情况，所以它的书写原则是：</p>
-<p>填私钥文件的本地路径。<br>不论是Linux还是Windows都可以写相对路径，比如把id_rsa_xxx私钥文件放在.ssh文件夹下。<br>文件放在不同跟路径下时，需要写绝对路径<br>Linux中没有放在.ssh文件夹内或者子文件夹。<br>Windows中没有放在C盘下时。注意据对路径变化，比如C盘下是/C/xo/abc、比如D盘下/D/ssh/id_rsa这样，还看不懂请参考上方例子。<br>拷贝完成后，把所有的id_rsa私钥文件添加到SSH-Agent，命令如下：</p>
-<p>ssh-add id_rsa文件的路径<br>1<br>例如添加.ssh文件夹下的，Linux这样做：ssh-add ~/.ssh/id_rsa，如果你在.ssh文件夹下：ssh-add id_rsa即可，Windows同理。</p>
+<p>填私钥文件的本地路径。</p>
+<p>不论是Linux还是Windows都可以写相对路径，比如把id_rsa_xxx私钥文件放在.ssh文件夹下。</p>
+<p>文件放在不同跟路径下时，需要写绝对路径 </p>
+<p>Linux中没有放在.ssh文件夹内或者子文件夹。</p>
+<p>Windows中没有放在C盘下时。注意据对路径变化，比如C盘下是/C/xo/abc、比如D盘下/D/ssh/id_rsa这样，还看不懂请参考上方例子。<br>拷贝完成后，把所有的id_rsa私钥文件添加到SSH-Agent，命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add id_rsa文件的路径</span><br></pre></td></tr></table></figure></p>
+<p>例如添加.ssh文件夹下的，Linux这样做：ssh-add ~/.ssh/id_rsa，如果你在.ssh文件夹下：ssh-add id_rsa即可，Windows同理。</p>
 <p>此时添加时如果遇到错误，请参考本文最后一节：添加SSH到SSH-Agent时报错。</p>
-<p>最后，还剩下项目的用户和邮箱没有配置，和配个单个Git帐号的方式不同，这里我们需要为每个项目分别配置，所以要命令行进入仓库文件夹再设置。第一种情况是先从Git上pull仓库下来，第二种情况是本地初始化Git仓库，总之进入改仓库文件夹后：<br>git config –local user.name “你的名字”<br>git config –local user.email “你的邮箱”<br>1<br>2<br>例如：</p>
-<p>git config –local user.name “YanZhenjie”<br>git config –local user.email “<a href="mailto:smallajax@foxmail.com" target="_blank" rel="noopener">smallajax@foxmail.com</a>“<br>1<br>2<br>不过麻烦的一点是如果是多个项目就需要挨个配置，不过我们一般是pull一个项目就配置一下，也仅仅需要配置一次即可。</p>
+<p>最后，还剩下项目的用户和邮箱没有配置，和配个单个Git帐号的方式不同，这里我们需要为每个项目分别配置，所以要命令行进入仓库文件夹再设置。第一种情况是先从Git上pull仓库下来，第二种情况是本地初始化Git仓库，总之进入改仓库文件夹后：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --<span class="built_in">local</span> user.name <span class="string">"你的名字"</span></span><br><span class="line">git config --<span class="built_in">local</span> user.email <span class="string">"你的邮箱"</span></span><br></pre></td></tr></table></figure></p>
+<p>不过麻烦的一点是如果是多个项目就需要挨个配置，不过我们一般是pull一个项目就配置一下，也仅仅需要配置一次即可。</p>
 <p>注意配置单个Git帐号时，是不进入项目文件夹就可以，不过不是使用–local，而是使用–global就可以全局配置。</p>
-<p>配置项目用户和邮箱完成后，我们可以进入项目文件夹下的.git文件夹查看config文件内容，大概内容如下：</p>
-<p>…<br>[user]<br>    name = YanZhenjie<br>    email = <a href="mailto:smallajax@foxmail.com" target="_blank" rel="noopener">smallajax@foxmail.com</a><br>1<br>2<br>3<br>4<br>此时配置全部结束，请查看下方测试SSH-KEY配置是否成功进行测试。如果配置成功，你就可以clone和commit了。</p>
+<p>配置项目用户和邮箱完成后，我们可以进入项目文件夹下的.git文件夹查看config文件内容，大概内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">[user]</span><br><span class="line">    name = YanZhenjie</span><br><span class="line">    email = smallajax@foxmail.com</span><br></pre></td></tr></table></figure></p>
+<p>此时配置全部结束，请查看下方测试SSH-KEY配置是否成功进行测试。如果配置成功，你就可以clone和commit了。</p>
 <p>测试SSH-KEY配置是否成功<br>配置全部结束，我们来测试一下配置是否成功：</p>
-<p>如果你是Github：<br>ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a><br>1<br>如果是你Gitlib：<br>ssh -T <a href="mailto:git@gitlib.com" target="_blank" rel="noopener">git@gitlib.com</a><br>1<br>如果你是局域网192.168.1.222：<br>ssh -T <a href="mailto:git@192.168.1.222" target="_blank" rel="noopener">git@192.168.1.222</a><br>1<br>其它自行举一反三吧。<br>此时需要输入刚才生成SSH-KEY时输入的私钥密码，输入后自行观察信息判断是否连接成功。</p>
-<p>比如Github的信息是：<br>Hi yanzhenjie! You’ve successfully authenticated, but GitHub does not provide shell access.<br>1<br>比如Gitlib的信息是：<br>Welcome to GitLab, YanZhenjie!<br>1<br>如果不能执行测试命令或者提示什么错误了，请执行ssh-agent bash完后再执行测试命令，如果还不行就是配置有问题了。</p>
-<p>添加SSH到SSH-Agent时报错<br>如果执行ssh-add …命令提示如下错误：</p>
-<p>Could not open a connection to your authentication agent.<br>1<br>那么请执行eval $(ssh-agent)命令后再重试，如果还不行，请再执行ssh-agent bash命令后再执行eval $(ssh-agent)后执行添加命令。另外上述测试配置的命令不能执行时也可以在ssh-agent bash执行完后再测试。</p>
-<p>参考：StackOverFlow·ssh-Could not open a…</p>
+<p>如果你是Github<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure></p>
+<p>如果是你Gitlib<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@gitlib.com</span><br></pre></td></tr></table></figure></p>
+<p>如果你是局域网192.168.1.222<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@192.168.1.222</span><br></pre></td></tr></table></figure></p>
+<p>其它自行举一反三吧。<br>此时需要输入刚才生成SSH-KEY时输入的私钥密码，输入后自行观察信息判断是否连接成功。</p>
+<p>比如Github的信息是：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi kaifeng! You<span class="string">'ve successfully authenticated, but GitHub does not provide shell access.</span></span><br></pre></td></tr></table></figure></p>
+<p>比如Gitlib的信息是：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Welcome to GitLab, YanZhenjie!</span><br></pre></td></tr></table></figure></p>
+<p>如果不能执行测试命令或者提示什么错误了，请执行ssh-agent bash完后再执行测试命令，如果还不行就是配置有问题了。</p>
+<p>添加SSH到SSH-Agent时报错<br>如果执行ssh-add …命令提示如下错误：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Could not open a connection to your authentication agent.</span><br></pre></td></tr></table></figure></p>
+<p>那么请执行eval $(ssh-agent)命令后再重试，如果还不行，请再执行ssh-agent bash命令后再执行eval $(ssh-agent)后执行添加命令。另外上述测试配置的命令不能执行时也可以在ssh-agent bash执行完后再测试。</p>
 
       
     </div>
