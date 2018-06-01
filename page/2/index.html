@@ -2,6 +2,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
   
 
 
@@ -9,8 +18,11 @@
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
+
+
+
 
 
 
@@ -38,10 +50,6 @@
 
 
 
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
 
 
 
@@ -50,42 +58,25 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
 
 
 
 
 
 
-
-
-
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="大风">
-<meta property="og:url" content="https://blog.ykf.me/page/2/index.html">
-<meta property="og:site_name" content="大风">
-<meta property="og:locale" content="zh-Hans">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="大风">
 
 
 
@@ -94,15 +85,13 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '5.1.4',
+    version: '6.3.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -114,12 +103,33 @@
 </script>
 
 
+  
+
+
+
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="大风">
+<meta property="og:url" content="https://blog.ykf.me/page/2/index.html">
+<meta property="og:site_name" content="大风">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="大风">
+
+
+
+
+
 
   <link rel="canonical" href="https://blog.ykf.me/page/2/"/>
 
 
 
-
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>大风</title>
   
@@ -127,7 +137,6 @@
 
 
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119953437-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -140,6 +149,34 @@
 
 
 
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
 
 </head>
 
@@ -160,19 +197,21 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">大风</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <p class="site-subtitle">文字记录生活</p>
       
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -180,55 +219,50 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
 
       
+      
     </ul>
+  
+
   
 
   
@@ -236,12 +270,23 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
+            
+
+          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
@@ -254,6 +299,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -262,7 +309,7 @@
     <link itemprop="mainEntityOfPage" href="https://blog.ykf.me/2017/09/24/WordPress主题制作全过程（二）：主题文件构成/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kaifeng">
+      <meta itemprop="name" content="博主">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -278,11 +325,21 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/24/WordPress主题制作全过程（二）：主题文件构成/" itemprop="url">WordPress主题制作全过程（二）：主题文件构成</a></h1>
+                <a class="post-title-link" href="/2017/09/24/WordPress主题制作全过程（二）：主题文件构成/" itemprop="url">
+                  WordPress主题制作全过程（二）：主题文件构成
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -290,13 +347,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-24T22:35:16+08:00">
-                2017-09-24
-              </time>
+
+              
+                
+              
+
+              <time title="创建于：2017-09-24 22:35:16" itemprop="dateCreated datePublished" datetime="2017-09-24T22:35:16+08:00">2017-09-24</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-06-01 12:36:07" itemprop="dateModified" datetime="2018-06-01T12:36:07+08:00">2018-06-01</time>
+              
             
           </span>
 
@@ -312,22 +386,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
 
                 
                 
                   ， 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机/网络/" itemprop="url" rel="index">
-                    <span itemprop="name">网络</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/网络/" itemprop="url" rel="index"><span itemprop="name">网络</span></a></span>
 
                 
                 
@@ -363,18 +429,80 @@
       
         
           
-          在开始制作WordPress主题之前，首先得了解WordPress主题到底由哪些文件构成，你得清楚WordPress程序是怎样与主题文件连接的。 以下是WordPress默认主题default文件夹下的所有模板文件。看了下图，可能你还摸不着头脑，到底这些文件是干什么的。WordPress的主题是用P
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/24/WordPress主题制作全过程（二）：主题文件构成/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>在开始制作WordPress主题之前，首先得了解WordPress主题到底由哪些文件构成，你得清楚WordPress程序是怎样与主题文件连接的。 以下是WordPress默认主题default文件夹下的所有模板文件。看了下图，可能你还摸不着头脑，到底这些文件是干什么的。WordPress的主题是用<a href="https://www.ludou.org/go/wl-aHR0cDovL3poLndpa2lwZWRpYS5vcmcvemgtY24vUEhQ" target="_blank" rel="noopener">PHP</a>编写的，而不是纯HTML + CSS，所以模板文件的后缀名是.php，如果你想精通WordPress的主题制作，完美控制你的博客，最好要熟悉<a href="https://www.ludou.org/go/wl-aHR0cDovL3poLndpa2lwZWRpYS5vcmcvemgtY24vUEhQ" target="_blank" rel="noopener">PHP</a>编程。要是不会<a href="https://www.ludou.org/go/wl-aHR0cDovL3poLndpa2lwZWRpYS5vcmcvemgtY24vUEhQ" target="_blank" rel="noopener">PHP</a>编程怎么办？就做不了WordPress主题了吗？那也不是，至少看完本系列教程，你也能够掌握基本的WordPress主题制作方法。 <img src="https://up.ludou.org/blog/wp-content/uploads/2010/04/themefile.jpg" alt="WordPress主题文件构成" title="WordPress主题文件构成"> 下面是WordPress主题文件层次结构，它会告诉你：当WordPress显示特定的页面类型时，会使用哪个模板文件呢？只有了解了以下主题层次结构，你才能知道你的WordPress主题到底需要写哪些文件。</p>
+<h3 id="怎么看下面的文件层次结构？"><a href="#怎么看下面的文件层次结构？" class="headerlink" title="怎么看下面的文件层次结构？"></a>怎么看下面的文件层次结构？</h3><p>以主页为例，下面有2个文件home.php和index.php，WordPress程序会从你的主题文件夹中依次查找这两个文件：</p>
+<ul>
+<li>如果找到home.php，则使用home.php作为博客首页模板，即使你的主题文件夹中有index.php；</li>
+<li>如果home.php未找到，则使用index.php作为首页模板；</li>
+<li>如果home.php和index.php都找不到，你的主题将不会被WordPress识别，等于废物。</li>
+</ul>
+<h3 id="主页"><a href="#主页" class="headerlink" title="主页"></a>主页</h3><ol>
+<li>home.php</li>
+<li>index.php</li>
+</ol>
+<p><strong>文章页：</strong></p>
+<ol>
+<li>single-{post_type}.php - 如果文章类型是videos（即视频），WordPress就会去查找single-videos.php（WordPress 3.0及以上版本支持）</li>
+<li>single.php</li>
+<li>index.php</li>
+</ol>
+<h3 id="页面"><a href="#页面" class="headerlink" title="页面"></a>页面</h3><ol>
+<li>自定义模板 - 在WordPress后台创建页面的地方，右侧边栏可以选择页面的自定义模板</li>
+<li>page-{slug}.php - 如果页面的缩略名是news，WordPress将会查找 page-news.php（WordPress 2.9及以上版本支持）</li>
+<li>page-{id}.php - 如果页面ID是6，WordPress将会查找page-6.php</li>
+<li>page.php</li>
+<li>index.php</li>
+</ol>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ol>
+<li>category-{slug}.php - 如果分类的缩略名为news，WordPress将会查找category-news.php(WordPress 2.9及以上版本支持)</li>
+<li>category-{id}.php -如果分类ID为6，WordPress将会查找category-6.php</li>
+<li>category.php</li>
+<li>archive.php</li>
+<li>index.php</li>
+</ol>
+<h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h3><ol>
+<li>tag-{slug}.php - 如果标签缩略名为sometag，WordPress将会查找tag-sometag.php</li>
+<li>tag-{id}.php - 如果标签ID为6，WordPress将会查找tag-6.php（WordPress 2.9及以上版本支持）</li>
+<li>tag.php</li>
+<li>archive.php</li>
+<li>index.php</li>
+</ol>
+<h3 id="作者"><a href="#作者" class="headerlink" title="作者"></a>作者</h3><ol>
+<li>author-{nicename}.php - 如果作者的昵称为rami，WordPress将会查找author-rami.php（WordPress 3.0及以上版本支持）</li>
+<li>author-{id}.php - 如果作者ID为6，WordPress将会查找author-6.php（WordPress 3.0及以上版本支持）</li>
+<li>author.php</li>
+<li>archive.php</li>
+<li>index.php</li>
+</ol>
+<h3 id="日期页面"><a href="#日期页面" class="headerlink" title="日期页面"></a>日期页面</h3><ol>
+<li>date.php</li>
+<li>archive.php</li>
+<li>index.php</li>
+</ol>
+<h3 id="搜索结果"><a href="#搜索结果" class="headerlink" title="搜索结果"></a>搜索结果</h3><ol>
+<li>search.php</li>
+<li>index.php</li>
+</ol>
+<h3 id="404-未找到-页面"><a href="#404-未找到-页面" class="headerlink" title="404 (未找到)页面"></a>404 (未找到)页面</h3><ol>
+<li>404.php</li>
+<li>index.php</li>
+</ol>
+<h3 id="附件页面"><a href="#附件页面" class="headerlink" title="附件页面"></a>附件页面</h3><ol>
+<li>MIME_type.php - 可以是任何MIME类型 (image.php, video.php, audio.php, application.php 或者其他).</li>
+<li>attachment.php</li>
+<li>single.php</li>
+<li><p>index.php</p>
+<p><img src="https://developer.wordpress.org/files/2014/10/wp-hierarchy.png" alt=""></p>
+</li>
+</ol>
+
+          
         
       
     </div>
+
+    
+
     
     
     
@@ -411,6 +539,8 @@
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -421,7 +551,7 @@
     <link itemprop="mainEntityOfPage" href="https://blog.ykf.me/2017/09/24/WordPress函数query_posts用法汇总/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kaifeng">
+      <meta itemprop="name" content="博主">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -437,11 +567,21 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/24/WordPress函数query_posts用法汇总/" itemprop="url">WordPress函数query_posts用法汇总</a></h1>
+                <a class="post-title-link" href="/2017/09/24/WordPress函数query_posts用法汇总/" itemprop="url">
+                  WordPress函数query_posts用法汇总
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -449,13 +589,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-24T22:33:41+08:00">
-                2017-09-24
-              </time>
+
+              
+                
+              
+
+              <time title="创建于：2017-09-24 22:33:41" itemprop="dateCreated datePublished" datetime="2017-09-24T22:33:41+08:00">2017-09-24</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-06-01 12:36:15" itemprop="dateModified" datetime="2018-06-01T12:36:15+08:00">2018-06-01</time>
+              
             
           </span>
 
@@ -471,22 +628,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
 
                 
                 
                   ， 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机/网络/" itemprop="url" rel="index">
-                    <span itemprop="name">网络</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/网络/" itemprop="url" rel="index"><span itemprop="name">网络</span></a></span>
 
                 
                 
@@ -522,18 +671,30 @@
       
         
           
-          最近经常有网友跟我咨询WordPress函数query_posts的相关用法，说起来query_posts实在是太强大，参数无数，用法更是无数，如果让我说它的用法，我根本没法一一说清楚。开始之前，你可以先看看query_posts的官方文档，query_posts的全部参数可以参考：WP_Query
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/24/WordPress函数query_posts用法汇总/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>最近经常有网友跟我咨询WordPress函数query_posts的相关用法，说起来query_posts实在是太强大，参数无数，用法更是无数，如果让我说它的用法，我根本没法一一说清楚。开始之前，你可以先看看<a href="https://www.ludou.org/go/wl-aHR0cDovL2NvZGV4LndvcmRwcmVzcy5vcmcvRnVuY3Rpb25fUmVmZXJlbmNlL3F1ZXJ5X3Bvc3Rz" title="query_posts官方文档" target="_blank" rel="noopener">query_posts的官方文档</a>，query_posts的全部参数可以参考：<a href="https://www.ludou.org/go/wl-aHR0cDovL2NvZGV4LndvcmRwcmVzcy5vcmcvQ2xhc3NfUmVmZXJlbmNlL1dQX1F1ZXJ5" title="WP_Query" target="_blank" rel="noopener">WP_Query</a>。不过看文档对很多人来说可能会很困难，本文将介绍几种常见的用法，不过一切用法都是从官方文档中来的，学会看文档才是王道。 query_posts函数在WordPress主题中是用于控制哪些文章可以出现在主循环中，可能说主循环很多人都不懂，那么举个例子，首页、存档页的这些文章（包括分页中的）都是在主循环中的。在不使用query_posts函数控制的情况，首页、存档页等都是按照文章的发布时间列出你博客上所有已发布的文章，而如果你想定义哪些文章可以显示，哪些文章不显示，文章按照什么样的方法排序等，那么你就要用到query_posts函数了，本站首页的文章排序：随机阅读、评论最多和标题排序就是用query_posts函数来实现的。</p>
+<h3 id="基本用法："><a href="#基本用法：" class="headerlink" title="基本用法："></a>基本用法：</h3><p>首先介绍一下如何使用query_posts函数。在主题目录下找到存档页面文件，存档页面包括index.php、archive.php等，一般分类页、标签页、日期页和作者页等都是用archive.php，具体的WordPress主题文件构成可以看这篇文章：<a href="https://www.ludou.org/create-wordpress-themes-template-hierarchy.html" title="WordPress主题制作全过程（二）：主题文件构成" target="_blank" rel="noopener">WordPress主题文件构成</a> 确定了你要控制哪个页面的文章列表，那么我们就可以开始了，比如你想让首页的文章按评论数排序，那么index.php中的代码基本框架就是这样的：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// query_posts函数</span></span><br><span class="line">    query_posts(<span class="string">'orderby=comment_count'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 主循环</span></span><br><span class="line">    <span class="keyword">if</span> ( have_posts() ) : <span class="keyword">while</span> ( have_posts() ) : the_post();</span><br><span class="line">        ..</span><br><span class="line">    <span class="keyword">endwhile</span>; <span class="keyword">else</span>:</span><br><span class="line">        ..</span><br><span class="line">    <span class="keyword">endif</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 重置query</span></span><br><span class="line">    wp_reset_query();</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>其实你要做的就是在index.php中查找<code>if (have_posts())</code>或<code>while (have_posts())</code>，在前面添加query_posts函数即可。不过以上方式可能会导致首页无法分页，那你可以将query_posts函数改成这样的行式：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$args = <span class="keyword">array</span>(</span><br><span class="line">    <span class="comment">// query_posts参数，具体参数可以参加官方文档</span></span><br><span class="line">    <span class="string">'orderby'</span>   =&gt; comment_count</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 下面这一行代码是必须的，不然不能分页</span></span><br><span class="line">$arms = array_merge($args, $wp_query-&gt;query);</span><br><span class="line">query_posts($arms);</span><br></pre></td></tr></table></figure></p>
+<p>下面是一些常见的query_posts函数用法，你可以直接用到你的主题中。</p>
+<h3 id="一、只显示含有某个自定义字段的文章"><a href="#一、只显示含有某个自定义字段的文章" class="headerlink" title="一、只显示含有某个自定义字段的文章"></a>一、只显示含有某个自定义字段的文章</h3><p>如果你想只显示添加了某个自定义字段的文章，并按照这个字段的值来对文章排序，那么你可以参加这篇文章：<a href="https://www.ludou.org/wordpress-customize-posts-order.html" title="WordPress手动修改文章排列顺序" target="_blank" rel="noopener">WordPress手动修改文章排列顺序</a> 其实这种方式你可以看成怎样只显示我推荐的文章，那么含有这个自定义字段的文章就是推荐文章。</p>
+<h3 id="二、怎样让某分类的文章不显示-显示"><a href="#二、怎样让某分类的文章不显示-显示" class="headerlink" title="二、怎样让某分类的文章不显示/显示"></a>二、怎样让某分类的文章不显示/显示</h3><p>如果你不想让某分类的文章出现在主循环中，那么你可以使用query_posts添加参数category__not_in即可：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$paged = (get_query_var(<span class="string">'paged'</span>)) ? get_query_var(<span class="string">'paged'</span>) : <span class="number">1</span>;</span><br><span class="line">$args = <span class="keyword">array</span>(</span><br><span class="line">    <span class="comment">// 2, 6就是你不想显示的分类ID，多个用半角逗号隔开</span></span><br><span class="line">    <span class="string">'category__not_in'</span>   =&gt; <span class="keyword">array</span>(<span class="number">2</span>, <span class="number">6</span>),</span><br><span class="line">    <span class="string">'paged'</span> =&gt; $paged</span><br><span class="line">);</span><br><span class="line">query_posts($args);</span><br></pre></td></tr></table></figure></p>
+<p>如果只想让显示某个分类的文章，可以将category__not_in改成category__in。同理，如果不显示某标签下的文章，可以将category__not_in改成：tag__not_in，或者只想让显示某个标签下的文章，可以将category__not_in改成tag__in，后面跟着标签的ID即可。</p>
+<h3 id="三、如何对文章进行排序"><a href="#三、如何对文章进行排序" class="headerlink" title="三、如何对文章进行排序"></a>三、如何对文章进行排序</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$paged = (get_query_var(<span class="string">'paged'</span>)) ? get_query_var(<span class="string">'paged'</span>) : <span class="number">1</span>;</span><br><span class="line">$args = <span class="keyword">array</span>(</span><br><span class="line">    <span class="comment">// 以下代码中的title就是orderby的值，按标题排序</span></span><br><span class="line">    <span class="string">'orderby'</span>   =&gt; title,</span><br><span class="line">    <span class="string">'paged'</span> =&gt; $paged</span><br><span class="line">);</span><br><span class="line">query_posts($args);</span><br></pre></td></tr></table></figure>
+<p>根据orderby的值不同，可以让文章按照很多种方式进行排序，下面是列举几个常见的值及其对应的排序方式:title：按标题；date：按发布日期；modified：按修改时间；ID：按文章ID；rand：随机排序；comment_count：按评论数</p>
+<h3 id="四、只显示相应ID的文章"><a href="#四、只显示相应ID的文章" class="headerlink" title="四、只显示相应ID的文章"></a>四、只显示相应ID的文章</h3><p>如我只想显示ID为2,4,6的文章，可以使用以下代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$paged = (get_query_var(<span class="string">'paged'</span>)) ? get_query_var(<span class="string">'paged'</span>) : <span class="number">1</span>;</span><br><span class="line">$args = <span class="keyword">array</span>(</span><br><span class="line">    <span class="comment">// 以下代码中的2,4,6就是文章的ID</span></span><br><span class="line">    <span class="string">'post__in'</span>   =&gt; <span class="keyword">array</span>(<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>),</span><br><span class="line">    <span class="string">'paged'</span> =&gt; $paged</span><br><span class="line">);</span><br><span class="line">query_posts($args);</span><br></pre></td></tr></table></figure></p>
+<p>如果不想显示2,4,6这几篇文章，可以将 post__in 改成 post__not_in 。另外如果只想显示置顶文章，那么可以将array(2,4,6)改成<code>get_option(&#39;sticky_posts&#39;)</code>，这段代码会自动给你填充所有置顶文章的ID。</p>
+<h3 id="五、让置顶文章不置顶"><a href="#五、让置顶文章不置顶" class="headerlink" title="五、让置顶文章不置顶"></a>五、让置顶文章不置顶</h3><p>如果你不想让置顶文章显示在顶部，而是让它们安装正常的顺序排列，那么可以使用以下代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$paged = (get_query_var(<span class="string">'paged'</span>)) ? get_query_var(<span class="string">'paged'</span>) : <span class="number">1</span>;</span><br><span class="line">$args=<span class="keyword">array</span>(</span><br><span class="line">    <span class="string">'paged'</span> =&gt; $paged,</span><br><span class="line">    <span class="string">'ignore_sticky_posts'</span> =&gt; <span class="number">1</span></span><br><span class="line">);</span><br><span class="line">query_posts($args);</span><br></pre></td></tr></table></figure></p>
+<h3 id="六、列出所有状态的文章"><a href="#六、列出所有状态的文章" class="headerlink" title="六、列出所有状态的文章"></a>六、列出所有状态的文章</h3><p>WordPress的文章状态有很多种，包括已发布、草稿、已删除、私人的、定时发布的等等，如果你想将这些文章都统统显示出来，那么可以这样：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$paged = (get_query_var(<span class="string">'paged'</span>)) ? get_query_var(<span class="string">'paged'</span>) : <span class="number">1</span>;</span><br><span class="line">$args = <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">'post_status'</span> =&gt; <span class="keyword">array</span>(<span class="string">'publish'</span>, <span class="string">'pending'</span>, <span class="string">'draft'</span>, <span class="string">'future'</span>, <span class="string">'private'</span>, <span class="string">'trash'</span>),</span><br><span class="line">    <span class="string">'paged'</span> =&gt; $paged</span><br><span class="line">);</span><br><span class="line">query_posts($args);</span><br></pre></td></tr></table></figure></p>
+<p>post_status参数可以控制具体的文章状态，值包括pending（待审）、publish（已发布）、draft（草稿）, future（定时）, private（私有）, trash（已删除）。</p>
+<h3 id="七、控制文章的数量"><a href="#七、控制文章的数量" class="headerlink" title="七、控制文章的数量"></a>七、控制文章的数量</h3><p>如果你想控制要显示的文章数量，可以使用showposts参数：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$paged = (get_query_var(<span class="string">'paged'</span>)) ? get_query_var(<span class="string">'paged'</span>) : <span class="number">1</span>;</span><br><span class="line">$args = <span class="keyword">array</span>(</span><br><span class="line">    <span class="comment">// 控制只显示10篇文章，如果将10改成-1将显示所有文章</span></span><br><span class="line">    <span class="string">'posts_per_page'</span> =&gt; <span class="number">10</span>,</span><br><span class="line">    <span class="string">'paged'</span> =&gt; $paged</span><br><span class="line">);</span><br><span class="line">query_posts($args);</span><br></pre></td></tr></table></figure></p>
+<p>如果你只是想控制首页、分类页等每各分页显示的文章数量，可以在WordPress管理后台 - 设置 - 阅读那里设置博客页面至多显示多少篇文章。 – 完 –</p>
+
+          
         
       
     </div>
+
+    
+
     
     
     
@@ -570,6 +731,8 @@
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -580,7 +743,7 @@
     <link itemprop="mainEntityOfPage" href="https://blog.ykf.me/2017/09/24/wordpress-have_posts()-the_post()/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kaifeng">
+      <meta itemprop="name" content="博主">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -596,11 +759,21 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/24/wordpress-have_posts()-the_post()/" itemprop="url">wordpress - have_posts() the_post()</a></h1>
+                <a class="post-title-link" href="/2017/09/24/wordpress-have_posts()-the_post()/" itemprop="url">
+                  wordpress - have_posts() the_post()
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -608,13 +781,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-24T22:31:27+08:00">
-                2017-09-24
-              </time>
+
+              
+                
+              
+
+              <time title="创建于：2017-09-24 22:31:27" itemprop="dateCreated datePublished" datetime="2017-09-24T22:31:27+08:00">2017-09-24</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-06-01 12:35:49" itemprop="dateModified" datetime="2018-06-01T12:35:49+08:00">2018-06-01</time>
+              
             
           </span>
 
@@ -630,22 +820,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
 
                 
                 
                   ， 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机/网络/" itemprop="url" rel="index">
-                    <span itemprop="name">网络</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/网络/" itemprop="url" rel="index"><span itemprop="name">网络</span></a></span>
 
                 
                 
@@ -681,18 +863,18 @@
       
         
           
-          在WordPress的index.php文章循环输出中，通常会有下面一段代码：123456789101112131415&lt;?phpif (have_posts()) :?&gt; &lt;?phpwhile (have_posts()) : the_post();?&gt;&lt;?phpen
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/24/wordpress-have_posts()-the_post()/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>在WordPress的index.php文章循环输出中，通常会有下面一段代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span> (have_posts()) :</span><br><span class="line"><span class="meta">?&gt;</span> </span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">while</span> (have_posts()) : the_post();</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">endwhile</span>;</span><br><span class="line"><span class="meta">?&gt;</span> </span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">endif</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这里有两个函数，have_posts()和the_post()。 <strong>have_posts()解析：</strong> WordPress的have_posts() 默认是一个全局函数。 have_posts函数被调用时实际上是调用全局变量$wp_query-&gt;have_posts()成员函数，来<br>简单检查一个全局数组（array）变量$posts的一个循环计数器，以确认是否还有post，如果有返回true（1），如果没有返回false（0）。 <strong>the_post()**</strong>解析：** the_post()函数则调用$wp_query-&gt;the_post()成员函数前移循环计数器，并且创建一个全局变量$post(不是$posts)，把当前的post的所有信息都填进这个$post变量中，以备接下来使用。   简单的使用可以通过函数来直接执行，如the_content()直接显式post的内容，the_title()显式帖子的标题，the_time()显示帖子的时间等WORDPRESS的Template Tags。 高级应用或要定制应用则可以直接调用$post变量的成员。  </p>
+<hr>
+<p>wordpress首页默认是显示所有栏目文章，加入如下粗体部分内容可以只显示id为2,4,5的栏目。 如果只想排除某个栏目，在栏目前添加减号<strong>cat=-3</strong>，表示显示除了id为3的栏目内容<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span> ( have_posts() ) : </span><br><span class="line"><span class="meta">?&gt;</span> **</span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">query_posts($query_string . <span class="string">'&amp;cat=2,4,5'</span>);</span><br><span class="line"><span class="meta">?&gt;</span>** </span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">while</span> ( have_posts() ) : the_post(); </span><br><span class="line"><span class="meta">?&gt;</span> </span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">get_template_part( <span class="string">'content'</span>, get_post_format() ); </span><br><span class="line"><span class="meta">?&gt;</span> </span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">endwhile</span>; </span><br><span class="line"><span class="meta">?&gt;</span> </span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">endif</span>; <span class="comment">// end have_posts() check </span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+
+          
         
       
     </div>
+
+    
+
     
     
     
@@ -729,6 +911,8 @@
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -739,7 +923,7 @@
     <link itemprop="mainEntityOfPage" href="https://blog.ykf.me/2017/09/24/wordpress-is-home/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kaifeng">
+      <meta itemprop="name" content="博主">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -755,11 +939,21 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/24/wordpress-is-home/" itemprop="url">wordpress - is_home()</a></h1>
+                <a class="post-title-link" href="/2017/09/24/wordpress-is-home/" itemprop="url">
+                  wordpress - is_home()
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -767,13 +961,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-24T22:27:17+08:00">
-                2017-09-24
-              </time>
+
+              
+                
+              
+
+              <time title="创建于：2017-09-24 22:27:17" itemprop="dateCreated datePublished" datetime="2017-09-24T22:27:17+08:00">2017-09-24</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-06-01 12:34:56" itemprop="dateModified" datetime="2018-06-01T12:34:56+08:00">2018-06-01</time>
+              
             
           </span>
 
@@ -789,22 +1000,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
 
                 
                 
                   ， 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机/网络/" itemprop="url" rel="index">
-                    <span itemprop="name">网络</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/网络/" itemprop="url" rel="index"><span itemprop="name">网络</span></a></span>
 
                 
                 
@@ -840,18 +1043,18 @@
       
         
           
-          is_home()判断是否为首页。如果不起作用，大致有如下两个常见原因： 第一种： 当你的首页不是默认的index.php的时候，而是在后台指定了一个page页面。这种情况下is_home()会失效，也就是说这样子的情况下就不能再用is_home()来判断。 is_front_page()是判断当前
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/24/wordpress-is-home/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>is_home()判断是否为首页。如果不起作用，大致有如下两个常见原因： <strong>第一种：</strong> 当你的首页不是默认的index.php的时候，而是在后台指定了一个page页面。这种情况下is_home()会失效，也就是说这样子的情况下就不能再用is_home()来判断。 is_front_page()是判断当前页是不是指定的首页，我们在上面描述的情况下需要的就是这个函数。</p>
+<p>&lt;?php if (is_home() || is_front_page()) { ?&gt;<br>我只会在首页显示<br>&lt;?php } ?&gt;</p>
+<p>ps：我在使用多站点wordpress进行二次开发时，需要所有的站点均指定一个page作为首页来显示；而且，该page作为首页显示时，页头还要显示一个banner图片。这就需要对所有theme主题的page.php文件内使用上述代码以判断是否首页。 <strong>第二种：</strong> 如果is_home()之前有个 query_posts()，则会让它本身判断失效。原因是 is_home() 函数在首页的时候会返回一个 true 来判断，而 query_posts()会阻断这一判断。 解决方案是在 is_home()之前加一个 wp_reset_query()。</p>
+<p>&lt;?php wp_reset_query(); if ( is_home() ) { ?&gt;<br>我只会在首页显示<br>&lt;?php } ?&gt;</p>
+
+          
         
       
     </div>
+
+    
+
     
     
     
@@ -888,6 +1091,8 @@
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -898,7 +1103,7 @@
     <link itemprop="mainEntityOfPage" href="https://blog.ykf.me/2017/09/24/wordpress-get-header/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kaifeng">
+      <meta itemprop="name" content="博主">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -914,11 +1119,21 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/24/wordpress-get-header/" itemprop="url">wordpress - get_header()</a></h1>
+                <a class="post-title-link" href="/2017/09/24/wordpress-get-header/" itemprop="url">
+                  wordpress - get_header()
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -926,13 +1141,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-24T22:18:54+08:00">
-                2017-09-24
-              </time>
+
+              
+                
+              
+
+              <time title="创建于：2017-09-24 22:18:54" itemprop="dateCreated datePublished" datetime="2017-09-24T22:18:54+08:00">2017-09-24</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-06-01 12:34:43" itemprop="dateModified" datetime="2018-06-01T12:34:43+08:00">2018-06-01</time>
+              
             
           </span>
 
@@ -948,22 +1180,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
 
                 
                 
                   ， 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机/网络/" itemprop="url" rel="index">
-                    <span itemprop="name">网络</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/网络/" itemprop="url" rel="index"><span itemprop="name">网络</span></a></span>
 
                 
                 
@@ -999,19 +1223,24 @@
       
         
           
-          描述从当前主题中引入 header.php 模板文件。如果名字是特定的，那么包含特定名称的头部文件 header-{name}.php 就会被引入。 如果主题没有 header.php 文件，就会引入默认文件 wp-includes/theme-compat/header.php 。
-用法1234&
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/24/wordpress-get-header/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>从当前主题中引入 header.php 模板文件。如果名字是特定的，那么包含特定名称的头部文件 header-{name}.php 就会被引入。 如果主题没有 header.php 文件，就会引入默认文件 <code>wp-includes/theme-compat/header.php</code> 。</p>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">get_header( $name );</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><p>$name</p>
+<p>(<em>string</em>) (_可选_) 调用 header-name.php.</p>
+<p>默认: <em>None</em></p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><h3 id="简单的-404-页面"><a href="#简单的-404-页面" class="headerlink" title="简单的 404 页面"></a>简单的 404 页面</h3><p>下面的代码是一个简单模板文件，专门用来显示 “HTTP 404: Not Found” 错误的 （这个文件应该包含在你的主题中，名为 404.php）<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">get_header();</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;h2&gt;Error <span class="number">404</span> - Not Found&lt;/h2&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">get_sidebar();</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">get_footer();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="多种头部"><a href="#多种头部" class="headerlink" title="多种头部"></a>多种头部</h3><p>为不同的页面显示不同的头部<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span> ( is_home() ) :</span><br><span class="line">	get_header( <span class="string">'home'</span> );</span><br><span class="line"><span class="keyword">elseif</span> ( is_404() ) :</span><br><span class="line">	get_header( <span class="string">'404'</span> );</span><br><span class="line"><span class="keyword">else</span> :</span><br><span class="line">	get_header();</span><br><span class="line"><span class="keyword">endif</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这些为 home 和 404 准备的头部应该分别命名为  header-home.php 和 header-404.php 。</p>
+<h2 id="资源文件"><a href="#资源文件" class="headerlink" title="资源文件"></a>资源文件</h2><p>get_header() 包含在 <code>wp-includes/general-template.php</code>.</p>
+<h2 id="相关函数"><a href="#相关函数" class="headerlink" title="相关函数"></a>相关函数</h2><p>get_footer(), get_sidebar(), get_template_part(), get_search_form(),comments_template()</p>
+
+          
         
       
     </div>
+
+    
+
     
     
     
@@ -1048,6 +1277,8 @@
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -1058,7 +1289,7 @@
     <link itemprop="mainEntityOfPage" href="https://blog.ykf.me/2017/09/24/wordpress语言本地化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kaifeng">
+      <meta itemprop="name" content="博主">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -1074,11 +1305,21 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/24/wordpress语言本地化/" itemprop="url">wordpress语言本地化</a></h1>
+                <a class="post-title-link" href="/2017/09/24/wordpress语言本地化/" itemprop="url">
+                  wordpress语言本地化
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1086,13 +1327,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-24T22:11:42+08:00">
-                2017-09-24
-              </time>
+
+              
+                
+              
+
+              <time title="创建于：2017-09-24 22:11:42" itemprop="dateCreated datePublished" datetime="2017-09-24T22:11:42+08:00">2017-09-24</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-06-01 12:36:33" itemprop="dateModified" datetime="2018-06-01T12:36:33+08:00">2018-06-01</time>
+              
             
           </span>
 
@@ -1108,22 +1366,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
 
                 
                 
                   ， 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机/网络/" itemprop="url" rel="index">
-                    <span itemprop="name">网络</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/网络/" itemprop="url" rel="index"><span itemprop="name">网络</span></a></span>
 
                 
                 
@@ -1159,27 +1409,42 @@
       
         
           
-          作为WordPress主题或插件开发者，倡萌建议大家要掌握主题或插件国际化（I18n）/本地化的实现方法。
-编译函数WordPress使用了下面几个函数来方便语言本地化。
+            <p>作为WordPress主题或插件开发者，倡萌建议大家要掌握主题或插件国际化（I18n）/本地化的实现方法。</p>
+<h2 id="编译函数"><a href="#编译函数" class="headerlink" title="编译函数"></a>编译函数</h2><p>WordPress使用了下面几个函数来方便语言本地化。</p>
+<ul>
+<li><code>__()</code></li>
+<li><code>_e()</code></li>
+<li><code>_x()</code></li>
+<li><code>_ex()</code></li>
+<li><code>_n()</code></li>
+</ul>
+<p>以上所列的函数是用来包含所需翻译的字符串的，根据字符串的不同参数和输出类型，需要使用不同的函数。相信有不少朋友还是不太明白这几个函数的区别和用法，下面倡萌就来详细说说。</p>
+<h2 id="和-e"><a href="#和-e" class="headerlink" title="__() 和 _e()"></a>__() 和 _e()</h2><p><strong>__() 和 _e() 都是用来返回对应当前语言的字符串内容</strong>。请看下面的例子： <strong>使用 __()</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>  </span><br><span class="line"><span class="keyword">if</span>( is_single() ) &#123; <span class="comment">//如果这是一篇“文章”  </span></span><br><span class="line">    <span class="keyword">echo</span> __( <span class="string">'This is a post.'</span> );  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>使用 _e()</strong><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>  </span><br><span class="line"><span class="keyword">if</span>( is_single() ) &#123; <span class="comment">//如果这是一篇“文章”  </span></span><br><span class="line">    _e( <span class="string">'This is a post.'</span> );  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>上面两组代码的最终输出内容都是一样的。请自己对比一下这两组代码的第 3 行，使用了 echo 函数的，就用 <strong>()，直接返回内容的就用 _e() 。由此，我们可以简单理解为： **如果字符串是返回给其他函数调用，不打印出来，就用 </strong>() ；直接打印输出到 html 中的字符串，就用 _e() 。** 再看下面的例子：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>  </span><br><span class="line">the\_content( \_\_( <span class="string">'Click here to read more'</span> ) );  </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>‘Click here to read more’ 是被函数 the_content() 直接包裹的，所以这里使用 __()；如果你换成 _e() ，它就会直接输出“Click here to read more”，函数 the_content() 就不起作用了。</p>
+<h2 id="x-和-ex"><a href="#x-和-ex" class="headerlink" title="_x() 和 _ex()"></a>_x() 和 _ex()</h2><p><strong>如果要翻译的字符串是根据上下文来决定的，就需要用到 _x()。</strong>比如“Post”根据上下文的不同既可以指 “a post_(名词)_” 也可以指 “to post <em>(动词)</em>”。你需要<strong>明确表达同一个词的不同含义</strong>，方便翻译者识别。 _x() 主要是用在单个具有多重用法的词语，而且它比其他的编译函数多了一个额外的参数，这个参数就是用来根据不同上下文显示的不同内容。 比如，你在主题的两个地方用到了”post“这个词，但是这两个地方的要表达的意思是不一样的。这时候，你可以这样操作： 在第一处的post使用下面的代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="keyword">echo</span> _x(<span class="string">'post'</span>,<span class="string">'A post.'</span>) <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>在第二处的post使用下面的代码:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="keyword">echo</span> _x(<span class="string">'post'</span>,<span class="string">'To post.'</span>) <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>那么，翻译者就可以理解两处post的不同，将第一处翻译为“一篇文章”，第二处翻译为“发布”。 注：导出的 .pot 语言包文件，使用 POEdit 软件打开后，你会发现有两条翻译条目分别为：post[A post] 和 post[To post]，这样就可以分别翻译这两个意思。 <strong>_ex() 区别于 _x() 的地方，和 _e() 区别于__() 是一样的。前者是用于直接打印输出到html的字符串，后者用于返回字符串以供其他函数调用，不打印输出。</strong></p>
+<h2 id="n"><a href="#n" class="headerlink" title="_n()"></a>_n()</h2><p><strong>_n() 是用来进行单复数编译的</strong>。比较常见于 WordPress 的评论功能模块。例如下面的两组代码输出的内容都是一样的：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>  </span><br><span class="line"><span class="keyword">if</span>(get\_comments\_number() == <span class="number">1</span>) &#123;  </span><br><span class="line">    _e( <span class="string">'There is a comment'</span> );  </span><br><span class="line">&#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">    _e( <span class="string">'There are comments'</span> );  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>  </span><br><span class="line">    <span class="keyword">echo</span> \_n( <span class="string">'There is a comment'</span> , <span class="string">'There are comments'</span> , get\_comments_number() );  </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>第一组代码是通过 if 来判断，如果评论数量是 1 ，就输出“There is a comment ”，否则输出“There are comments”，由于是直接输出的，所以使用 _e() ；第二组是使用echo 函数输出，然后使用 _n() 来区分1条评论和多条评论的显示内容。 <strong>_n() 有 3 个参数。第一个是单数形式的字符串，第二个是复数形式的字符串，第三个是引用的数字</strong>。在这个例子中，get_comments_number() 是用来获取 评论 的条数，提供给 _n() 使用。</p>
+<h2 id="含有变量的翻译"><a href="#含有变量的翻译" class="headerlink" title="含有变量的翻译"></a>含有变量的翻译</h2><p>如果在翻译的字符串中包含一个额外的函数或变量，我们应该如何处理呢？比如下面的例子：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>  </span><br><span class="line">    $color = the_color();  </span><br><span class="line">    _e( <span class="string">"You have chosen the $color theme"</span> );  </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>如果你通过 POEdit 制作 .pot 文件，这时会报错。因为在翻译的字符串中包含了 $color 这个变量。那么，如何规避这个问题呢？下面有2种方法：</p>
+<h3 id="拆分内容"><a href="#拆分内容" class="headerlink" title="拆分内容"></a>拆分内容</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>  </span><br><span class="line">    $color = the_color();  </span><br><span class="line">    <span class="keyword">echo</span> __( <span class="string">'You have chosen the '</span> ) . $color . __( <span class="string">' theme.'</span> );  </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>仔细看第 3 行代码，使用了 echo 函数，这样就能保证 $color 变量的输出，同时将变量两端的内容分别进行编译，中间使用点号“.”相连。这样一来，只需翻译两端的内容即可。</p>
+<h3 id="使用-printf-或-sprintf"><a href="#使用-printf-或-sprintf" class="headerlink" title="使用 printf() 或 sprintf()"></a>使用 <code>printf()</code> 或 <code>sprintf()</code></h3><p>上面说的“拆分内容”法虽然可以实现我们要的效果，但是它将内容分成几段，需要我们分别翻译，多少有些繁琐。其实我们可以使用 <code>printf()</code> 或 <code>sprintf()</code> 来解决这个问题。看下面的代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>  </span><br><span class="line">    <span class="comment">//使用 sprintf() 的写法</span></span><br><span class="line">    <span class="keyword">echo</span> sprintf( __( <span class="string">'You have chosen the %s theme.'</span> ) , the_color() );</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//使用 printf() 的写法 </span></span><br><span class="line">    printf( __( <span class="string">'You have chosen the %s theme.'</span> ) , the_color() );  </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>你可以看到，翻译的内容中使用了 %s ，而且 翻译的内容 和 变量函数 都被包裹在 <code>printf()</code> 或 <code>sprintf()</code> 函数中。这个例子中，只使用了一个变量，如果有更多的函数改怎么办？这就需要你自己去了解 <code>[printf()](http://www.w3school.com.cn/php/func_string_printf.asp)</code> 或 <code>[sprintf()](http://www.w3school.com.cn/php/func_string_sprintf.asp)</code> 这两个函数的了。 <strong><code>printf()</code> 与 <code>sprintf()</code> 用法的区别，和 _e() 与 __() 的区别是一样的。</strong></p>
 
-__()
-_e()
-_x()
-_ex()
-_n()
-
-以上所列的函数是用来包含所需翻译的字符串的，根据字符串的不同参数和输出类
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/24/wordpress语言本地化/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
+
+    
+
     
     
     
@@ -1216,6 +1481,8 @@ _n()
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -1226,7 +1493,7 @@ _n()
     <link itemprop="mainEntityOfPage" href="https://blog.ykf.me/2017/09/24/wordpress-body-class/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kaifeng">
+      <meta itemprop="name" content="博主">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -1242,11 +1509,21 @@ _n()
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/24/wordpress-body-class/" itemprop="url">wordpress - body_class()</a></h1>
+                <a class="post-title-link" href="/2017/09/24/wordpress-body-class/" itemprop="url">
+                  wordpress - body_class()
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1254,13 +1531,30 @@ _n()
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-24T21:40:25+08:00">
-                2017-09-24
-              </time>
+
+              
+                
+              
+
+              <time title="创建于：2017-09-24 21:40:25" itemprop="dateCreated datePublished" datetime="2017-09-24T21:40:25+08:00">2017-09-24</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-06-01 12:34:35" itemprop="dateModified" datetime="2018-06-01T12:34:35+08:00">2018-06-01</time>
+              
             
           </span>
 
@@ -1276,22 +1570,14 @@ _n()
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
 
                 
                 
                   ， 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机/网络/" itemprop="url" rel="index">
-                    <span itemprop="name">-网络</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/网络/" itemprop="url" rel="index"><span itemprop="name">-网络</span></a></span>
 
                 
                 
@@ -1327,18 +1613,209 @@ _n()
       
         
           
-          wordpress的body_class()函数，顾名思义，这个函数根据不同的页面类型为body标签生成class选择器，从而让设计人员可以各方便灵活的控制不同页面中的各个元素。本文对这一函数进行了详细的解析，包括该函数生成了些什么，所包含的属性值有哪些，以及如何使用和如何新增class选择器等等。
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/24/wordpress-body-class/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>wordpress的body_class()函数，顾名思义，这个函数根据不同的页面类型为body标签生成class选择器，从而让设计人员可以各方便灵活的控制不同页面中的各个元素。本文对这一函数进行了详细的解析，包括该函数生成了些什么，所包含的属性值有哪些，以及如何使用和如何新增class选择器等等。   <strong>1、body_class（）生成什么？</strong> body_class()函数在Wordpress2.7几乎和post_class()有同样的运行方式，唯一不同的是class生成的名称。 body_class()函数生成的class大多是根据你的访问者在网站的位置。例如，如果访问者在你的博客首页，但你没有设置一个静态主页，函数和类 可能会产生如下所示：</p>
+<p>1</p>
+<p><code>&lt;body `</code>class<code>=</code>“home blog”<code></code>&gt;`</p>
+<p>生成了两个class类 如果你在某个帖子，body标签看起来可能是这样：</p>
+<p>1</p>
+<p><code>&lt;body `</code>class<code>=</code>“single postid-64”<code></code>&gt;`</p>
+<p>  如果你正在浏览一个页面，body_class()会生成这样：</p>
+<p>1</p>
+<p><code>&lt;body `</code>class<code>=</code>“page page-id-3 parent-page-id-0 page-template-default”<code></code>&gt;`</p>
+<p>  从本质上讲，body_class()会生成基于内容的动态CSS class，以及在什么情况下浏览。例如，如果你是注册用户，且已经登录，body_class()会在body标签生成一个登录class。 以下为可用的body class的完整列表：</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p>6</p>
+<p>7</p>
+<p>8</p>
+<p>9</p>
+<p>10</p>
+<p>11</p>
+<p>12</p>
+<p>13</p>
+<p>14</p>
+<p>15</p>
+<p>16</p>
+<p>17</p>
+<p>18</p>
+<p>19</p>
+<p>20</p>
+<p>21</p>
+<p>22</p>
+<p>23</p>
+<p>24</p>
+<p>25</p>
+<p>26</p>
+<p>27</p>
+<p>28</p>
+<p>29</p>
+<p>30</p>
+<p>31</p>
+<p>32</p>
+<p>33</p>
+<p><code>rtl</code></p>
+<p><code>home</code></p>
+<p><code>blog</code></p>
+<p><code>archive</code></p>
+<p><code>date</code></p>
+<p><code>search</code></p>
+<p><code>paged</code></p>
+<p><code>attachment</code></p>
+<p><code>error404</code></p>
+<p><code>single postid-(id)</code></p>
+<p><code>attachmentid-(id)</code></p>
+<p><code>attachment-(mime-type)</code></p>
+<p><code>author</code></p>
+<p><code>author-(user_nicename)</code></p>
+<p><code>category</code></p>
+<p><code>category-(slug)</code></p>
+<p><code>tag</code></p>
+<p><code>tag-(slug)</code></p>
+<p><code>page</code></p>
+<p><code>page-parent</code></p>
+<p><code>page-child parent-pageid-(id)</code></p>
+<p><code>page-template page-template-(template file name)</code></p>
+<p><code>search-results</code></p>
+<p><code>search-no-results</code></p>
+<p><code>logged-`</code>in`</p>
+<p><code>paged-(page number)</code></p>
+<p><code>single-paged-(page number)</code></p>
+<p><code>page-paged-(page number)</code></p>
+<p><code>category-paged-(page number)</code></p>
+<p><code>tag-paged-(page number)</code></p>
+<p><code>date-paged-(page number)</code></p>
+<p><code>author-paged-(page number)</code></p>
+<p><code>search-paged-(page number)</code></p>
+<p>  <strong>2. 如何添加body_class()</strong> 假设你正在使用Wordpress2.8以上的版本，通常body_class()放到<body>标签里。它通常在header.php文件里。 当你找到标签的位置后，请把它更改为：</body></p>
+<p>1</p>
+<p><code>&lt;body &lt;?php body_class(); ?&gt;&gt;</code></p>
+<p>  <strong>3. 使用动态Body Class</strong> 现在我们有了body class，有什么大不了呢？我将会解释： 除了html元素外，标签包围着其他所有的HTML代码。因此，body class允许我们对网页任何元素进行修改，具体到当前页面。 也许通过实例更容易理解： 我们主题左边有一个<div id="”content”">，右边有一个<div id="”sidebar”">，他们都在一个960px宽<div id="”container”">里。content div为600px宽，sidebar div为360px宽。但是，当浏览单独的帖子页面，我让我的主题不显示sidebar。现在，我们只剩下一个content div。不幸的是，container div为960px宽，而我们的content div却只有600px宽。 我们难道用一个大空白区填充我们的工具栏？该如何解决呢？使用body class这将很简单。我们只需要针对<div id="”content”">在帖子页的情况进行定义。在CSS里为：</div></div></div></div></p>
+<p>1</p>
+<p><code>.single #content{ width: 960px; }</code></p>
+<p>通过这样做，在帖子页面，content div为960px宽。我们正在增加一个简单有选择性的CSS系统。   <strong>4. 新增body_class()的class</strong> 在某些情况下，你将要添加自己的Class到body_class()里。如果你发现自己处在这种情况下，这些有些方法可以做到这一点。 首先，最简单的方法是通过自定义Class函数调用 body_class()</p>
+<p>1</p>
+<p><code>&lt;body &lt;?php body_class(`</code>‘my-class’<code></code>); ?&gt;&gt;`</p>
+<p>通过这样做，我们现在告诉body_class()函数增加my-class的输出。 第二，困难但更灵活的方式是，利用Wordpress的过滤器，增加新的body class。在这种情况下，我们将使用 get_body_class() 函数中的body_class过滤器。 这是增加使用过滤器增加class的例子：</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p>6</p>
+<p>7</p>
+<p>8</p>
+<p>9</p>
+<p>10</p>
+<p>11</p>
+<p><code>&lt;?php</code></p>
+<p><code>add_filter(’body_class’,&#39;my_body_classes’);</code></p>
+<p><code>function my_body_classes($classes) {</code></p>
+<p><code>// add &#39;zdy_class&#39; to the $classes array</code></p>
+<p><code>$classes[] = `</code>‘zdy_class’<code></code>;`</p>
+<p><code>// return the $classes array</code></p>
+<p><code>return</code> <code>$classes;</code></p>
+<p><code>}</code></p>
+<p><code>?&gt;</code></p>
+<p>则输出结果在body_class()的基础上新增zdy_class  </p>
+<hr>
+<h2 id="body-class-函数是什么？用来做什么？"><a href="#body-class-函数是什么？用来做什么？" class="headerlink" title="body_class 函数是什么？用来做什么？"></a>body_class 函数是什么？用来做什么？</h2><p>有一定前端开发经验的人，往往会在 body 标签上加上一些类，变成类似下面这样：</p>
+<pre><code>&lt;body class=&quot;home&quot;&gt;.....&lt;/body&gt;
+</code></pre><p>因为同一个网站中，很多页面的结构是相同的，但是有时某个相同结构（.header）的样式却要求不同。这样如果使用相同的结构，就没法修改样式，如果再新建结构，就相当于重做了一个页面，增加工作量。这时，也可以在 body 标签上加上一个页面对应的类（blog），之后对于这样一个与其他页面不同样式的需求，就可以使用下面语句来实现：</p>
+<pre><code>.blog .header{.....}
+</code></pre><p>body_class 这个函数就是用来给 body 标签添加类的函数。</p>
+<h2 id="body-class-函数如何使用？"><a href="#body-class-函数如何使用？" class="headerlink" title="body_class 函数如何使用？"></a>body_class 函数如何使用？</h2><p>body_class 函数的使用方法非常简单，只需要用下面语句替换掉原来的 body 标签即可：</p>
+<pre><code>&lt;body &lt;?php body_class($class); ?&gt;&gt;
+</code></pre><p>其中有一个参数 class ，它可以是一个字符串或者是数组，数组里的内容会以空格为分割，插入到 body 标签中的 class 属性中。</p>
+<h2 id="body-class-函数会输出什么类？"><a href="#body-class-函数会输出什么类？" class="headerlink" title="body_class 函数会输出什么类？"></a>body_class 函数会输出什么类？</h2><p>既然它会自动的输出类让前端方便进行控制，那么了解这个函数的输出规则就非常有必要了，下面针对不同类型的页面介绍一下它的输出规则：</p>
+<h3 id="首页（Front-Page）"><a href="#首页（Front-Page）" class="headerlink" title="首页（Front Page）"></a>首页（Front Page）</h3><p>这里的首页，就是打开你的博客看到的第一个页面，这个页面是可以在 WordPress 后台进行设置的，可以选择显示文章列表或者是一个静态的页面（Page）。 任意的首页都包含 <code>home</code> 类。</p>
+<ul>
+<li>如果网站首页显示文章列表，那么输出：<code>home blog</code> 这两个类。</li>
+<li>如果网站首页显示静态页面，将会输出：<code>home page</code> 类。</li>
+</ul>
+<h3 id="博客文章索引页面"><a href="#博客文章索引页面" class="headerlink" title="博客文章索引页面"></a>博客文章索引页面</h3><p>博客文章索引页面都包含 <code>blog</code> 类。</p>
+<ul>
+<li>如果博客文章页面显示在首页，将会输出：<code>home blog</code> 类。</li>
+<li>如果博客文章显示在某个指定的静态页面中，将会输出：<code>page blog</code> 类。</li>
+</ul>
+<h3 id="文章页面（Single-Post）"><a href="#文章页面（Single-Post）" class="headerlink" title="文章页面（Single Post）"></a>文章页面（Single Post）</h3><p>所有的文章都会输出：<code>single postid-{ID}</code> 这两个类（ID 为当前文章唯一的 ID ）。</p>
+<ul>
+<li>普通的文章页面输出：<code>single-post</code> 类</li>
+<li>自定义文章类型的文章页面输出：<code>single-{posttype}</code> 类</li>
+<li>如果支持文章格式的话：<ul>
+<li>指定了文章格式的文章会输出：<code>single-format-{format}</code></li>
+<li>如果当前文章没有指定文章格式：<code>single-format-standard</code></li>
+</ul>
+</li>
+<li>对于附件页面（attachment pages）会输出：<code>attachment single-attachment attachmentid-{ID} attachment-mime-type</code></li>
+</ul>
+<h3 id="存档页面（Archives）"><a href="#存档页面（Archives）" class="headerlink" title="存档页面（Archives）"></a>存档页面（Archives）</h3><p>存档页面都有 <code>archive</code> 类。</p>
+<ul>
+<li>日期（Date）存档索引页面输出：<code>date</code></li>
+<li>自定义文章类型的存档索引页面输出：<code>post-type-archive post-type-archive-{posttype}</code></li>
+<li>作者存档页面输出：<code>archive author author-{user_nickname}</code></li>
+<li>标签存档页面输出：<code>archive tag tag-{slug}</code></li>
+<li>分类存档页面输出：<code>archive category category-{slug}</code></li>
+<li>自定义分类（Taxonomy）存档页面输出：<code>tax-{taxonomy} term-{term} term-{ID}</code></li>
+<li>自定义文章格式存档页面输出：<code>tax-{post_format} term-post-format-{format} term-{ID}</code></li>
+</ul>
+<h3 id="页面（Page）"><a href="#页面（Page）" class="headerlink" title="页面（Page）"></a>页面（Page）</h3><p>所有静态页面都输出 <code>page</code> 和 <code>page-id-{ID}</code> 类。 页面层次中：</p>
+<ul>
+<li>父级页面输出：<code>page-parent</code></li>
+<li>子级页面输出：<code>page-child parent-pageid-{ID}</code></li>
+</ul>
+<p><a href="http://blog.wpjam.com/m/custom-wordpress-page-template/" target="_blank" rel="noopener">自定义页面模版</a>中：</p>
+<ul>
+<li>应用了页面模版的页面会输出：<code>page-template page-template-{directory}{filename}_php</code></li>
+<li>没有指定页面模版的页面会输出：<code>page-template-default</code></li>
+</ul>
+<h3 id="搜索页面"><a href="#搜索页面" class="headerlink" title="搜索页面"></a>搜索页面</h3><p>搜索结果页面都有 <code>search</code> 类。</p>
+<ul>
+<li>带有结果的搜索页面：<code>search-results</code></li>
+<li>没有结果的搜索页面：<code>search-no-results</code></li>
+</ul>
+<h3 id="分页页面或者多页码的页面"><a href="#分页页面或者多页码的页面" class="headerlink" title="分页页面或者多页码的页面"></a>分页页面或者多页码的页面</h3><p>分页页面通常是指文章索引页面底部的翻页。 此外文章内也有分页页面。一个页面或者文章太长的时候，通常会截断成多个子页面，通过翻页查看下一部份内容。对于所有带有页码的页面，都包含 paged 类。当前页面处于某个带有页码页面的第二页之后的页面，会输出 paged 和 paged-{n} 类。</p>
+<ul>
+<li>文章带页码页面：<code>single-paged-{n}</code></li>
+<li>静态页面带页码：<code>page-paged-{n}</code></li>
+<li>分类存档索引页面：<code>category-paged-{n}</code></li>
+<li>标签存档索引页面：<code>tag-paged-{n}</code></li>
+<li>日期存档索引页面：<code>date-paged-{n}</code></li>
+<li>作者存档索引页面：<code>author-paged-{n}</code></li>
+<li>搜索结果页面：<code>search-paged-{n}</code></li>
+<li>自定义文章类型索引页面：<code>post-type-paged-{n}</code></li>
+</ul>
+<h3 id="404-错误页面"><a href="#404-错误页面" class="headerlink" title="404 错误页面"></a>404 错误页面</h3><p>错误页面输出 <code>error404</code> 类。</p>
+<h3 id="登陆"><a href="#登陆" class="headerlink" title="登陆"></a>登陆</h3><p>当用户登陆 WordPress 之后，会在所有页面输出 <code>logged-in</code> 类。</p>
+<h3 id="文字方向"><a href="#文字方向" class="headerlink" title="文字方向"></a>文字方向</h3><p>如果文字的方向设置为了 “右向左” 就会输出 <code>rtl</code> 类。</p>
+<h3 id="自定义背景"><a href="#自定义背景" class="headerlink" title="自定义背景"></a>自定义背景</h3><p>如果使用了自定义背景功能来显示背景图片或者颜色，会输出 <code>custom-background</code> 类。</p>
+<h3 id="超级管理员工具条"><a href="#超级管理员工具条" class="headerlink" title="超级管理员工具条"></a>超级管理员工具条</h3><p>如果管理员工具条在顶部出现了，会输出： <code>admin-bar no-customize-support</code> 类。 介绍完了 body_class 函数根据当前页面自动输出类的规则之后，我们来介绍一下如何自定义输出的类。</p>
+<h2 id="自定义-body-class-函数输出的类"><a href="#自定义-body-class-函数输出的类" class="headerlink" title="自定义 body_class 函数输出的类"></a>自定义 body_class 函数输出的类</h2><p>在前面的使用中已经提到了这个函数的唯一的参数，传递进去值就会输出相应的参数，这里不再赘述。下面介绍一下通过条件判断和过滤器自定义输出类。 通过使用 body_class filter 来实现，大体框架如下：</p>
+<pre><code>add_filter(&apos;body_class&apos;,&apos;wpjam_class_names&apos;);
+function wpjam_class_names($classes) {
+    $classes[] = &apos;class-name&apos;;
+    return $classes;
+}
+</code></pre><p>上例中，我们为 classes 这个数组变量增加了一个新键值 “class-name” 并返回给 body_class filter ，即可实现在所有页面中输出 “class-name” 这个类。 但是这样自定义是完全没有什么价值的，我们往往希望通过更详细的判断语句来判断出某些特定的页面，然后增加相应的类。这样，就需要 WordPress 强大的条件判断标签了。这里推荐一下 <a href="http://blog.wpjam.com/" target="_blank" rel="noopener">我爱水煮鱼</a> 博客翻译编写的 <a href="http://blog.wpjam.com/article/wordpress-conditional-tags/" target="_blank" rel="noopener">WordPress 条件判断标签及其使用方法</a>。下面就来试一下：</p>
+<pre><code>add_filter(&apos;body_class&apos;,&apos;wpjam_class_names&apos;);
+function wpjam_class_names($classes) {
+    if ( is_page( &apos;some-page&apos; ))
+        $classes[] = &apos;some-page&apos;;
+    return $classes;
+}
+</code></pre><p>上面例子很简单，使用 is_page 判断标签判断当前页面的 slug 是否为 some-page ，如果是，就为当前页面的 body 标签增加 some-page 类。当然，因为默认输出的已经比较详细了，所以这个例子只作为抛砖引玉之用。 需要注意一点，WordPress 系统在不断的升级，可能会对本文中的输出类的规则有所变更，如果你发现某个规则是错误的，请以实际输出为准。 总之 body_class 差不多就这么些事情，使用它可以方便前端工作，提高灵活性。所以，为了你的主题更具有扩展性，务必要在 body 标签中加入这个函数哦！</p>
+<p>标签：<a href="http://blog.wpjam.com/tag/wordpres-tutorials/" target="_blank" rel="noopener">WordPress 教程</a></p>
+<p>©我爱水煮鱼</p>
+
+          
         
       
     </div>
+
+    
+
     
     
     
@@ -1375,6 +1852,8 @@ _n()
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -1385,7 +1864,7 @@ _n()
     <link itemprop="mainEntityOfPage" href="https://blog.ykf.me/2017/09/24/wordpress-wp-head/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kaifeng">
+      <meta itemprop="name" content="博主">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -1401,11 +1880,21 @@ _n()
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/24/wordpress-wp-head/" itemprop="url">wordpress - wp_head()</a></h1>
+                <a class="post-title-link" href="/2017/09/24/wordpress-wp-head/" itemprop="url">
+                  wordpress - wp_head()
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1413,13 +1902,30 @@ _n()
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-24T21:35:12+08:00">
-                2017-09-24
-              </time>
+
+              
+                
+              
+
+              <time title="创建于：2017-09-24 21:35:12" itemprop="dateCreated datePublished" datetime="2017-09-24T21:35:12+08:00">2017-09-24</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-06-01 12:35:16" itemprop="dateModified" datetime="2018-06-01T12:35:16+08:00">2018-06-01</time>
+              
             
           </span>
 
@@ -1435,22 +1941,14 @@ _n()
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
 
                 
                 
                   ， 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机/网络/" itemprop="url" rel="index">
-                    <span itemprop="name">网络</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/网络/" itemprop="url" rel="index"><span itemprop="name">网络</span></a></span>
 
                 
                 
@@ -1486,18 +1984,17 @@ _n()
       
         
           
-          &lt;?php //移除顶部多余信息 remove_action(‘wp_head’, ‘index_rel_link’);//当前文章的索引 remove_action(‘wp_head’, ‘feed_links_extra’, 3);// 额外的feed,例如category, tag页 r
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/24/wordpress-wp-head/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>&lt;?php //移除顶部多余信息 remove_action(‘wp_head’, ‘index_rel_link’);//当前文章的索引 remove_action(‘wp_head’, ‘feed_links_extra’, 3);// 额外的feed,例如category, tag页 remove_action(‘wp_head’, ‘start_post_rel_link’, 10, 0);// 开始篇 remove_action(‘wp_head’, ‘parent_post_rel_link’, 10, 0);// 父篇 remove_action(‘wp_head’, ‘adjacent_posts_rel_link’, 10, 0); // 上、下篇. remove_action(‘wp_head’, ‘adjacent_posts_rel_link_wp_head’, 10, 0 );//rel=pre remove_action(‘wp_head’, ‘wp_shortlink_wp_head’, 10, 0 );//rel=shortlink remove_action(‘wp_head’, ‘rel_canonical’ ); wp_deregister_script(‘l10n’); remove_action(‘wp_head’,’rsd_link’);//移除head中的rel=”EditURI” remove_action(‘wp_head’,’wlwmanifest_link’);//移除head中的rel=”wlwmanifest” remove_action(‘wp_head’,’rsd_link’);//rsd_link移除XML-RPC remove_filter(‘the_content’, ‘wptexturize’);//禁用半角符号自动转换为全角 remove_action(‘wp_head’, array($wp_widget_factory-&gt;widgets[‘WP_Widget_Recent_Comments’], ‘recent_comments_style’));&nbsp; } ?&gt; 把这段代码插入到主题的functions.php文件下，可以清除WordPress头部大量冗余信息。如有必要，可以看看这些代码的具体意义，以免删除某些你想保留的功能。  </p>
+<hr>
+<h4 id="wp-head函数"><a href="#wp-head函数" class="headerlink" title="wp_head函数"></a>wp_head函数</h4><p>wp_head() 是wordpress的一个非常重要的函数，基本上所有的主题在header.php这个文件里都会使用到这个函数，而且很多插件为了在header上加点东西也会用到wp_head()，比如SEO的相关插件。但是，在wp_head()出现的这个位置，会增加很多并不常用的代码。可以通过 remove_action移除这些代码。</p>
+
+          
         
       
     </div>
+
+    
+
     
     
     
@@ -1534,6 +2031,8 @@ _n()
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -1544,7 +2043,7 @@ _n()
     <link itemprop="mainEntityOfPage" href="https://blog.ykf.me/2017/09/24/wordpress-bloginfo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kaifeng">
+      <meta itemprop="name" content="博主">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -1560,11 +2059,21 @@ _n()
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/24/wordpress-bloginfo/" itemprop="url">wordpress - bloginfo()</a></h1>
+                <a class="post-title-link" href="/2017/09/24/wordpress-bloginfo/" itemprop="url">
+                  wordpress - bloginfo()
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1572,13 +2081,30 @@ _n()
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-24T21:25:13+08:00">
-                2017-09-24
-              </time>
+
+              
+                
+              
+
+              <time title="创建于：2017-09-24 21:25:13" itemprop="dateCreated datePublished" datetime="2017-09-24T21:25:13+08:00">2017-09-24</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-06-01 12:34:26" itemprop="dateModified" datetime="2018-06-01T12:34:26+08:00">2018-06-01</time>
+              
             
           </span>
 
@@ -1594,22 +2120,14 @@ _n()
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
 
                 
                 
                   ， 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机/网络/" itemprop="url" rel="index">
-                    <span itemprop="name">网络</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/网络/" itemprop="url" rel="index"><span itemprop="name">网络</span></a></span>
 
                 
                 
@@ -1645,19 +2163,15 @@ _n()
       
         
           
-          ">该函数位于header.php文件，是用来指定页面编码的
+            <p><meta charset="<?php bloginfo( 'charset' ); ?>">该函数位于header.php文件，是用来指定页面编码的</p>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/24/wordpress-bloginfo/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
@@ -1696,6 +2210,8 @@ _n()
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -1704,7 +2220,7 @@ _n()
     <link itemprop="mainEntityOfPage" href="https://blog.ykf.me/2017/09/24/wordpress-language-attributes/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kaifeng">
+      <meta itemprop="name" content="博主">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -1720,11 +2236,21 @@ _n()
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/24/wordpress-language-attributes/" itemprop="url">wordpress - language_attributes();</a></h1>
+                <a class="post-title-link" href="/2017/09/24/wordpress-language-attributes/" itemprop="url">
+                  wordpress - language_attributes();
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1732,13 +2258,30 @@ _n()
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-24T21:23:53+08:00">
-                2017-09-24
-              </time>
+
+              
+                
+              
+
+              <time title="创建于：2017-09-24 21:23:53" itemprop="dateCreated datePublished" datetime="2017-09-24T21:23:53+08:00">2017-09-24</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2018-06-01 12:35:07" itemprop="dateModified" datetime="2018-06-01T12:35:07+08:00">2018-06-01</time>
+              
             
           </span>
 
@@ -1754,22 +2297,14 @@ _n()
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
 
                 
                 
                   ， 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机/网络/" itemprop="url" rel="index">
-                    <span itemprop="name">网络</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/网络/" itemprop="url" rel="index"><span itemprop="name">网络</span></a></span>
 
                 
                 
@@ -1805,19 +2340,15 @@ _n()
       
         
           
-          &lt;?php language_attributes(); ?&gt;该函数位于header.php文件，这个函数是用于生成当前博客所使用的语言的，比如“lang=’zh-CN’”，用来告诉浏览器当前页面是基于中文的。
+            <p>&lt;?php language_attributes(); ?&gt;该函数位于header.php文件，这个函数是用于生成当前博客所使用的语言的，比如“lang=’zh-CN’”，用来告诉浏览器当前页面是基于中文的。</p>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/24/wordpress-language-attributes/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
@@ -1852,15 +2383,12 @@ _n()
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
 
           </div>
-          
-
-
           
 
         </div>
@@ -1887,59 +2415,69 @@ _n()
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">Kaifeng</p>
+              <p class="site-author-name" itemprop="name">博主</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">21</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">1</span>
-                  <span class="site-state-item-name">标签</span>
-                
-              </div>
-            
-
-          </nav>
-
           
-
-          
-            <div class="links-of-author motion-element">
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
                 
-                  <span class="links-of-author-item">
-                    <a href="mailto:ykf@live.cn" target="_blank" title="E-Mail">
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
                       
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
                 
-            </div>
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
           
 
           
@@ -1948,6 +2486,9 @@ _n()
           
           
 
+          
+            
+          
           
 
         </div>
@@ -1968,13 +2509,17 @@ _n()
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Kaifeng 版权所有</span>
 
   
+
+  
 </div>
+
+
 
 
 
@@ -1989,21 +2534,20 @@ _n()
   <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   
-    <span class="site-uv">
+    <span class="site-uv" title="Total Visitors">
       <i class="fa fa-user"></i>
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      
     </span>
   
 
   
-    <span class="site-pv">
+    <span class="site-pv" title="Total Views">
       <i class="fa fa-eye"></i>
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      
     </span>
   
 </div>
+
 
 
 
@@ -2043,7 +2587,11 @@ _n()
 
 
 
-  
+
+
+
+
+
 
 
 
@@ -2063,16 +2611,6 @@ _n()
 
   
   
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
     <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
@@ -2081,18 +2619,13 @@ _n()
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
 
 
 
@@ -2100,9 +2633,9 @@ _n()
   
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
 
 
 
@@ -2111,15 +2644,11 @@ _n()
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
 
 
 
   
-
-
-  
-
 
 
 
@@ -2146,8 +2675,6 @@ _n()
 
 
 
-
-
   
 
 
@@ -2165,31 +2692,113 @@ _n()
 
   
   
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
 
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
   
+  
 
   
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('Copied')
+          else $(this).text('Copy failed')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('Copy')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
 
 </body>
 </html>
