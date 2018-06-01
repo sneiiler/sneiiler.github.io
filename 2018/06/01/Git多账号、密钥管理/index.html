@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="大风">
 <meta property="og:description" content="有的时候有多个账号和Git提交需求，这就需要同时配置多个密钥对，通过SSH的方式进行git提交。  首先生成SSH-KEY打开命令行、终端，用命令进入到你要保存SSH-KEY文件的文件夹，我们先用命令测试下终端是否支持SSH： 1ssh -V 测试时如果提示不识别SSH命令，需要安装SSH。Ubuntu安装SSH：1sudo apt-get install openssh-client open">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-01T04:30:54.764Z">
+<meta property="og:updated_time" content="2018-06-01T04:31:24.967Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git多账号、密钥管理">
 <meta name="twitter:description" content="有的时候有多个账号和Git提交需求，这就需要同时配置多个密钥对，通过SSH的方式进行git提交。  首先生成SSH-KEY打开命令行、终端，用命令进入到你要保存SSH-KEY文件的文件夹，我们先用命令测试下终端是否支持SSH： 1ssh -V 测试时如果提示不识别SSH命令，需要安装SSH。Ubuntu安装SSH：1sudo apt-get install openssh-client open">
@@ -403,7 +403,7 @@
 <p>比如Gitlib的信息是：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Welcome to GitLab, YanZhenjie!</span><br></pre></td></tr></table></figure></p>
 <p>如果不能执行测试命令或者提示什么错误了，请执行ssh-agent bash完后再执行测试命令，如果还不行就是配置有问题了。</p>
 <p>添加SSH到SSH-Agent时报错<br>如果执行ssh-add …命令提示如下错误：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Could not open a connection to your authentication agent.</span><br></pre></td></tr></table></figure></p>
-<p>那么请执行eval $(ssh-agent)命令后再重试，如果还不行，请再执行ssh-agent bash命令后再执行eval $(ssh-agent)后执行添加命令。另外上述测试配置的命令不能执行时也可以在ssh-agent bash执行完后再测试。</p>
+<p>那么请执行eval \$(ssh-agent)命令后再重试，如果还不行，请再执行ssh-agent bash命令后再执行eval \$(ssh-agent)后执行添加命令。另外上述测试配置的命令不能执行时也可以在ssh-agent bash执行完后再测试。</p>
 
       
     </div>
