@@ -1,5 +1,5 @@
 ---
-title: 修改Anaconda中的Jupyter Notebook默认工作路径
+title: 修改Anaconda中的Jupyter Notebook默认工作路径-update
 date: 2018-08-15 12:59:51
 tags:
 ---
