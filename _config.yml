@@ -86,3 +86,6 @@ deploy:
 # 添加插件,防止CNAME文件消失 
 Plugins:
 - hexo-generator-cname
+
+# Google Analytics
+google_analytics: G-SFT63EXSKM
