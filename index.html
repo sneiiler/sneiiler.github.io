@@ -1,43 +1,538 @@
-const { Component } = require('inferno');
-const classname = require('hexo-component-inferno/lib/util/classname');
-const Head = require('./common/head');
-const Navbar = require('./common/navbar');
-const Widgets = require('./common/widgets');
-const Footer = require('./common/footer');
-const Scripts = require('./common/scripts');
-const Search = require('./common/search');
-
-module.exports = class extends Component {
-    render() {
-        const { site, config, page, helper, body } = this.props;
-
-        const language = page.lang || page.language || config.language;
-        const columnCount = Widgets.getColumnCount(config.widgets, config, page);
-
-        return <html lang={language ? language.substr(0, 2) : ''}>
-            <Head site={site} config={config} helper={helper} page={page} />
-            <body class={`is-${columnCount}-column`}>
-                <Navbar config={config} helper={helper} page={page} />
-                <section class="section">
-                    <div class="container">
-                        <div class="columns">
-                            <div class={classname({
-                                column: true,
-                                'order-2': true,
-                                'column-main': true,
-                                'is-12': columnCount === 1,
-                                'is-8-tablet is-8-desktop is-8-widescreen': columnCount === 2,
-                                'is-8-tablet is-8-desktop is-6-widescreen': columnCount === 3
-                            })} dangerouslySetInnerHTML={{ __html: body }}></div>
-                            <Widgets site={site} config={config} helper={helper} page={page} position={'left'} />
-                            <Widgets site={site} config={config} helper={helper} page={page} position={'right'} />
-                        </div>
-                    </div>
-                </section>
-                <Footer config={config} helper={helper} />
-                <Scripts site={site} config={config} helper={helper} page={page} />
-                <Search config={config} helper={helper} />
-            </body>
-        </html>;
-    }
-};
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>大风</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="大风"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="大风"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="大风"><meta property="og:url" content="https://blog.ykf.me/"><meta property="og:site_name" content="大风"><meta property="og:image" content="https://blog.ykf.me/img/og_image.png"><meta property="article:author" content="kkai"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.ykf.me"},"headline":"大风","image":["https://blog.ykf.me/img/og_image.png"],"author":{"@type":"Person","name":"kkai"},"publisher":{"@type":"Organization","name":"大风","logo":{"@type":"ImageObject","url":"https://blog.ykf.me/img/logo.svg"}},"description":null}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 6.1.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="大风" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item is-active" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Buscar" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Publicado hace&nbsp;<time dateTime="2018-08-15T04:59:51.000Z" title="2018/8/15 12:59:51">2018-08-15</time></span><span class="level-item">Actualizado hace&nbsp;<time dateTime="2022-04-27T01:31:45.389Z" title="2022/4/27 09:31:45">2022-04-27</time></span><span class="level-item">a minute de lectura (Aproximadamente 143 palabras)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/08/15/%E4%BF%AE%E6%94%B9Anaconda%E4%B8%AD%E7%9A%84Jupyter-Notebook%E9%BB%98%E8%AE%A4%E5%B7%A5%E4%BD%9C%E8%B7%AF%E5%BE%84/">修改Anaconda中的Jupyter Notebook默认工作路径-update</a></h1><div class="content"><p>一般默认工作路径是Documents目录，但是项目不希望放在这里，可以采用这种方法修改默认工作目录：</p>
+<ol>
+<li>激活所需要的工作环境：<code>activate mne</code></li>
+<li><p>利用命令生成<code>jupyter notebook</code>的配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以看到生成了<code>jupyter_notebook_config.py</code>文件（利用everything搜索）</p>
+</li>
+<li>打开文件，找到并修改：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## The directory to use for notebooks and kernels. </span></span><br><span class="line">c.NotebookApp.notebook_dir = <span class="string">'xxx'</span> <span class="comment">#这里修改为工作目录，Windows环境下用双斜杠</span></span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>重启<code>jupyter notebook</code>即可</li>
+</ol>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Publicado hace&nbsp;<time dateTime="2018-08-12T09:37:32.000Z" title="2018/8/12 17:37:32">2018-08-12</time></span><span class="level-item">Actualizado hace&nbsp;<time dateTime="2022-04-27T01:31:45.390Z" title="2022/4/27 09:31:45">2022-04-27</time></span><span class="level-item">a few seconds de lectura (Aproximadamente 15 palabras)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/08/12/%E6%9C%80%E8%BF%91%E4%B8%80%E6%AE%B5%E6%97%B6%E9%97%B4%E7%9A%84%E6%80%BB%E7%BB%93/">最近一段时间的总结（2018年上半年）</a></h1><div class="content"><p>最近这两天，总算是喘了一口气。</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Publicado hace&nbsp;<time dateTime="2018-07-01T05:21:58.000Z" title="2018/7/1 13:21:58">2018-07-01</time></span><span class="level-item">Actualizado hace&nbsp;<time dateTime="2022-04-27T01:31:45.384Z" title="2022/4/27 09:31:45">2022-04-27</time></span><span class="level-item">a minute de lectura (Aproximadamente 188 palabras)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/07/01/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">hexo常用命令</a></h1><div class="content"><p>来源：<a href="https://segmentfault.com/a/1190000002632530" target="_blank" rel="noopener">https://segmentfault.com/a/1190000002632530</a></p>
+<h3 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h3><hr>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo -g #安装  </span><br><span class="line">npm update hexo -g #升级  </span><br><span class="line">hexo init #初始化</span><br></pre></td></tr></table></figure>
+<h3 id="快速命令"><a href="#快速命令" class="headerlink" title="快速命令"></a>快速命令</h3><hr>
+<p><code>hexo n &quot;我的博客&quot;</code> == <code>hexo new &quot;我的博客&quot; #新建文章</code><br><code>hexo p</code> == <code>hexo publish</code><br><code>hexo g</code> == <code>hexo generate#生成</code><br><code>hexo s</code> == <code>hexo server #启动服务预览</code><br><code>hexo d</code> == <code>hexo deploy#部署</code></p>
+<h3 id="服务器相关"><a href="#服务器相关" class="headerlink" title="服务器相关"></a>服务器相关</h3><hr>
+<p><code>hexo server</code> #Hexo 会监视文件变动并自动更新，您无须重启服务器。<br><code>hexo server -s</code> #静态模式<br><code>hexo server -p</code> 5000 #更改端口<br><code>hexo server -i</code> 192.168.1.1 #自定义 IP</p>
+<p><code>hexo clean</code> #清除缓存 网页正常情况下可以忽略此条命令<br><code>hexo g</code> #生成静态网页<br><code>hexo d</code> #开始部署</p>
+<h3 id="完成后部署"><a href="#完成后部署" class="headerlink" title="完成后部署"></a>完成后部署</h3><hr>
+<p>两个命令的作用是相同的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate --deploy</span><br><span class="line">hexo deploy --generate</span><br></pre></td></tr></table></figure></p>
+<p>简写<br><code>hexo d -g</code><br><code>hexo s -g</code></p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Publicado hace&nbsp;<time dateTime="2018-06-02T14:35:02.000Z" title="2018/6/2 22:35:02">2018-06-02</time></span><span class="level-item">Actualizado hace&nbsp;<time dateTime="2022-04-27T01:31:45.384Z" title="2022/4/27 09:31:45">2022-04-27</time></span><span class="level-item">5 minutes de lectura (Aproximadamente 773 palabras)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/06/02/tar%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8/">tar命令的使用</a></h1><div class="content"><p>tar</p>
+<p>tar是在Linux中使用得非常广泛的文档打包格式。它的好处就是它只消耗非常少的CPU以及时间去打包文件，但它仅仅只是一个打包工具，并不负责压缩。下面是如何打包一个目录：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># tar -cvf archive_name.tar directory_to_compress</span></span><br></pre></td></tr></table></figure></p>
+<p>下面是如何解包的命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># tar -xvf archive_name.tar.gz</span></span><br></pre></td></tr></table></figure></p>
+<p>上面这个解包命令将会将文档解开在当前目录下面。当然，你也可以用这个命令来更改解包的路径：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># tar -xvf archive_name.tar -C /tmp/extract_here/</span></span><br></pre></td></tr></table></figure></p>
+<p>tar.gz</p>
+<p>这种格式是我使用得最多的压缩格式。它在压缩时不会占用太多CPU的，而且可以得到一个非常理想的压缩率。可以使用下面的命令去压缩一个目录：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># tar -zcvf archive_name.tar.gz directory_to_compress</span></span><br></pre></td></tr></table></figure></p>
+<p>解压缩：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># tar -zxvf archive_name.tar.gz</span></span><br></pre></td></tr></table></figure></p>
+<p>上面这个解包命令将会将文档解压在当前目录下面。当然，你也可以用这个命令来更改解包的路径：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># tar -zxvf archive_name.tar.gz -C /tmp/extract_here/</span></span><br></pre></td></tr></table></figure></p>
+<p>tar.bz2</p>
+<p>这种压缩格式是我们提到的所有方式中压缩率最好的。当然，这也就意味着，它比前面的方式要占用更多的CPU与时间。下面的命令就是如何使用tar.bz2进行压缩。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># tar -jcvf archive_name.tar.bz2 directory_to_compress</span></span><br></pre></td></tr></table></figure></p>
+<p>上面这个解包命令将会将文档解开在当前目录下面。当然，你也可以用这个命令来更改解包的路径：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># tar -jxvf archive_name.tar.bz2 -C /tmp/extract_here/</span></span><br></pre></td></tr></table></figure></p>
+<p>下面对tar命令中一些常用重要的参数进行总结：</p>
+<p>-c或–create 建立新的备份文件。<br>-C&lt;目的目录&gt;或–directory=&lt;目的目录&gt; 切换到指定的目录。<br>-f&lt;备份文件&gt;或–file=&lt;备份文件&gt; 指定备份文件。<br>-j或–bzip2 以bz2的算法来压缩或者解压文件。<br>-k或–keep-old-files 解开备份文件时，不覆盖已有的文件。<br>-m或–modification-time 还原文件时，不变更文件的更改时间。<br>-N&lt;日期格式&gt;或–newer=&lt;日期时间&gt; 只将较指定日期更新的文件保存到备份文件里。<br>-r或–append 新增文件到已存在的备份文件的结尾部分。<br>-t或–list 列出备份文件的内容。<br>-u或–update 仅置换较备份文件内的文件更新的文件。<br>-v或–verbose 显示指令执行过程。<br>-w或–interactive 遭遇问题时先询问用户。<br>-W或–verify 写入备份文件后，确认文件正确无误。<br>-x或–extract或–get 从备份文件中还原文件。<br>-z或–gzip或–ungzip 通过gzip指令处理备份文件。<br>-Z或–compress或–uncompress 通过compress指令处理备份文件</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Publicado hace&nbsp;<time dateTime="2018-06-01T03:26:11.000Z" title="2018/6/1 11:26:11">2018-06-01</time></span><span class="level-item">Actualizado hace&nbsp;<time dateTime="2022-04-27T01:31:45.382Z" title="2022/4/27 09:31:45">2022-04-27</time></span><span class="level-item"><a class="link-muted" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a><span> / </span><a class="link-muted" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E7%BD%91%E7%BB%9C/">网络</a></span><span class="level-item">12 minutes de lectura (Aproximadamente 1749 palabras)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/06/01/Git%E5%A4%9A%E8%B4%A6%E5%8F%B7%E3%80%81%E5%AF%86%E9%92%A5%E7%AE%A1%E7%90%86/">Git多账号、密钥管理</a></h1><div class="content"><blockquote>
+<p>有的时候有多个账号和Git提交需求，这就需要同时配置多个密钥对，通过SSH的方式进行git提交。</p>
+</blockquote>
+<h1 id="首先生成SSH-KEY"><a href="#首先生成SSH-KEY" class="headerlink" title="首先生成SSH-KEY"></a>首先生成SSH-KEY</h1><p>打开命令行、终端，用命令进入到你要保存SSH-KEY文件的文件夹，我们先用命令测试下终端是否支持SSH：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -V</span><br></pre></td></tr></table></figure>
+<p>测试时如果提示不识别SSH命令，需要安装SSH。<br>Ubuntu安装SSH：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openssh-client openssh-server</span><br></pre></td></tr></table></figure></p>
+<p>CentOS安装SSH：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install openssh-client openssh-server</span><br></pre></td></tr></table></figure></p>
+<p>Windows可以在当前文件夹右键，选择Git Bash Here，会自动在当前文件夹打开一个MINGW的命令行窗体，它是自带SSH的。</p>
+<p>接下来进入ssh保存公钥和密钥的文件夹，使用SSH命令在当前文件夹生成一对SSH-KEY：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"邮箱地址"</span></span><br></pre></td></tr></table></figure>
+<p>接下来会出来提示信息，完整的大概是这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">"smallajax@foxmail.com"</span></span><br><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (~/.ssh/id_rsa):</span><br></pre></td></tr></table></figure>
+<p>这里需要输入SSH-KEY的文件名字，这里名字理论上可以随便取，根据爱好输入KEY文件的名字吧，例如为Github配置就输入：id_rsa_github，为OSChina配置就输入：id_rsa_oschina。</p>
+<p>接着会要求输入私钥的密码，并且需要确认密码，为了安全在密码输入的时候不会反显，什么都看不到，这个密码你自己设置，但是你一定要记住：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Enter passphrase (empty <span class="keyword">for</span> no passphrase):</span><br><span class="line">Enter same passphrase again:</span><br></pre></td></tr></table></figure></p>
+<p>到这里生成SSH-KEY的事就完成了，你在当前文件夹会看到两个文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id_rsa_github  id_rsa_github.pub</span><br></pre></td></tr></table></figure></p>
+<p>SSH-KEY生成了，接着给服务器和客户端配置SSH-KEY</p>
+<ul>
+<li>第一步把id_rsa_github.pub中的公钥内容添加到Git的SSH中，如果你使用Github或者Gitlib，在个人设置中会找到。</li>
+<li>第二步为SSH配置私钥位置，这里和上面配置单个Git帐号不一样，不过单个帐号也可以按照多个帐号的配置方法来配置。</li>
+</ul>
+<p>下面我们需要在.ssh文件夹新建一个名为config的文件，用它来配置多个SSH-KEY的管理。</p>
+<p>Linux进入.ssh文件夹：cd ~/.ssh，新建config文件：touch config；或者：touch ~/.ssh/config。这里要注意，没有.ssh文件夹的要新建一个.ssh名的文件夹。</p>
+<p>Window进入C:/Users/你的用户名/.ssh文件夹，右键新建一个文本文件，改名为config即可。这里要注意，没有.ssh文件夹的要新建一个.ssh名的文件夹。</p>
+<p>下面来填写config文件的内容，我以Github、Gitlib、OSChina，局域网为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">    HostName github.com</span><br><span class="line">    User smallajax@foxmail.com</span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile /home/Workspace/ssh/id_rsa_github</span><br><span class="line">Host gitlib.com</span><br><span class="line">    HostName gitlib.com</span><br><span class="line">    User smallajax@foxmail.com</span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile id_rsa_gitlib</span><br><span class="line">Host oschina.com</span><br><span class="line">    HostName oschina.com</span><br><span class="line">    User smallajax@foxmail.com</span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile /D/Workspace/ssh/id_rsa_oschina</span><br><span class="line">Host 192.168.1.222</span><br><span class="line">    HostName 192.168.1.222</span><br><span class="line">    User smallajax@foxmail.com</span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile /D/Workspace/ssh/id_rsa_oschina</span><br></pre></td></tr></table></figure>
+<p>解释一下，HostName是服务器的地址，User是用户名，PreferredAuthentications照抄即可，这里主要说的是IdentityFile，上面我们看到了三种情况，所以它的书写原则是：</p>
+<p>填私钥文件的本地路径。</p>
+<p>不论是Linux还是Windows都可以写相对路径，比如把id_rsa_xxx私钥文件放在.ssh文件夹下。</p>
+<p>文件放在不同跟路径下时，需要写绝对路径 </p>
+<p>Linux中没有放在.ssh文件夹内或者子文件夹。</p>
+<p>Windows中没有放在C盘下时。注意据对路径变化，比如C盘下是/C/xo/abc、比如D盘下/D/ssh/id_rsa这样，还看不懂请参考上方例子。<br>拷贝完成后，把所有的id_rsa私钥文件添加到SSH-Agent，命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add id_rsa文件的路径</span><br></pre></td></tr></table></figure></p>
+<p>例如添加.ssh文件夹下的，Linux这样做：ssh-add ~/.ssh/id_rsa，如果你在.ssh文件夹下：ssh-add id_rsa即可，Windows同理。</p>
+<p>此时添加时如果遇到错误，请参考本文最后一节：添加SSH到SSH-Agent时报错。</p>
+<p>最后，还剩下项目的用户和邮箱没有配置，和配个单个Git帐号的方式不同，这里我们需要为每个项目分别配置，所以要命令行进入仓库文件夹再设置。第一种情况是先从Git上pull仓库下来，第二种情况是本地初始化Git仓库，总之进入改仓库文件夹后：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --<span class="built_in">local</span> user.name <span class="string">"你的名字"</span></span><br><span class="line">git config --<span class="built_in">local</span> user.email <span class="string">"你的邮箱"</span></span><br></pre></td></tr></table></figure></p>
+<p>不过麻烦的一点是如果是多个项目就需要挨个配置，不过我们一般是pull一个项目就配置一下，也仅仅需要配置一次即可。</p>
+<p>注意配置单个Git帐号时，是不进入项目文件夹就可以，不过不是使用–local，而是使用–global就可以全局配置。</p>
+<p>配置项目用户和邮箱完成后，我们可以进入项目文件夹下的.git文件夹查看config文件内容，大概内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">[user]</span><br><span class="line">    name = YanZhenjie</span><br><span class="line">    email = smallajax@foxmail.com</span><br></pre></td></tr></table></figure></p>
+<p>此时配置全部结束，请查看下方测试SSH-KEY配置是否成功进行测试。如果配置成功，你就可以clone和commit了。</p>
+<p>测试SSH-KEY配置是否成功<br>配置全部结束，我们来测试一下配置是否成功：</p>
+<p>如果你是Github<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure></p>
+<p>如果是你Gitlib<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@gitlib.com</span><br></pre></td></tr></table></figure></p>
+<p>如果你是局域网192.168.1.222<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@192.168.1.222</span><br></pre></td></tr></table></figure></p>
+<p>其它自行举一反三吧。<br>此时需要输入刚才生成SSH-KEY时输入的私钥密码，输入后自行观察信息判断是否连接成功。</p>
+<p>比如Github的信息是：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi kaifeng! You<span class="string">'ve successfully authenticated, but GitHub does not provide shell access.</span></span><br></pre></td></tr></table></figure></p>
+<p>比如Gitlib的信息是：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Welcome to GitLab, YanZhenjie!</span><br></pre></td></tr></table></figure></p>
+<p>如果不能执行测试命令或者提示什么错误了，请执行ssh-agent bash完后再执行测试命令，如果还不行就是配置有问题了。</p>
+<p>添加SSH到SSH-Agent时报错<br>如果执行ssh-add …命令提示如下错误：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Could not open a connection to your authentication agent.</span><br></pre></td></tr></table></figure></p>
+<p>那么请执行eval \$(ssh-agent)命令后再重试，如果还不行，请再执行ssh-agent bash命令后再执行eval \$(ssh-agent)后执行添加命令。另外上述测试配置的命令不能执行时也可以在ssh-agent bash执行完后再测试。</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Publicado hace&nbsp;<time dateTime="2018-05-31T15:02:51.000Z" title="2018/5/31 23:02:51">2018-05-31</time></span><span class="level-item">Actualizado hace&nbsp;<time dateTime="2022-04-27T01:31:45.381Z" title="2022/4/27 09:31:45">2022-04-27</time></span><span class="level-item">31 minutes de lectura (Aproximadamente 4630 palabras)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/05/31/48%E6%9D%A1%E9%AB%98%E6%95%88%E7%8E%87%E7%9A%84PHP%E4%BC%98%E5%8C%96%E5%86%99%E6%B3%95/">48条高效率的PHP优化写法</a></h1><div class="content"><p>来源：歪麦博客</p>
+<p><a href="https://www.awaimai.com/1050.html" target="_blank" rel="noopener">https://www.awaimai.com/1050.html</a></p>
+<p>[toc]</p>
+<h1 id="1-字符串"><a href="#1-字符串" class="headerlink" title="1 字符串"></a>1 字符串</h1><h2 id="1-1-少用正则表达式"><a href="#1-1-少用正则表达式" class="headerlink" title="1.1 少用正则表达式"></a>1.1 少用正则表达式</h2><p>能用PHP内部字符串操作函数的情况下，尽量用他们，不要用正则表达式， 因为其效率高于正则。</p>
+<p>没得说，正则最耗性能。</p>
+<p>str_replace函数要比preg_replace快得多，strtr函数又比str_replace来得快。</p>
+<p>有没有你漏掉的好用的函数？</p>
+<p>例如：strpbrk()、strncasecmp()、strpos()、strrpos()、stripos()、strripos()。</p>
+<h2 id="1-2-字符替换"><a href="#1-2-字符替换" class="headerlink" title="1.2 字符替换"></a>1.2 字符替换</h2><p>如果需要转换的全是单个字符，用字符串作为 strtr() 函数完成替换，而不是数组：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$addr = strtr($addr, <span class="string">"abcd"</span>, <span class="string">"efgh"</span>);       <span class="comment">// 建议</span></span><br><span class="line"></span><br><span class="line">$addr = strtr($addr, <span class="keyword">array</span>(<span class="string">'a'</span> =&gt; <span class="string">'e'</span>, ));  <span class="comment">// 不建议</span></span><br></pre></td></tr></table></figure>
+<p>效率提升：10 倍。</p>
+<p>str_replace字符替换比正则替换preg_replace快，但strtr比str_replace又快1/4。</p>
+<p>另外，不要做无谓的替换，即使没有替换，str_replace也会为其参数分配内存。很慢！</p>
+<p>用 strpos 先查找（非常快），看是否需要替换，如果需要，再替换。</p>
+<p>如果需要替换，效率几乎相等，差别在 0.1% 左右。</p>
+<p>如果不需要替换：用 strpos 快 200%。</p>
+<h2 id="1-3-压缩大的字符串"><a href="#1-3-压缩大的字符串" class="headerlink" title="1.3 压缩大的字符串"></a>1.3 压缩大的字符串</h2><p>使用 gzcompress() 和 gzuncompress() 对容量大的字符串进行压缩和解压，再存入和取出数据库。</p>
+<p>这种内置的函数使用gzip算法，能压缩字符串90%。</p>
+<h2 id="1-4-echo-输出"><a href="#1-4-echo-输出" class="headerlink" title="1.4 echo 输出"></a>1.4 echo 输出</h2><p>echo 字符串用逗号代替点连接符更快些。</p>
+<p>虽然，echo是一种语言结构，不是真正的函数。</p>
+<p>但是，它可以把逗号隔开的多个字符串当作“函数”参数传入，所以速度会更快。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> $str1, $str2;       <span class="comment">// 速度快</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> $str1 . $str2;      <span class="comment">// 速度稍慢</span></span><br></pre></td></tr></table></figure>
+<h2 id="1-5-尽量用单引号"><a href="#1-5-尽量用单引号" class="headerlink" title="1.5 尽量用单引号"></a>1.5 尽量用单引号</h2><p>PHP 引擎允许使用单引号和双引号来封装字符串变量，但是它们的速度是有很大的差别的！</p>
+<p>使用双引号的字符串会告诉 PHP 引擎，首先去读取字符串内容，查找其中的变量，并改为变量对应的值。</p>
+<p>一般来说字符串是没有变量的，使用双引号会导致性能不佳。</p>
+<p>最好使用字符串连接，而不是双引号字符串。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$output = <span class="string">"This is a plain string"</span>;  <span class="comment">// 不好的实践</span></span><br><span class="line"></span><br><span class="line">$output = <span class="string">'This is a plain string'</span>;  <span class="comment">// 好的实践</span></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">$type = <span class="string">"mixed"</span>;                     <span class="comment">// 不好的实践</span></span><br><span class="line"></span><br><span class="line">$output = <span class="string">"This is a $type string"</span>;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">$type = <span class="string">'mixed'</span>;                     <span class="comment">// 好的实践</span></span><br><span class="line"></span><br><span class="line">$output = <span class="string">'This is a '</span> . $type . <span class="string">' string'</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="1-6-使用isset代替strlen"><a href="#1-6-使用isset代替strlen" class="headerlink" title="1.6 使用isset代替strlen"></a>1.6 使用isset代替strlen</h2><p>在检验字符串长度时，我们第一想法会使用 strlen() 函数。</p>
+<p>此函数执行起来相当快，因为它不做任何计算，只返回在zval结构（C的内置数据结构，用于存储PHP变量）中存储的已知字符串长度。</p>
+<p>但是，由于strlen()是函数，多多少少会有些慢，因为函数调用会经过诸多步骤，如字母小写化、哈希查找，会跟随被调用的函数一起执行。</p>
+<p>在某些情况下，你可以使用 isset() 技巧加速执行你的代码。例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (strlen($foo) &lt; <span class="number">5</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"Foo is too short"</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用isset()</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!<span class="keyword">isset</span>($foo&#123;<span class="number">5</span>&#125;)) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"Foo is too short"</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="1-7-用split分割字符串"><a href="#1-7-用split分割字符串" class="headerlink" title="1.7 用split分割字符串"></a>1.7 用split分割字符串</h2><p>在分割字符串时，split()要比explode()快。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">split()</span><br><span class="line"></span><br><span class="line"><span class="number">0.001813</span> - <span class="number">0.002271</span> seconds (avg <span class="number">0.002042</span> seconds)</span><br><span class="line"></span><br><span class="line">explode()</span><br><span class="line"></span><br><span class="line"><span class="number">0.001678</span> - <span class="number">0.003626</span> seconds (avg <span class="number">0.002652</span> seconds)</span><br></pre></td></tr></table></figure>
+<h2 id="1-8-echo效率高于print"><a href="#1-8-echo效率高于print" class="headerlink" title="1.8 echo效率高于print"></a>1.8 echo效率高于print</h2><p>因为echo没有返回值，print返回一个整型。</p>
+<p>注意：echo输出大字符串的时候，如果没有调整就会严重影响性能。</p>
+<p>打开Apache的mod_deflate进行压缩，或者打开ob_start将内容放进缓冲区，可以改善性能问题。</p>
+<h1 id="2-语句"><a href="#2-语句" class="headerlink" title="2 语句"></a>2 语句</h1><h2 id="2-1-最好不用"><a href="#2-1-最好不用" class="headerlink" title="2.1 最好不用@"></a>2.1 最好不用@</h2><p>用@掩盖错误会降低脚本运行速度，并且在后台有很多额外操作。</p>
+<p>用@比起不用，效率差距 3 倍。特别不要在循环中使用@。</p>
+<p>在 5 次循环的测试中，即使是先用error_reporting(0)关掉错误，循环完成后再打开，都比用@快。</p>
+<h2 id="2-2-避免使用魔术方法"><a href="#2-2-避免使用魔术方法" class="headerlink" title="2.2 避免使用魔术方法"></a>2.2 避免使用魔术方法</h2><p>对于__开头的函数就命名为魔术函数，它们都在特定的条件下触发。</p>
+<p>这些魔术函数包括：<strong>construct()、</strong>get()、<strong>call()、</strong>autoload()等等。</p>
+<p>以__autoload() 为例，如果不能将类名与实际的磁盘文件对应起来，将不得不做大量的文件存在判断。</p>
+<p>而判断文件存在需要磁盘I/O操作，众所周知，磁盘I/O操作的效率很低，因此这才是使得autoload机制效率降低的原因。</p>
+<p>因此，在系统设计时，需要定义一套清晰的、将类名与实际磁盘文件映射的机制。</p>
+<p>这个规则越简单越明确，__autoload()机制的效率就越高。</p>
+<p>autoload机制并不是天然的效率低下，只有滥用autoload、设计不好的自动装载函数，才会导致其效率的降低.</p>
+<p>所以说，尽量避免使用__autoload等魔术方法，有待商榷。</p>
+<h2 id="2-3-别在循环里用函数"><a href="#2-3-别在循环里用函数" class="headerlink" title="2.3 别在循环里用函数"></a>2.3 别在循环里用函数</h2><p>例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>($x=<span class="number">0</span>; $x &lt; count($array); $x++) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种写法在每次循环的时候都会调用 count() 函数，效率大大降低，建议这样：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$len = count($array);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>($x=<span class="number">0</span>; $x &lt; $len; $x++) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>让函数在循环外面一次获得循环次数。</p>
+<h2 id="2-4-使用三元运算符"><a href="#2-4-使用三元运算符" class="headerlink" title="2.4 使用三元运算符"></a>2.4 使用三元运算符</h2><p>在简单的判断语句中，三元运算符?:更简洁高效。</p>
+<h2 id="2-5-使用选择分支语句"><a href="#2-5-使用选择分支语句" class="headerlink" title="2.5 使用选择分支语句"></a>2.5 使用选择分支语句</h2><p>switch、case好于使用多个if、else if语句，并且代码更加容易阅读和维护。</p>
+<h2 id="2-6-屏蔽敏感信息"><a href="#2-6-屏蔽敏感信息" class="headerlink" title="2.6 屏蔽敏感信息"></a>2.6 屏蔽敏感信息</h2><p>使用 error_reporting() 函数来预防潜在的敏感信息显示给用户。</p>
+<p>理想的错误报告应该被完全禁用在php.ini文件里。</p>
+<p>如果用的是共享虚拟主机，php.ini不能修改，最好添加 error_reporting() 函数。</p>
+<p>放在每个脚本文件的第一行，或者用require_once()来加载，能有效的保护敏感的SQL查询和路径，在出错时不被显示。</p>
+<h2 id="2-7-不实用段标签"><a href="#2-7-不实用段标签" class="headerlink" title="2.7 不实用段标签"></a>2.7 不实用段标签</h2><p>不要使用开始标志的缩写形式，你正在使用这样的符号吗，应该用完整的&lt;?php 开始标签。</p>
+<p>当然，如果是输出变量，用= $value ?&gt;这种方式是鼓励的，可以是代码更加简洁。</p>
+<h2 id="2-8-纯PHP代码不加结束标记"><a href="#2-8-纯PHP代码不加结束标记" class="headerlink" title="2.8 纯PHP代码不加结束标记"></a>2.8 纯PHP代码不加结束标记</h2><p>如果文件内容是纯 PHP 代码，最好在文件末尾删除 PHP 结束标记?&gt;。</p>
+<p>这可以避免在 PHP 结束标记之后万一意外加入了空格或者换行符，会导致 PHP 开始输出这些空白，而脚本中此时并无输出的意图。</p>
+<h2 id="2-9-永远不要使用register-globals和magic-quotes"><a href="#2-9-永远不要使用register-globals和magic-quotes" class="headerlink" title="2.9 永远不要使用register_globals和magic quotes"></a>2.9 永远不要使用register_globals和magic quotes</h2><p>这是两个很古老的功能，在当时（十年前）也许是一个好方法，但现在看来并非如此。</p>
+<p>老版本的PHP在安装时会默认打开这两个功能，这会引起安全漏洞、编程错误及其他的问题。</p>
+<p>如只有用户输入了数据时才会创建变量等。</p>
+<p>如果你过去的程序有使用这两项功能，那就尽快将其剔除吧。</p>
+<h1 id="3-函数"><a href="#3-函数" class="headerlink" title="3 函数"></a>3 函数</h1><h2 id="3-1-尽量使用PHP内部函数"><a href="#3-1-尽量使用PHP内部函数" class="headerlink" title="3.1 尽量使用PHP内部函数"></a>3.1 尽量使用PHP内部函数</h2><p>内置函数使用C语言实现，并且经过PHP官方优化，效率更高。</p>
+<h2 id="3-2-使用绝对路径"><a href="#3-2-使用绝对路径" class="headerlink" title="3.2 使用绝对路径"></a>3.2 使用绝对路径</h2><p>在include和require中尽量使用绝对路径。</p>
+<p>如果包含相对路径，PHP会在include_path里面遍历查找文件。</p>
+<p>用绝对路径就会避免此类问题，解析路径所需的时间会更少。</p>
+<h2 id="3-3-包含文件"><a href="#3-3-包含文件" class="headerlink" title="3.3 包含文件"></a>3.3 包含文件</h2><p>尽量不要用require_once和include_once包含文件，它们多一个判断文件是否被引用的过程，能不用尽量不用。</p>
+<p>而使用require、include方法代替。</p>
+<p>鸟哥在其博客中就多次声明，尽量不要用require_once和include_once。</p>
+<h2 id="3-4-函数快于类方法"><a href="#3-4-函数快于类方法" class="headerlink" title="3.4 函数快于类方法"></a>3.4 函数快于类方法</h2><p>调用只有一个参数、并且函数体为空的函数，花费的时间等于7-8次$localvar++运算。</p>
+<p>而同一功能的类方法大约为15次$localvar++运算。</p>
+<h2 id="3-5-用子类方法"><a href="#3-5-用子类方法" class="headerlink" title="3.5 用子类方法"></a>3.5 用子类方法</h2><p>基类里面只放能重用的方法，其他功能尽量放在子类中实现，子类里方法的性能优于在基类中。</p>
+<h2 id="3-6-类的性能和其方法数量没有关系"><a href="#3-6-类的性能和其方法数量没有关系" class="headerlink" title="3.6 类的性能和其方法数量没有关系"></a>3.6 类的性能和其方法数量没有关系</h2><p>新添加10个或多个方法到测试的类后，性能没什么差异。</p>
+<h2 id="3-7-读取文件内容"><a href="#3-7-读取文件内容" class="headerlink" title="3.7 读取文件内容"></a>3.7 读取文件内容</h2><p>在可以用file_get_contents()替代file()、fopen()、feof()、fgets()等系列方法的情况下，尽量用file_get_contents()。</p>
+<p>因为他的效率高得多！</p>
+<h2 id="3-8-引用传递参数"><a href="#3-8-引用传递参数" class="headerlink" title="3.8  引用传递参数"></a>3.8  引用传递参数</h2><p>通过参数地址引用的方式，实现函数多个返回值，这比按值传递效率高。</p>
+<p>方法是在参数变量前加个 &amp;。</p>
+<h2 id="3-9-方法不要细分得过多"><a href="#3-9-方法不要细分得过多" class="headerlink" title="3.9 方法不要细分得过多"></a>3.9 方法不要细分得过多</h2><p>仔细想想你真正打算重用的是哪些代码？</p>
+<h2 id="3-10-尽量静态化"><a href="#3-10-尽量静态化" class="headerlink" title="3.10 尽量静态化"></a>3.10 尽量静态化</h2><p>如果一个方法能被静态，那就声明它为静态的，速度可提高1/4，甚至我测试的时候，这个提高了近三倍。</p>
+<p>当然了，这个测试方法需要在十万级以上次执行，效果才明显。</p>
+<p>其实，静态方法和非静态方法的效率主要区别在内存。</p>
+<p>静态方法在程序开始时生成内存，实例方法（非静态方法）在程序运行中生成内存。</p>
+<p>所以，静态方法可以直接调用，实例方法要先成生实例再调用，静态速度很快，但是多了会占内存。</p>
+<p>任何语言都是对内存和磁盘的操作，至于是否面向对象，只是软件层的问题，底层都是一样的，只是实现方法不同。</p>
+<p>静态内存是连续的，因为是在程序开始时就生成了，而实例方法申请的是离散的空间，所以当然没有静态方法快。</p>
+<p>静态方法始终调用同一块内存，其缺点就是不能自动进行销毁，而实例化可以销毁。</p>
+<h2 id="3-11-用C扩展方式实现"><a href="#3-11-用C扩展方式实现" class="headerlink" title="3.11 用C扩展方式实现"></a>3.11 用C扩展方式实现</h2><p>如果在代码中存在大量耗时的函数，可以考虑用C扩展的方式实现它们。</p>
+<h1 id="4-变量"><a href="#4-变量" class="headerlink" title="4 变量"></a>4 变量</h1><h2 id="4-1-及时销毁变量"><a href="#4-1-及时销毁变量" class="headerlink" title="4.1 及时销毁变量"></a>4.1 及时销毁变量</h2><p>数组、对象和GLOBAL变量在 PHP 中特别占内存的，这个由于 PHP 的底层的zend引擎引起的。</p>
+<p>一般来说，PHP数组的内存利用率只有 1/10。</p>
+<p>也就是说，一个在C语言里面100M 内存的数组，在PHP里面就要1G。</p>
+<p>特别是，在PHP作为后台服务器的系统中，经常会出现内存耗费太大的问题。</p>
+<h2 id="4-2-使用-SERVER变量"><a href="#4-2-使用-SERVER变量" class="headerlink" title="4.2 使用$_SERVER变量"></a>4.2 使用$_SERVER变量</h2><p>如果你需要得到脚本执行的时间，$_SERVER[‘REQUSET_TIME’]优于time()。</p>
+<p>一个是现成就可以直接用，一个还需要函数得出的结果。</p>
+<h2 id="4-3-方法里建立局部变量"><a href="#4-3-方法里建立局部变量" class="headerlink" title="4.3 方法里建立局部变量"></a>4.3 方法里建立局部变量</h2><p>在类的方法里建立局部变量速度最快，几乎和在方法里调用局部变量一样快。</p>
+<h2 id="4-4-局部变量比全局变量快"><a href="#4-4-局部变量比全局变量快" class="headerlink" title="4.4 局部变量比全局变量快"></a>4.4 局部变量比全局变量快</h2><p>由于局部变量是存在栈中的。</p>
+<p>当一个函数占用的栈空间不是很大的时候，这部分内存很有可能全部命中cache，CPU访问的效率是很高的。</p>
+<p>相反，如果一个函数同时使用全局变量和局部变量，当这两段地址相差较大时，cpu cache需要来回切换，效率会下降。</p>
+<h2 id="4-5-局部变量而不是对象属性"><a href="#4-5-局部变量而不是对象属性" class="headerlink" title="4.5 局部变量而不是对象属性"></a>4.5 局部变量而不是对象属性</h2><p>建立一个对象属性（类里面的变量，例如：$this-&gt;prop++）比局部变量要慢3倍。</p>
+<h2 id="4-6-提前声明局部变量"><a href="#4-6-提前声明局部变量" class="headerlink" title="4.6 提前声明局部变量"></a>4.6 提前声明局部变量</h2><p>建立一个未声明的局部变量，要比建立一个已经定义过的局部变量慢9-10倍。</p>
+<h2 id="4-7-谨慎声明全局变量"><a href="#4-7-谨慎声明全局变量" class="headerlink" title="4.7 谨慎声明全局变量"></a>4.7 谨慎声明全局变量</h2><p>声明一个未被任何一个函数使用过的全局变量，也会使性能降低。</p>
+<p>这和声明相同数量的局部变量一样，PHP可能去检查这个全局变量是否存在。</p>
+<h2 id="4-8-使用-i递增"><a href="#4-8-使用-i递增" class="headerlink" title="4.8 使用++$i递增"></a>4.8 使用++$i递增</h2><p>当执行变量$i的递增或递减时，$i++会比++$i慢一些。</p>
+<p>这种差异是PHP特有的，并不适用于其他语言，所以请不要修改你的C或Java代码，并指望它们能立即变快，没用的。</p>
+<p>++\$i更快是因为它只需要3条指令(opcodes)，\$i++则需要4条指令。</p>
+<p>后置递增实际上会产生一个临时变量，这个临时变量随后被递增。</p>
+<p>而前置递增直接在原值上递增。</p>
+<p>这是最优化处理的一种，正如Zend的PHP优化器所作的那样。</p>
+<p>牢记，这个优化处理不失为一个好主意，因为不是所有的指令优化器都会做同样的优化处理。</p>
+<h2 id="4-9-不要随便复制变量"><a href="#4-9-不要随便复制变量" class="headerlink" title="4.9 不要随便复制变量"></a>4.9 不要随便复制变量</h2><p>有时候为了使 PHP 代码更加整洁，一些 PHP 新手（包括我）会把预定义好的变量，复制到一个名字更简短的变量中。</p>
+<p>其实这样做的结果是增加了一倍的内存消耗，只会使程序更加慢。</p>
+<p>试想一下，在下面的例子中，如果用户恶意插入 512KB 字节的文字，就会导致 1MB 的内存被消耗！</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不好的实践</span></span><br><span class="line"></span><br><span class="line">$description = $_POST[<span class="string">'description'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> $description;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="comment">// 好的实践</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> $_POST[<span class="string">'description'</span>];</span><br></pre></td></tr></table></figure>
+<h2 id="4-10-循环内部不要声明变量"><a href="#4-10-循环内部不要声明变量" class="headerlink" title="4.10 循环内部不要声明变量"></a>4.10 循环内部不要声明变量</h2><p>尤其是大变量，这好像不只是PHP里面要注意的问题吧？</p>
+<h2 id="4-11-一定要对变量进行初始化"><a href="#4-11-一定要对变量进行初始化" class="headerlink" title="4.11 一定要对变量进行初始化"></a>4.11 一定要对变量进行初始化</h2><p>这里的“初始化”指的是“声明”。</p>
+<p>当需要没有初始化的变量，PHP解释器会自动创建一个变量，但依靠这个特性来编程并不是一个好主意。</p>
+<p>这会造成程序的粗糙，或者使代码变得另人迷惑。</p>
+<p>因为你需要探寻这个变量是从哪里开始被创建的。</p>
+<p>另外，对一个没有初始化的变量进行递增操作要比初始化过的来得慢。</p>
+<p>所以对变量进行初始化会是个不错的主意。</p>
+<h1 id="5-数组"><a href="#5-数组" class="headerlink" title="5 数组"></a>5 数组</h1><h2 id="5-1-用字符串而不是数组作为参数"><a href="#5-1-用字符串而不是数组作为参数" class="headerlink" title="5.1 用字符串而不是数组作为参数"></a>5.1 用字符串而不是数组作为参数</h2><p>如果一个函数既能接受数组，又能接受简单字符做为参数，那么尽量用字符作为参数。</p>
+<p>例如，字符替换函数，参数列表并不是太长，就可以考虑额外写一段替换代码。</p>
+<p>使得每次传递参数都是一个字符，而不是接受数组做为查找和替换参数。</p>
+<h2 id="5-2-数组元素加引号"><a href="#5-2-数组元素加引号" class="headerlink" title="5.2 数组元素加引号"></a>5.2 数组元素加引号</h2><p>$row[‘id’]比$row[id]速度快7倍。</p>
+<p>如果不带引号，例如$a[name]，那么PHP会首先检查有没有define定义的name常量。</p>
+<p>如果有，就用这个常量值作为数组键值。如果没有，再查找键值为字符串’name’的数组元素。</p>
+<p>多了一个查找判断的过程，所以建议养成数组键名加引号的习惯。</p>
+<p>正如上面字符串部分所述，用’又比用”速度更快。</p>
+<h2 id="5-3-多维数组操作"><a href="#5-3-多维数组操作" class="headerlink" title="5.3 多维数组操作"></a>5.3 多维数组操作</h2><p>多维数组尽量不要循环嵌套赋值。</p>
+<h2 id="5-4-循环用foreach"><a href="#5-4-循环用foreach" class="headerlink" title="5.4 循环用foreach"></a>5.4 循环用foreach</h2><p>尽量用foreach代替while和for循环，效率更高。</p>
+<h1 id="6-架构"><a href="#6-架构" class="headerlink" title="6 架构"></a>6 架构</h1><h2 id="6-1-压缩输出"><a href="#6-1-压缩输出" class="headerlink" title="6.1 压缩输出"></a>6.1 压缩输出</h2><p>在php.ini中开启gzip压缩：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">zlib.output_compression = On</span><br><span class="line"></span><br><span class="line">zlib.output_compression_level = (level)</span><br></pre></td></tr></table></figure>
+<p>level可能是1-9之间的数字，你可以设置不同的数字。</p>
+<p>几乎所有的浏览器都支持Gzip的压缩方式，gzip可以降低80%的输出.</p>
+<p>付出的代价是，大概增加了10%的cpu计算量。</p>
+<p>但是还是会赚到了，因为带宽减少了，页面加载会变得很快。</p>
+<p>如果你使用apache，也可以激活mod_gzip模块。</p>
+<h2 id="6-2-静态化页面"><a href="#6-2-静态化页面" class="headerlink" title="6.2 静态化页面"></a>6.2 静态化页面</h2><p>Apache/Nginx解析一个PHP脚本的时间，要比解析一个静态HTML页面慢2至10倍。</p>
+<p>所以尽量使页面静态化，或使用静态HTML页面。</p>
+<h2 id="6-3-将PHP升级到最新版"><a href="#6-3-将PHP升级到最新版" class="headerlink" title="6.3 将PHP升级到最新版"></a>6.3 将PHP升级到最新版</h2><p>提高性能的最简单的方式是不断升级、更新PHP版本。</p>
+<h2 id="6-4-利用PHP的扩展"><a href="#6-4-利用PHP的扩展" class="headerlink" title="6.4 利用PHP的扩展"></a>6.4 利用PHP的扩展</h2><p>一直以来，大家都在抱怨PHP内容太过繁杂。</p>
+<p>最近几年来，开发人员作出了相应的努力，移除了项目中的一些冗余特征。</p>
+<p>即便如此，可用库以及其它扩展的数量还是很可观。</p>
+<p>甚至一些开发人员开始考虑实施自己的扩展方案。</p>
+<h2 id="6-5-PHP缓存"><a href="#6-5-PHP缓存" class="headerlink" title="6.5 PHP缓存"></a>6.5 PHP缓存</h2><p>一般情况下，PHP脚本被PHP引擎编译后执行，会被转换成机器语言，也称为操作码。</p>
+<p>如果PHP脚本反复编译得到相同的结果，为什么不完全跳过编译过程呢？</p>
+<p>PHP加速器缓存了编译后的机器码，允许代码根据要求立即执行，而不经过繁琐的编译过程。</p>
+<p>对PHP开发人员而言，目前提供了两种可用的缓存方案。</p>
+<p>一种是APC（Alternative PHP Cache，可选PHP缓存），它是一个可以通过PEAR安装的开源加速器。</p>
+<p>另一种流行的方案是OPCode，也就是操作码缓存技术。</p>
+<h2 id="6-6-使用NoSQL缓存"><a href="#6-6-使用NoSQL缓存" class="headerlink" title="6.6 使用NoSQL缓存"></a>6.6 使用NoSQL缓存</h2><p>Memchached或者Redis都可以。</p>
+<p>这些是高性能的分布式内存对象缓存系统，能提高动态网络应用程序性能，减轻数据库的负担。</p>
+<p>这对运算码 （OPcode）的缓存也很有用，使得脚本不必为每个请求重新编译。</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Publicado hace&nbsp;<time dateTime="2018-05-28T14:49:47.000Z" title="2018/5/28 22:49:47">2018-05-28</time></span><span class="level-item">Actualizado hace&nbsp;<time dateTime="2022-04-27T01:31:45.389Z" title="2022/4/27 09:31:45">2022-04-27</time></span><span class="level-item"><a class="link-muted" href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">小程序</a></span><span class="level-item">2 minutes de lectura (Aproximadamente 227 palabras)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/05/28/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%87%AA%E5%AE%9A%E4%B9%89swiper%20dots/">小程序中自定义swiper的dots</a></h1><div class="content"><p>默认的swiper面板指示点都是小圆点黑灰的，但这满足不了广大小伙伴需求，比如其他颜色的，椭圆形的，方形的等等。。。。</p>
+<p>首先当然是要禁用掉（直接删掉）swiper属性indicator-dots，再用view组件模拟dots，对应的代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"swiper-container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">swiper</span> <span class="attr">autoplay</span>=<span class="string">"auto"</span> <span class="attr">interval</span>=<span class="string">"5000"</span> <span class="attr">duration</span>=<span class="string">"500"</span> <span class="attr">current</span>=<span class="string">"&#123;&#123;swiperCurrent&#125;&#125;"</span> <span class="attr">bindchange</span>=<span class="string">"swiperChange"</span> <span class="attr">class</span>=<span class="string">"swiper"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">block</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123;slider&#125;&#125;"</span> <span class="attr">wx:key</span>=<span class="string">"unique"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">swiper-item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">image</span> <span class="attr">src</span>=<span class="string">"&#123;&#123;item.picUrl&#125;&#125;"</span> <span class="attr">class</span>=<span class="string">"img"</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">swiper-item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">block</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">swiper</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"dots"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">block</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123;slider&#125;&#125;"</span> <span class="attr">wx:key</span>=<span class="string">"unique"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"dot&#123;&#123;index == swiperCurrent ? ' active' : ''&#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">block</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>然后是wxss代码：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">swiper-container</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.swiper-container</span> <span class="selector-class">.swiper</span>&#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">300</span>rpx;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.swiper-container</span> <span class="selector-class">.swiper</span> <span class="selector-class">.img</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.swiper-container</span> <span class="selector-class">.dots</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">20</span>rpx;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.swiper-container</span> <span class="selector-class">.dots</span> <span class="selector-class">.dot</span>&#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">8</span>rpx;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">14</span>rpx;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">14</span>rpx;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">8</span>rpx;</span><br><span class="line">  <span class="attribute">transition</span>: all .<span class="number">6s</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.swiper-container</span> <span class="selector-class">.dots</span> <span class="selector-class">.dot</span><span class="selector-class">.active</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">24</span>rpx;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#f80</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再对swiper的bindchange属性绑定对应的事件：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Page(&#123;</span><br><span class="line">data: &#123;</span><br><span class="line">    slider: [</span><br><span class="line">    &#123;<span class="attr">picUrl</span>: <span class="string">'../../images/T003R720x288M000000rVobR3xG73f.jpg'</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">picUrl</span>: <span class="string">'&lt;span style="font-family:'</span>微软雅黑<span class="string">';"&gt;../../images/&lt;/span&gt;&lt;span style="font-family:'</span>微软雅黑<span class="string">';"&gt;T003R720x288M000000j6Tax0WLWhD.jpg'</span>&#125;,&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">    &#123;picUrl: '../</span>../images/T003R720x288M000000a4LLK2VXxvj.jpg<span class="string">'&#125;,</span></span><br><span class="line"><span class="string">    ],</span></span><br><span class="line"><span class="string">    swiperCurrent: 0,</span></span><br><span class="line"><span class="string">&#125;,</span></span><br><span class="line"><span class="string">swiperChange: function(e)&#123;</span></span><br><span class="line"><span class="string">    this.setData(&#123;</span></span><br><span class="line"><span class="string">        swiperCurrent: e.detail.current</span></span><br><span class="line"><span class="string">    &#125;)</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&#125;)</span></span><br></pre></td></tr></table></figure>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Publicado hace&nbsp;<time dateTime="2017-10-06T13:59:23.000Z" title="2017/10/6 21:59:23">2017-10-06</time></span><span class="level-item">Actualizado hace&nbsp;<time dateTime="2022-04-27T01:31:45.389Z" title="2022/4/27 09:31:45">2022-04-27</time></span><span class="level-item"><a class="link-muted" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></span><span class="level-item">2 minutes de lectura (Aproximadamente 248 palabras)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2017/10/06/%E5%A6%82%E4%BD%95%E4%BD%BFAdobe%20Reader%E7%9C%8BPDF%E6%97%B6%E7%9A%84%E8%83%8C%E6%99%AF%E5%8F%98%E4%B8%BA%E4%BF%9D%E6%8A%A4%E7%9C%BC%E7%9D%9B%E7%9A%84%E7%BB%BF%E8%89%B2/">如何使Adobe Reader看PDF时的背景变为保护眼睛的绿色</a></h1><div class="content"><p>主菜单-&gt;编辑-&gt;首选项-&gt;辅助工具-&gt;替换文档颜色-&gt;自定义颜色-&gt;页面背景-&gt;其它颜色</p>
+<p>按下列设置更改：</p>
+<p>色调：85；<br>饱和度：123；<br>亮度：205</p>
+<p>－&gt;添加到自定义颜色－&gt;在自定义颜色选定点确定－&gt;确定</p>
+<p>这样PDF文档不再是刺眼的白底黑字，而是非常柔和的豆沙绿色，这个色调是眼科专家配置的，长时间使用会很有效的缓解眼睛疲劳保护眼睛。<br>改变其他文档颜色的方法：</p>
+<p>桌面-&gt;右键-&gt;属性-&gt;外观-&gt;高级－&gt;项目选择（窗口）、颜色1（L）选择（其它），</p>
+<p>色调：85；<br>饱和度：123；<br>亮度：205</p>
+<p>－&gt;添加到自定义颜色－&gt;在自定义颜色选定点确定－&gt;确定</p>
+<p>这样所有的文档都不再是刺眼的白底黑字，而是非常柔和的豆沙绿色。</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Publicado hace&nbsp;<time dateTime="2017-10-03T01:31:54.000Z" title="2017/10/3 09:31:54">2017-10-03</time></span><span class="level-item">Actualizado hace&nbsp;<time dateTime="2022-04-27T01:31:45.383Z" title="2022/4/27 09:31:45">2022-04-27</time></span><span class="level-item"><a class="link-muted" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a><span> / </span><a class="link-muted" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/shell/">shell</a></span><span class="level-item">a few seconds de lectura (Aproximadamente 93 palabras)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2017/10/03/add-apt-repository-command-not-found/">add-apt-repository: command not found</a></h1><div class="content"><p>在Ubuntu下，时不时会有这个错误的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add-apt-repository: command not found</span><br></pre></td></tr></table></figure><br>这个是缺少程序，安装一下就可以了。只是不知道安装的名字。 按以下命令走一趟就可以的了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install software-properties-common python-software-properties</span><br></pre></td></tr></table></figure>
+<p>完成这个，就可以使用add-apt-repository命令了。</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Publicado hace&nbsp;<time dateTime="2017-09-27T15:11:26.000Z" title="2017/9/27 23:11:26">2017-09-27</time></span><span class="level-item">Actualizado hace&nbsp;<time dateTime="2022-04-27T01:31:45.390Z" title="2022/4/27 09:31:45">2022-04-27</time></span><span class="level-item"><a class="link-muted" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a><span> / </span><a class="link-muted" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></span><span class="level-item">40 minutes de lectura (Aproximadamente 5999 palabras)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2017/09/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A7%84%E8%8C%83/">数据库规范</a></h1><div class="content"><p>最近一段时间一边在线上抓取SQL来优化，一边在整理这个开发规范，尽量减少新的问题SQL进入生产库。今天也是对公司的开发做了一次培训，PPT就不放上来了，里面有十来个生产SQL的案例。因为规范大部分还是具有通用性，<br>&lt; !–more–&gt;<br>所以也借鉴了像去哪儿和赶集的规范，但实际在撰写本文的过程中，每一条规范的背后无不是在工作中有参照的反面例子的。如果时间可以的话，会抽出一部分或分析其原理，或用案例证明。</p>
+<h1 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h1><ol>
+<li><h3 id="库名、表名、字段名必须使用小写字母，并采用下划线分割"><a href="#库名、表名、字段名必须使用小写字母，并采用下划线分割" class="headerlink" title="库名、表名、字段名必须使用小写字母，并采用下划线分割"></a>库名、表名、字段名必须使用小写字母，并采用下划线分割</h3><ul>
+<li>MySQL有配置参数lower_case_table_names=1，即库表名以小写存储，大小写不敏感。如果是0，则库表名以实际情况存储，大小写敏感；如果是2，以实际情况存储，但以小写比较。</li>
+<li>如果大小写混合使用，可能存在abc，Abc，ABC等多个表共存，容易导致混乱。</li>
+<li>字段名显示区分大小写，但实际使⽤时不区分，即不可以建立两个名字一样但大小写不一样的字段。</li>
+<li>为了统一规范， 库名、表名、字段名使用小写字母。</li>
+</ul>
+</li>
+<li><h3 id="库名以-d-开头，表名以-t-开头，字段名以-f-开头"><a href="#库名以-d-开头，表名以-t-开头，字段名以-f-开头" class="headerlink" title="库名以 d_ 开头，表名以 t_ 开头，字段名以 f_ 开头"></a>库名以 d_ 开头，表名以 t_ 开头，字段名以 f_ 开头</h3><ul>
+<li>比如表 <code>t_crm_relation</code>，中间的 crm 代表业务模块名</li>
+<li>视图以<code>view_</code>开头，事件以<code>event_</code>开头，触发器以<code>trig_</code>开头，存储过程以<code>proc_</code>开头，函数以<code>func_</code>开头</li>
+<li>普通索引以<code>idx_col1_col2</code>命名，唯一索引以<code>uk_col1_col2</code>命名（可去掉f_公共部分）。如 idx_companyid_corpid_contacttime(f_company_id,f_corp_id,f_contact_time)</li>
+</ul>
+</li>
+<li><h3 id="库名、表名、字段名禁止超过32个字符，需见名知意"><a href="#库名、表名、字段名禁止超过32个字符，需见名知意" class="headerlink" title="库名、表名、字段名禁止超过32个字符，需见名知意"></a>库名、表名、字段名禁止超过32个字符，需见名知意</h3><p>库名、表名、字段名支持最多64个字符，但为了统一规范、易于辨识以及减少传输量，禁止超过32个字符</p>
+</li>
+<li><h3 id="临时库、表名须以tmp加日期为后缀"><a href="#临时库、表名须以tmp加日期为后缀" class="headerlink" title="临时库、表名须以tmp加日期为后缀"></a>临时库、表名须以tmp加日期为后缀</h3><p>如 t_crm_relation_tmp0425。备份表也类似，形如 <code>_bak20160425</code> 。</p>
+</li>
+<li><h3 id="按日期时间分表须符合-YYYY-MM-DD-格式"><a href="#按日期时间分表须符合-YYYY-MM-DD-格式" class="headerlink" title="按日期时间分表须符合_YYYY[MM][DD]格式"></a>按日期时间分表须符合_YYYY[MM][DD]格式</h3><p>这也是为将来有可能分表做准备的，比如<code>t_crm_ec_record_201403</code>，但像 t_crm_contact_at201506就打破了这种规范。 不具有时间特性的，直接以 <code>t_tbname_001</code> 这样的方式命名。</p>
+</li>
+</ol>
+<h2 id="2-库表基础规范"><a href="#2-库表基础规范" class="headerlink" title="2. 库表基础规范"></a>2. 库表基础规范</h2><ol>
+<li><h3 id="使用Innodb存储引擎"><a href="#使用Innodb存储引擎" class="headerlink" title="使用Innodb存储引擎"></a>使用Innodb存储引擎</h3><p>5.5版本开始mysql默认存储引擎就是InnoDB，5.7版本开始，系统表都放弃MyISAM了。</p>
+</li>
+<li><h3 id="表字符集统一使用UTF8"><a href="#表字符集统一使用UTF8" class="headerlink" title="表字符集统一使用UTF8"></a>表字符集统一使用UTF8</h3><ul>
+<li>UTF8字符集存储汉字占用3个字节，存储英文字符占用一个字节</li>
+<li>校对字符集使用默认的 utf8_general_ci</li>
+<li>连接的客户端也使用utf8，建立连接时指定charset或<code>SET NAMES UTF8;</code>。（对于已经在项目中长期使用latin1的，救不了了）</li>
+<li>如果遇到EMOJ等表情符号的存储需求，可申请使用UTF8MB4字符集</li>
+</ul>
+</li>
+<li><h3 id="所有表都要添加注释"><a href="#所有表都要添加注释" class="headerlink" title="所有表都要添加注释"></a>所有表都要添加注释</h3><ul>
+<li>尽量给字段也添加注释</li>
+<li>类status型需指明主要值的含义，如”0-离线，1-在线”</li>
+</ul>
+</li>
+<li><h3 id="控制单表字段数量"><a href="#控制单表字段数量" class="headerlink" title="控制单表字段数量"></a>控制单表字段数量</h3><ul>
+<li>单表字段数上限30左右，再多的话考虑垂直分表，一是冷热数据分离，二是大字段分离，三是常在一起做条件和返回列的不分离。</li>
+<li>表字段控制少而精，可以提高IO效率，内存缓存更多有效数据，从而提高响应速度和并发能力，后续 alter table 也更快。</li>
+</ul>
+</li>
+<li><h3 id="所有表都必须要显式指定主键"><a href="#所有表都必须要显式指定主键" class="headerlink" title="所有表都必须要显式指定主键"></a>所有表都必须要显式指定主键</h3><ul>
+<li>主键尽量采用自增方式，InnoDB表实际是一棵索引组织表，顺序存储可以提高存取效率，充分利用磁盘空间。还有对一些复杂查询可能需要自连接来优化时需要用到。</li>
+<li>需要全局唯一主键时，使用外部发号器ticket server（建设中）</li>
+<li>如果没有主键或唯一索引，update/delete是通过所有字段来定位操作的行，相当于每行就是一次全表扫描</li>
+<li>少数情况可以使用联合唯一主键，需与DBA协商</li>
+</ul>
+</li>
+<li><h3 id="不强制使用外键参考"><a href="#不强制使用外键参考" class="headerlink" title="不强制使用外键参考"></a>不强制使用外键参考</h3><p>即使2个表的字段有明确的外键参考关系，也不使用 FOREIGN KEY ，因为新纪录会去主键表做校验，影响性能。</p>
+</li>
+<li><h3 id="适度使用存储过程、视图，禁止使用触发器、事件"><a href="#适度使用存储过程、视图，禁止使用触发器、事件" class="headerlink" title="适度使用存储过程、视图，禁止使用触发器、事件"></a>适度使用存储过程、视图，禁止使用触发器、事件</h3></li>
+</ol>
+<ul>
+<li>存储过程（procedure）虽然可以简化业务端代码，在传统企业写复杂逻辑时可能会用到，而在互联网企业变更是很频繁的，在分库分表的情况下要升级一个存储过程相当麻烦。又因为它是不记录log的，所以也不方便debug性能问题。如果使用过程，一定考虑如果执行失败的情况。<ul>
+<li>使用视图一定程度上也是为了降低代码里SQL的复杂度，但有时候为了视图的通用性会损失性能（比如返回不必要的字段）。</li>
+</ul>
+</li>
+<li>触发器（trigger）也是同样，但也不应该通过它去约束数据的强一致性，mysql只支持“基于行的触发”，也就是说，触发器始终是针对一条记录的，而不是针对整个sql语句的，如果变更的数据集非常大的话，效率会很低。掩盖一条sql背后的工作，一旦出现问题将是灾难性的，但又很难快速分析和定位。再者需要ddl时无法使用pt-osc工具。放在transaction执行。</li>
+<li>事件（event）也是一种偷懒的表现，目前已经遇到数次由于定时任务执行失败影响业务的情况，而且mysql无法对它做失败预警。建立专门的 job scheduler 平台。</li>
+</ul>
+<ol>
+<li><h3 id="单表数据量控制在5000w以内"><a href="#单表数据量控制在5000w以内" class="headerlink" title="单表数据量控制在5000w以内"></a>单表数据量控制在5000w以内</h3></li>
+<li><h3 id="数据库中不允许存储明文密码"><a href="#数据库中不允许存储明文密码" class="headerlink" title="数据库中不允许存储明文密码"></a>数据库中不允许存储明文密码</h3></li>
+</ol>
+<h2 id="3-字段规范"><a href="#3-字段规范" class="headerlink" title="3. 字段规范"></a>3. 字段规范</h2><ol>
+<li><h3 id="char、varchar、text等字符串类型定义"><a href="#char、varchar、text等字符串类型定义" class="headerlink" title="char、varchar、text等字符串类型定义"></a>char、varchar、text等字符串类型定义</h3><ul>
+<li>对于长度基本固定的列，如果该列恰好更新又特别频繁，适合char</li>
+<li>varchar虽然存储变长字符串，但不可太小也不可太大。UTF8最多能存21844个汉字，或65532个英文</li>
+<li>varbinary(M)保存的是二进制字符串，它保存的是字节而不是字符，所以没有字符集的概念，M长度0-255（字节）。只用于排序或比较时大小写敏感的类型，不包括密码存储</li>
+<li>TEXT类型与VARCHAR都类似，存储可变长度，最大限制也是2^16，但是它20bytes以后的内容是在数据页以外的空间存储（row_format=dynamic），对它的使用需要多一次寻址，没有默认值。 一般用于存放容量平均都很大、操作没有其它字段那样频繁的值。 网上部分文章说要避免使用text和blob，要知道如果纯用varchar可能会导致行溢出，效果差不多，但因为每行占用字节数过多，会导致buffer_pool能缓存的数据行、页下降。另外text和blob上面一般不会去建索引，而是利用sphinx之类的第三方全文搜索引擎，如果确实要创建（前缀）索引，那就会影响性能。凡事看具体场景。 另外尽可能把text/blob拆到另一个表中</li>
+<li>BLOB可以看出varbinary的扩展版本，内容以二进制字符串存储，无字符集，区分大小写，有一种经常提但不用的场景：不要在数据库里存储图片。</li>
+</ul>
+</li>
+<li><h3 id="int、tinyint、decimal等数字类型定义"><a href="#int、tinyint、decimal等数字类型定义" class="headerlink" title="int、tinyint、decimal等数字类型定义"></a>int、tinyint、decimal等数字类型定义</h3><ul>
+<li>使用tinyint来代替 enum和boolean ENUM类型在需要修改或增加枚举值时，需要在线DDL，成本较高；ENUM列值如果含有数字类型，可能会引起默认值混淆 tinyint使用1个字节，一般用于status,type,flag的列</li>
+<li>建议使用 UNSIGNED 存储非负数值 相比不使用 unsigned，可以扩大一倍使用数值范围</li>
+<li>int使用固定4个字节存储，int(11)与int(4)只是显示宽度的区别</li>
+<li>使用Decimal 代替float/double存储精确浮点数 对于货币、金额这样的类型，使用decimal，如 decimal(9,2)。float默认只能能精确到6位有效数字</li>
+</ul>
+</li>
+<li><h3 id="timestamp与datetime选择"><a href="#timestamp与datetime选择" class="headerlink" title="timestamp与datetime选择"></a>timestamp与datetime选择</h3><ul>
+<li>datetime 和 timestamp类型所占的存储空间不同，前者8个字节，后者4个字节，这样造成的后果是两者能表示的时间范围不同。前者范围为1000-01-01 00:00:00 ~ 9999-12-31 23:59:59，后者范围为 1970-01-01 08:00:01 到 2038-01-19 11:14:07 。所以 TIMESTAMP 支持的范围比 DATATIME 要小。</li>
+<li>timestamp可以在insert/update行时，自动更新时间字段（如 f_set_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP），但一个表只能有一个这样的定义。</li>
+<li>timestamp显示与时区有关，内部总是以 UTC 毫秒 来存的。还受到严格模式的限制</li>
+<li>优先使用timestamp，datetime也没问题</li>
+<li>where条件里不要对时间列上使用时间函数</li>
+</ul>
+</li>
+<li><h3 id="建议字段都定义为NOT-NULL"><a href="#建议字段都定义为NOT-NULL" class="headerlink" title="建议字段都定义为NOT NULL"></a>建议字段都定义为NOT NULL</h3><ul>
+<li>如果是索引字段，一定要定义为not null 。因为null值会影响cordinate统计，影响优化器对索引的选择</li>
+<li>如果不能保证insert时一定有值过来，定义时使用default ‘’ ，或 0</li>
+</ul>
+</li>
+<li><h3 id="同一意义的字段定义必须相同"><a href="#同一意义的字段定义必须相同" class="headerlink" title="同一意义的字段定义必须相同"></a>同一意义的字段定义必须相同</h3><p>比如不同表中都有 f_user_id 字段，那么它的类型、字段长度要设计成一样</p>
+</li>
+</ol>
+<h2 id="4-索引规范"><a href="#4-索引规范" class="headerlink" title="4. 索引规范"></a>4. 索引规范</h2><ol>
+<li><h3 id="任何新的select-update-delete上线，都要先explain，看索引使用情况"><a href="#任何新的select-update-delete上线，都要先explain，看索引使用情况" class="headerlink" title="任何新的select,update,delete上线，都要先explain，看索引使用情况"></a>任何新的select,update,delete上线，都要先explain，看索引使用情况</h3><p>尽量避免extra列出现：Using File Sort，Using Temporary，rows超过1000的要谨慎上线。 explain解读</p>
+<ul>
+<li><code>type</code>：ALL, index, range, ref, eq_ref, const, system, NULL（从左到右，性能从差到好）</li>
+<li><code>possible_keys</code>：指出MySQL能使用哪个索引在表中找到记录，查询涉及到的字段上若存在索引，则该索引将被列出，但不一定被查询使用</li>
+<li><code>key</code>：表示MySQL实际决定使用的键（索引） 如果没有选择索引，键是NULL。要想强制MySQL使用或忽视possible_keys列中的索引，在查询中使用FORCE INDEX、USE INDEX或者IGNORE INDEX</li>
+<li><code>ref</code>：表示选择 <code>key</code> 列上的索引，哪些列或常量被用于查找索引列上的值</li>
+<li><code>rows</code>：根据表统计信息及索引选用情况，估算的找到所需的记录所需要读取的行数</li>
+<li><code>Extra</code><ul>
+<li><code>Using temporary</code>：表示MySQL需要使用临时表来存储结果集，常见于排序和分组查询</li>
+<li><code>Using filesort</code>：MySQL中无法利用索引完成的排序操作称为“文件排序”</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h3 id="索引个数限制"><a href="#索引个数限制" class="headerlink" title="索引个数限制"></a>索引个数限制</h3><ul>
+<li>索引是双刃剑，会增加维护负担，增大IO压力，索引占用空间是成倍增加的</li>
+<li>单张表的索引数量控制在5个以内，或不超过表字段个数的20%。若单张表多个字段在查询需求上都要单独用到索引，需要经过DBA评估。</li>
+</ul>
+</li>
+<li><h3 id="避免冗余索引"><a href="#避免冗余索引" class="headerlink" title="避免冗余索引"></a>避免冗余索引</h3><ul>
+<li>InnoDB表是一棵索引组织表，主键是和数据放在一起的聚集索引，普通索引最终指向的是主键地址，所以把主键做最后一列是多余的。如f_crm_id作为主键，联合索引(f_user_id,f_crm_id)上的f_crm_id就完全多余</li>
+<li>(a,b,c)、(a,b)，后者为冗余索引。可以利用前缀索引来达到加速目的，减轻维护负担</li>
+</ul>
+</li>
+<li><h3 id="没有特殊要求，使用自增id作为主键"><a href="#没有特殊要求，使用自增id作为主键" class="headerlink" title="没有特殊要求，使用自增id作为主键"></a>没有特殊要求，使用自增id作为主键</h3><ul>
+<li>主键是一种聚集索引，顺序写入。组合唯一索引作为主键的话，是随机写入，适合写少读多的表</li>
+<li>主键不允许更新</li>
+</ul>
+</li>
+<li><h3 id="索引尽量建在选择性高的列上"><a href="#索引尽量建在选择性高的列上" class="headerlink" title="索引尽量建在选择性高的列上"></a>索引尽量建在选择性高的列上</h3><ul>
+<li>不在低基数列上建立索引，例如性别、类型。但有一种情况，idx_feedbackid_type (f_feedback_id,f_type)，如果经常用 f_type=1 比较，而且能过滤掉90%行，那这个组合索引就值得创建。有时候同样的查询语句，由于条件取值不同导致使用不同的索引，也是这个道理。</li>
+<li>索引选择性计算方法（基数 ÷ 数据行数） Selectivity = Cardinality / Total Rows = select count(distinct col1)/count(*) from tbname，越接近1说明col1上使用索引的过滤效果越好</li>
+<li>走索引扫描行数超过30%时，改全表扫描</li>
+</ul>
+</li>
+<li><h3 id="最左前缀原则"><a href="#最左前缀原则" class="headerlink" title="最左前缀原则"></a>最左前缀原则</h3><ul>
+<li>mysql使用联合索引时，从左向右匹配，遇到断开或者范围查询时，无法用到后续的索引列 比如索引idx_c1_c2_c3 (c1,c2,c3)，相当于创建了(c1)、(c1,c2)、(c1,c2,c3)三个索引，where条件包含上面三种情况的字段比较则可以用到索引，但像 where c1=a and c3=c 只能用到c1列的索引，像 c2=b and c3=c等情况就完全用不到这个索引</li>
+<li>遇到范围查询(&gt;、&lt;、between、like)也会停止索引匹配，比如 c1=a and c2 &gt; 2 and c3=c，只有c1,c2列上的比较能用到索引，(c1,c2,c3)排列的索引才可能会都用上</li>
+<li>where条件里面字段的顺序与索引顺序无关，mysql优化器会自动调整顺序</li>
+</ul>
+</li>
+<li><h3 id="前缀索引"><a href="#前缀索引" class="headerlink" title="前缀索引"></a>前缀索引</h3><ul>
+<li>对超过30个字符长度的列创建索引时，考虑使用前缀索引，如 idx_cs_guid2 (f_cs_guid(26))表示截取前26个字符做索引，既可以提高查找效率，也可以节省空间</li>
+<li>前缀索引也有它的缺点是，如果在该列上 ORDER BY 或 GROUP BY 时无法使用索引，也不能把它们用作覆盖索引(Covering Index)</li>
+<li>如果在varbinary或blob这种以二进制存储的列上建立前缀索引，要考虑字符集，括号里表示的是字节数</li>
+</ul>
+</li>
+<li><h3 id="合理使用覆盖索引减少IO"><a href="#合理使用覆盖索引减少IO" class="headerlink" title="合理使用覆盖索引减少IO"></a>合理使用覆盖索引减少IO</h3><p>INNODB存储引擎中，secondary index(非主键索引，又称为辅助索引、二级索引)没有直接存储行地址，而是存储主键值。 如果用户需要查询secondary index中所不包含的数据列，则需要先通过secondary index查找到主键值，然后再通过主键查询到其他数据列，因此需要查询两次。覆盖索引则可以在一个索引中获取所有需要的数据列，从而避免回表进行二次查找，节省IO因此效率较高。 例如SELECT email，uid FROM user_email WHERE uid=xx，如果uid不是主键，适当时候可以将索引添加为index(uid，email)，以获得性能提升。</p>
+</li>
+<li><h3 id="尽量不要在频繁更新的列上创建索引"><a href="#尽量不要在频繁更新的列上创建索引" class="headerlink" title="尽量不要在频繁更新的列上创建索引"></a>尽量不要在频繁更新的列上创建索引</h3><p>如不在定义了 ON UPDATE CURRENT_STAMP 的列上创建索引，维护成本太高（好在mysql有insert buffer，会合并索引的插入）</p>
+</li>
+</ol>
+<h2 id="5-SQL设计"><a href="#5-SQL设计" class="headerlink" title="5. SQL设计"></a>5. SQL设计</h2><ol>
+<li><h3 id="杜绝直接-SELECT-读取全部字段"><a href="#杜绝直接-SELECT-读取全部字段" class="headerlink" title="杜绝直接 SELECT * 读取全部字段"></a>杜绝直接 SELECT * 读取全部字段</h3><p>即使需要所有字段，减少网络带宽消耗，能有效利用覆盖索引，表结构变更对程序基本无影响</p>
+</li>
+<li><h3 id="能确定返回结果只有一条时，使用-limit-1"><a href="#能确定返回结果只有一条时，使用-limit-1" class="headerlink" title="能确定返回结果只有一条时，使用 limit 1"></a>能确定返回结果只有一条时，使用 limit 1</h3><p><strong>在保证数据不会有误的前提下</strong>，能确定结果集数量时，多使用limit，尽快的返回结果。</p>
+</li>
+<li><h3 id="小心隐式类型转换"><a href="#小心隐式类型转换" class="headerlink" title="小心隐式类型转换"></a>小心隐式类型转换</h3><ul>
+<li><p>转换规则</p>
+<blockquote>
+<p>a. 两个参数至少有一个是 NULL 时，比较的结果也是 NULL，例外是使用 &lt;=&gt; 对两个 NULL 做比较时会返回 1，这两种情况都不需要做类型转换 b. 两个参数都是字符串，会按照字符串来比较，不做类型转换 c. 两个参数都是整数，按照整数来比较，不做类型转换 d. 十六进制的值和非数字做比较时，会被当做二进制串 e. 有一个参数是 TIMESTAMP 或 DATETIME，并且另外一个参数是常量，常量会被转换为 timestamp f. 有一个参数是 decimal 类型，如果另外一个参数是 decimal 或者整数，会将整数转换为 decimal 后进行比较，如果另外一个参数是浮点数，则会把 decimal 转换为浮点数进行比较 g. 所有其他情况下，两个参数都会被转换为浮点数再进行比较。</p>
+</blockquote>
+</li>
+<li><p>如果一个索引建立在string类型上，如果这个字段和一个int类型的值比较，符合第 g 条。如f_phone定义的类型是varchar，但where使用f_phone in (098890)，两个参数都会被当成成浮点型。发生这个隐式转换并不是最糟的，最糟的是string转换后的float，mysql无法使用索引，这才导致了性能问题。如果是 f_user_id = ‘1234567’ 的情况，符合第 b 条,直接把数字当字符串比较。</p>
+</li>
+</ul>
+</li>
+<li><h3 id="禁止在where条件列上使用函数"><a href="#禁止在where条件列上使用函数" class="headerlink" title="禁止在where条件列上使用函数"></a>禁止在where条件列上使用函数</h3><ul>
+<li>会导致索引失效，如lower(email)，f_qq % 4。可放到右边的常量上计算</li>
+<li>返回小结果集不是很大的情况下，可以对返回列使用函数，简化程序开发</li>
+</ul>
+</li>
+<li><h3 id="使用like模糊匹配，-不要放首位"><a href="#使用like模糊匹配，-不要放首位" class="headerlink" title="使用like模糊匹配，%不要放首位"></a>使用like模糊匹配，%不要放首位</h3><p>会导致索引失效，有这种搜索需求是，考虑其它方案，如sphinx全文搜索</p>
+</li>
+<li><h3 id="涉及到复杂sql时，务必先参考已有索引设计，先explain"><a href="#涉及到复杂sql时，务必先参考已有索引设计，先explain" class="headerlink" title="涉及到复杂sql时，务必先参考已有索引设计，先explain"></a>涉及到复杂sql时，务必先参考已有索引设计，先explain</h3><ul>
+<li>简单SQL拆分，不以代码处理复杂为由。</li>
+<li>比如 OR 条件： f_phone=’10000’ or f_mobile=’10000’，两个字段各自有索引，但只能用到其中一个。可以拆分成2个sql，或者union all。</li>
+<li>先explain的好处是可以为了利用索引，增加更多查询限制条件</li>
+</ul>
+</li>
+<li><h3 id="使用join时，where条件尽量使用充分利用同一表上的索引"><a href="#使用join时，where条件尽量使用充分利用同一表上的索引" class="headerlink" title="使用join时，where条件尽量使用充分利用同一表上的索引"></a>使用join时，where条件尽量使用充分利用同一表上的索引</h3><ul>
+<li>如 select t1.a,t2.b * from t1,t2 and t1.a=t2.a and t1.b=123 and t2.c= 4 ，如果t1.c与t2.c字段相同，那么t1上的索引(b,c)就只用到b了。此时如果把where条件中的t2.c=4改成t1.c=4，那么可以用到完整的索引</li>
+<li>这种情况可能会在字段冗余设计（反范式）时出现</li>
+<li>正确选取inner join和left join</li>
+</ul>
+</li>
+<li><h3 id="少用子查询，改用join"><a href="#少用子查询，改用join" class="headerlink" title="少用子查询，改用join"></a>少用子查询，改用join</h3><p>小于5.6版本时，子查询效率很低，不像Oracle那样先计算子查询后外层查询。5.6版本开始得到优化</p>
+</li>
+<li><h3 id="考虑使用union-all，少使用union，注意考虑去重"><a href="#考虑使用union-all，少使用union，注意考虑去重" class="headerlink" title="考虑使用union all，少使用union，注意考虑去重"></a>考虑使用union all，少使用union，注意考虑去重</h3><ul>
+<li>union all不去重，而少了排序操作，速度相对比union要快，如果没有去重的需求，优先使用union all</li>
+<li>如果UNION结果中有使用limit，在2个子SQL可能有许多返回值的情况下，各自加上limit。如果还有order by，请找DBA。</li>
+</ul>
+</li>
+<li><h3 id="IN的内容尽量不超过200个"><a href="#IN的内容尽量不超过200个" class="headerlink" title="IN的内容尽量不超过200个"></a>IN的内容尽量不超过200个</h3><p>超过500个值使用批量的方式，否则一次执行会影响数据库的并发能力，因为单SQL只能且一直占用单CPU，而且可能导致主从复制延迟</p>
+</li>
+<li><h3 id="拒绝大事务"><a href="#拒绝大事务" class="headerlink" title="拒绝大事务"></a>拒绝大事务</h3><p>比如在一个事务里进行多个select，多个update，如果是高频事务，会严重影响MySQL并发能力，因为事务持有的锁等资源只在事务rollback/commit时才能释放。但同时也要权衡数据写入的一致性。</p>
+</li>
+<li><h3 id="避免使用is-null-is-not-null这样的比较"><a href="#避免使用is-null-is-not-null这样的比较" class="headerlink" title="避免使用is null, is not null这样的比较"></a>避免使用is null, is not null这样的比较</h3></li>
+<li><h3 id="order-by-limit"><a href="#order-by-limit" class="headerlink" title="order by .. limit"></a>order by .. limit</h3><p>这种查询更多的是通过索引去优化，但order by的字段有讲究，比如主键id与f_time都是顺序递增，那就可以考虑order by id而非 f_time 。</p>
+</li>
+<li><h3 id="c1-lt-a-order-by-c2"><a href="#c1-lt-a-order-by-c2" class="headerlink" title="c1 &lt; a order by c2"></a>c1 &lt; a order by c2</h3><p>与上面不同的是，order by之前有个范围查询，由前面的内容可知，用不到类似(c1,c2)的索引，但是可以利用(c2,c1)索引。另外还可以改写成join的方式实现。</p>
+</li>
+<li><h3 id="分页优化"><a href="#分页优化" class="headerlink" title="分页优化"></a>分页优化</h3><p>建议使用合理的分页方式以提高分页效率，大页情况下不使用跳跃式分页 假如有类似下面分页语句: SELECT _FROM table1 ORDER BY ftime DESC LIMIT 10000,10; 这种分页方式会导致大量的io，因为MySQL使用的是提前读取策略。 推荐分页方式： SELECT _FROM table1 WHERE ftime &lt; last_time ORDER BY ftime DESC LIMIT 10 即传入上一次分页的界值 SELECT * FROM table as t1 inner JOIN (SELECT id FROM table ORDER BY time LIMIT 10000，10) as t2 ON t1.id=t2.id</p>
+</li>
+<li><h3 id="count计数"><a href="#count计数" class="headerlink" title="count计数"></a>count计数</h3><ul>
+<li>首先count(<em>)、count(1)、count(col1)是有区别的，count(</em>)表示整个结果集有多少条记录，count(1)表示结果集里以primary key统计数量，绝大多数情况下count(<em>)与count(1)效果一样的，但count(col1)表示的是结果集里 col1 列 NOT null 的记录数。优先采用count(</em>)</li>
+<li>大数据量count是消耗资源的操作，甚至会拖慢整个库，查询性能问题无法解决的，应从产品设计上进行重构。例如当频繁需要count的查询，考虑使用汇总表</li>
+<li>遇到distinct的情况，group by方式可能效率更高。</li>
+</ul>
+</li>
+<li><h3 id="delete-update语句改成select再explain"><a href="#delete-update语句改成select再explain" class="headerlink" title="delete,update语句改成select再explain"></a>delete,update语句改成select再explain</h3><p>select最多导致数据库慢，写操作才是锁表的罪魁祸首</p>
+</li>
+<li><h3 id="减少与数据库交互的次数，尽量采用批量SQL语句"><a href="#减少与数据库交互的次数，尽量采用批量SQL语句" class="headerlink" title="减少与数据库交互的次数，尽量采用批量SQL语句"></a>减少与数据库交互的次数，尽量采用批量SQL语句</h3><ul>
+<li><code>INSERT ... ON DUPLICATE KEY UPDATE ...</code>，插入行后会导致在一个UNIQUE索引或PRIMARY KEY中出现重复值，则执行旧行UPDATE，如果不重复则直接插入，影响1行。</li>
+<li><code>REPLACE INTO</code>类似，但它是冲突时删除旧行。<code>INSERT IGNORE</code>相反，保留旧行，丢弃要插入的新行。</li>
+<li>INSERT INTO VALUES(),(),()，合并插入。</li>
+</ul>
+</li>
+<li><h3 id="杜绝危险SQL"><a href="#杜绝危险SQL" class="headerlink" title="杜绝危险SQL"></a>杜绝危险SQL</h3><ul>
+<li>去掉where 1=1 这样无意义或恒真的条件，如果遇到update/delete或遭到sql注入就恐怖了</li>
+<li>SQL中不允许出现DDL语句。一般也不给予create/alter这类权限，但阿里云RDS只区分读写用户</li>
+</ul>
+</li>
+</ol>
+<h2 id="6-行为规范"><a href="#6-行为规范" class="headerlink" title="6. 行为规范"></a>6. 行为规范</h2><ul>
+<li>不允许在DBA不知情的情况下导现网数据</li>
+<li>大批量更新，如修复数据，避开高峰期，并通知DBA。直接执行sql的由运维或DBA同事操作</li>
+<li>及时处理已下线业务的SQL</li>
+<li>复杂sql上线审核 因为目前还没有SQL审查机制，复杂sql如多表join,count,group by，主动上报DBA评估。</li>
+<li>重要项目的数据库方案选型和设计必须提前通知DBA参与</li>
+</ul>
+</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous is-invisible is-hidden-mobile"><a href="/page/0/">Anterior</a></div><div class="pagination-next"><a href="/page/2/">Siguiente</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link is-current" href="/">1</a></li><li><a class="pagination-link" href="/page/2/">2</a></li><li><a class="pagination-link" href="/page/3/">3</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Your name"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Your name</p><p class="is-size-6 is-block">Your title</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Your location</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Entradas</p><a href="/archives"><p class="title">25</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categorías</p><a href="/categories"><p class="title">7</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Etiqueta</p><a href="/tags"><p class="title">1</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="noopener">SEGUIR</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Enlaces</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categorías</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/LaTeX/"><span class="level-start"><span class="level-item">LaTeX</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="level-start"><span class="level-item">小程序</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/"><span class="level-start"><span class="level-item">计算机</span></span><span class="level-end"><span class="level-item tag">18</span></span></a><ul><li><a class="level is-mobile" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E7%BD%91%E7%BB%9C/"><span class="level-start"><span class="level-item">-网络</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/shell/"><span class="level-start"><span class="level-item">shell</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="level-start"><span class="level-item">数据库</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E7%BD%91%E7%BB%9C/"><span class="level-start"><span class="level-item">网络</span></span><span class="level-end"><span class="level-item tag">13</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recientes</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2018-08-15T04:59:51.000Z">2018-08-15</time></p><p class="title"><a href="/2018/08/15/%E4%BF%AE%E6%94%B9Anaconda%E4%B8%AD%E7%9A%84Jupyter-Notebook%E9%BB%98%E8%AE%A4%E5%B7%A5%E4%BD%9C%E8%B7%AF%E5%BE%84/">修改Anaconda中的Jupyter Notebook默认工作路径-update</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2018-08-12T09:37:32.000Z">2018-08-12</time></p><p class="title"><a href="/2018/08/12/%E6%9C%80%E8%BF%91%E4%B8%80%E6%AE%B5%E6%97%B6%E9%97%B4%E7%9A%84%E6%80%BB%E7%BB%93/">最近一段时间的总结（2018年上半年）</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2018-07-01T05:21:58.000Z">2018-07-01</time></p><p class="title"><a href="/2018/07/01/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">hexo常用命令</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2018-06-02T14:35:02.000Z">2018-06-02</time></p><p class="title"><a href="/2018/06/02/tar%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8/">tar命令的使用</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2018-06-01T03:26:11.000Z">2018-06-01</time></p><p class="title"><a href="/2018/06/01/Git%E5%A4%9A%E8%B4%A6%E5%8F%B7%E3%80%81%E5%AF%86%E9%92%A5%E7%AE%A1%E7%90%86/">Git多账号、密钥管理</a></p><p class="categories"><a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a> / <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E7%BD%91%E7%BB%9C/">网络</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archivos</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2018/08/"><span class="level-start"><span class="level-item">August 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/07/"><span class="level-start"><span class="level-item">July 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/06/"><span class="level-start"><span class="level-item">June 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/05/"><span class="level-start"><span class="level-item">May 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/10/"><span class="level-start"><span class="level-item">October 2017</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/09/"><span class="level-start"><span class="level-item">September 2017</span></span><span class="level-end"><span class="level-item tag">16</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Etiquetas</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="tag">小程序</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Suscríbete para recibir actualizaciones</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Suscribir"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Suscribir"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="大风" height="28"></a><p class="is-size-7"><span>&copy; 2022 kkai</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-Hans");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Volver arriba" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "Este sitio web utiliza cookies para mejorar su experiencia.",
+          dismiss: "¡Entendido!",
+          allow: "Permitir cookies",
+          deny: "Descenso",
+          link: "Aprende más",
+          policy: "Política de cookies",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Teclea algo..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Teclea algo...","untitled":"(Sin título)","posts":"Entradas","pages":"Páginas","categories":"Categorías","tags":"Etiquetas"});
+        });</script></body></html>
